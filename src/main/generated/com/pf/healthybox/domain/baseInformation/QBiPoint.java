@@ -21,7 +21,7 @@ public class QBiPoint extends EntityPathBase<BiPoint> {
 
     public final StringPath content = createString("content");
 
-    public final NumberPath<Integer> idx = createNumber("idx", Integer.class);
+    public final NumberPath<Long> idx = createNumber("idx", Long.class);
 
     public final DateTimePath<java.time.LocalDateTime> occurDate = createDateTime("occurDate", java.time.LocalDateTime.class);
 
