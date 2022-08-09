@@ -54,13 +54,3 @@ public class PiProduct extends AuditingFields {
     }
 }
 
-@Getter
-@RequiredArgsConstructor
-@Embeddable
-class PiProductPk implements Serializable {
-
-    @Column(length = 8) private String productCode;
-
-    @Column(length = 8) private String sellerCode;
-
-}

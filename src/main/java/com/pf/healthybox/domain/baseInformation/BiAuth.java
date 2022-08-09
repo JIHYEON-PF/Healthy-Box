@@ -55,14 +55,3 @@ public class BiAuth { // 사용자 권한 Entity
     }
 }
 
-@Data
-@Embeddable
-class BiAuthPk implements Serializable { //사용자 권한 Primary Key를 관리하는 클래스
-
-    @Column(length = 3)
-    private String division;
-
-    @Column(length = 3)
-    private String level;
-
-}
