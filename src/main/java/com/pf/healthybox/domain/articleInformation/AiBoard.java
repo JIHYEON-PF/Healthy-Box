@@ -51,17 +51,3 @@ public class AiBoard extends AuditingFields {
         return Objects.hash(aiBoardPk);
     }
 }
-
-@Getter
-@RequiredArgsConstructor
-@Embeddable
-class AiBoardPk implements Serializable {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
-
-    @Column(length = 3) private BoardGroup boardGroup;
-
-    @Column(length = 3) private BoardCategory boardCategory;
-
-}

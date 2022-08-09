@@ -44,16 +44,3 @@ public class PiDivProduct {
         return Objects.hash(piDivProductPk);
     }
 }
-
-@Getter
-@RequiredArgsConstructor
-@Embeddable
-class PiDivProductPk implements Serializable {
-
-    @Column(length = 3)
-    private String productGroup;
-
-    @Column(length = 3)
-    private String productCategory;
-
-}

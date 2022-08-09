@@ -46,17 +46,3 @@ public class AiReply extends AuditingFields {
         return Objects.hash(aiReplyPk);
     }
 }
-
-@Getter
-@RequiredArgsConstructor
-@Embeddable
-class AiReplyPk implements Serializable {
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idx;
-
-    @Column private Long boardIdx;
-    @Column(length = 3) private String boardGroup;
-    @Column(length = 3) private String boardCategory;
-
-}
