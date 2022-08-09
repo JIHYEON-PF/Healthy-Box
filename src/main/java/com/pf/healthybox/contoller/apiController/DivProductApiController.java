@@ -33,17 +33,4 @@ public class DivProductApiController {
         return piDivProductService.getAllDivProducts();
     }
 
-    @GetMapping("/test")
-    public List<PiDivProductResponse> test() {
-
-        PiDivProductResponse res1 = new PiDivProductResponse("정기구독", List.of("도시락", "샐러드", "건강식품"));
-        PiDivProductResponse res2 = new PiDivProductResponse("도시락", List.of("일반 도시락", "다이어트 도시락"));
-
-        List<PiDivProductResponse> result = new ArrayList<>();
-        result.add(res1);
-        result.add(res2);
-
-        return result;
-    }
-
 }
