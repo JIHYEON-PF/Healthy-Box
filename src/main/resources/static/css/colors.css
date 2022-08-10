@@ -1,0 +1,15 @@
+.defaultFontColor {
+    color: rgba(83,146,91,0.8);
+}
+
+.borderTop {
+    border-top: 1px  rgba(83,146,91,0.5) solid;
+}
+
+.borderBottom {
+    border-bottom: 1px  rgba(83,146,91,0.5) solid;
+}
+
+.backgroundColor {
+    background-color: rgba(83, 146, 91, 0.1);
+}
