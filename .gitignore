@@ -164,4 +164,10 @@ gradle-app.setting
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+### Jpa Buddy Configuration ###
+.jpb
+
+### QueryDSL ###
+src/main/generated
+
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij+all,windows,gradle
