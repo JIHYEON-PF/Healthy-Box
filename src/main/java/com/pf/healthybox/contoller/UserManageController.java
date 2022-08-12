@@ -13,4 +13,9 @@ public class UserManageController { // 유저 관리에 대한 컨트롤러(회�
         return "userTemplates/signUp";
     }
 
+    @GetMapping("/login")
+    public String showLogin() {
+        return "userTemplates/login";
+    }
+
 }

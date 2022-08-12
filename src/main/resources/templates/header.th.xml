@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
 <thlogic>
     <attr sel="#signUpBtn" th:onclick="|window.location.href='/user/signUp'|"/>
+    <attr sel="#loginBtn" th:onclick="|window.location.href='/user/login'|"/>
 </thlogic>
