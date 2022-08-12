@@ -22,10 +22,26 @@
 }
 
 .joinATag:hover {
-    color: white;
+    color: rgba(83, 146, 91, 0.8);
 }
 
 .requiredData {
     color: rgba(255,0,0,0.8);
     font-size: small;
+}
+
+/* user/login 페이지 */
+.loginATag {
+    color: rgba(83,146,91,0.8);
+    width: 120px;
+    background-color: #F8F9FA;
+    border: 1px solid #F8F9FA;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 38px;
+}
+
+.loginATag.hover {
+    color: rgba(83,146,91,0.8);
 }
