@@ -8,6 +8,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
     <link href="/css/sidebars.css" rel="stylesheet">
 
 </head>
@@ -98,71 +99,34 @@
                 </ul>
             </div>
             <div class="border-start border-end mt-2 col-9">
-                <div class="row m-2">
-                    <div class="col">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-success">[정기구독]</strong>
-                                <h3 class="mb-0">직장인을 위한 점심 도시락</h3>
-                                <div class="mb-1 text-muted">[도시락]</div>
-                                <p class="mb-auto">바쁜 직장인을 위한 영양만점 도시락입니다.<br>정기배송 주기는 1주, 2주, 4주 단위로 구성되어 있습니다.</p>
-                                <a href="#" class="stretched-link">자세히 보기</a>
+                <div class="m-2">
+                    <div class="border m-2 d-flex flex-wrap">
+                        <div class="m-2">
+                            <img src="/image/markup-subscribe-lunchbox.jpg" alt="품목 이미지" width="250px" height="300px">
+                        </div>
+                        <div class="border-start">
+                            <div class="m-2 col d-flex flex-wrap">
+                                <div class="row col-md-3 text-center d-flex align-items-center justify-content-center">
+                                    <span class="my-3"><strong>품목명</strong></span>
+                                    <span class="my-3"><strong>리뷰</strong></span>
+                                    <span class="my-3"><strong>금액</strong></span>
+                                    <span class="my-3"><strong>옵션</strong></span>
+                                </div>
+                                <div class="row col d-flex align-items-center justify-content-center">
+                                    <span>직장인을 위한 점심 도시락</span>
+                                    <span>5.0/5.0</span>
+                                    <span>150,000원</span>
+                                    <span>옵션</span>
+                                </div>
                             </div>
-                            <div class="col-auto d-none d-lg-block">
-                                <img src="/image/markup-subscribe-lunchbox.jpg" alt="정기구독 - 도시락" width="200px" height="250px">
+                            <div class="d-flex flex-wrap align-items-end justify-content-end my-2">
+                                <button type="button" class="joinBtn mx-2">구매하기</button>
+                                <a href="#" class="joinATag mx-2">장바구니</a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row m-2">
-                    <div class="col">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-success">[정기구독]</strong>
-                                <h3 class="mb-0">든든한 한끼를 위한 도시락</h3>
-                                <div class="mb-1 text-muted">[도시락]</div>
-                                <p class="mb-auto">한 끼를 든든하게 채워줄 수 있는 도시락 입니다.<br>정기배송 주기는 1주, 2주, 4주 단위로 구성되어 있습니다.</p>
-                                <a href="#" class="stretched-link">자세히 보기</a>
-                            </div>
-                            <div class="col-auto d-none d-lg-block">
-                                <img src="/image/markup-subscribe-boxlunch.jpg" alt="정기구독 - 도시락" width="200px" height="250px">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row m-2">
-                    <div class="col">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-success">[정기구독]</strong>
-                                <h3 class="mb-0">올 여름 몸매관리를 위한 샐러드</h3>
-                                <div class="mb-1 text-muted">[샐러드]</div>
-                                <p class="mb-auto">올 여름 몸매관리를 위한 샐러드 입니다.<br>정기배송 주기는 1주, 2주, 4주 단위로 구성되어 있습니다.</p>
-                                <a href="#" class="stretched-link">자세히 보기</a>
-                            </div>
-                            <div class="col-auto d-none d-lg-block">
-                                <img src="/image/markup-subscribe-saladbox.jpg" alt="정기구독 - 샐러드" width="200px" height="250px">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row m-2">
-                    <div class="col">
-                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                            <div class="col p-4 d-flex flex-column position-static">
-                                <strong class="d-inline-block mb-2 text-success">[정기구독]</strong>
-                                <h3 class="mb-0">소중한 내 건강관리를 위한 종합 비타민 세트</h3>
-                                <div class="mb-1 text-muted">[건강식품]</div>
-                                <p class="mb-auto">소중한 내 건강관리를 책임져 줄 영양제 세트입니다.
-                                    <br>구성으로는 오메가3, 루테인, 멀티비타민으로 구성되어 있습니다.
-                                    <br>정기배송 주기는 2주, 4주, 8주로 구성되어 있습니다.
-                                </p>
-                                <a href="#" class="stretched-link">자세히 보기</a>
-                            </div>
-                            <div class="col-auto d-none d-lg-block">
-                                <img src="/image/markup-subscribe-drugs.jpg" alt="정기구독 - 영양제" width="200px" height="250px">
-                            </div>
-                        </div>
+                    <div class="border m-2">
+                        <img src="/image/markup-product-detail.png" alt="품목 디테일">
                     </div>
                 </div>
             </div>
@@ -173,9 +137,6 @@
         <hr>
         푸터 삽입부
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="/js/sidebars.js"></script>
 
 </body>
 </html>
