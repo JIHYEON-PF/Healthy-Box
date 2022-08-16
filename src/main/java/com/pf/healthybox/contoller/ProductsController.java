@@ -13,4 +13,10 @@ public class ProductsController {
         return "prodTemplates/productList";
     }
 
+    @GetMapping("/detail")//TODO: 품목 분류와 카테고리를 QueryParam으로 받아오고, 품목번호를 받아와서 해당 품목을 출력하는 메서드로 변경 필요
+    public String showProdDetail() {
+        return "prodTemplates/productDetail";
+    }
+
+
 }
