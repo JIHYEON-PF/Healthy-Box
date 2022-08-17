@@ -1,7 +1,7 @@
 package com.pf.healthybox.domain.baseInformation;
 
 
-import com.pf.healthybox.domain.config.AuditingFields;
+import com.pf.healthybox.domain.AuditingFields;
 import lombok.Getter;
 import lombok.Setter;
 
