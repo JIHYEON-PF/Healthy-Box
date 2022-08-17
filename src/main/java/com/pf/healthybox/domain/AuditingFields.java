@@ -1,4 +1,4 @@
-package com.pf.healthybox.domain.config;
+package com.pf.healthybox.domain;
 
 import lombok.Getter;
 import lombok.ToString;
@@ -25,17 +25,17 @@ public class AuditingFields {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt; //생성 일자
 
-    @CreatedBy
-    @Column(nullable = false, updatable = false, length = 50)
-    private String createdBy; // 생성자
+//    @CreatedBy
+//    @Column(nullable = false, updatable = false, length = 50)
+//    private String createdBy; // 생성자
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @LastModifiedDate
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = true)
     private LocalDateTime updatedAt; // 수정 일자
 
-    @LastModifiedBy
-    @Column(nullable = false, updatable = false, length = 50)
-    private String updatedBy;
+//    @LastModifiedBy
+//    @Column(nullable = false, length = 50)
+//    private String updatedBy;
 
 }

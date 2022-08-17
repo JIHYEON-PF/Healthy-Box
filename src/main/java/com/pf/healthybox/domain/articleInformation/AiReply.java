@@ -1,13 +1,10 @@
 package com.pf.healthybox.domain.articleInformation;
 
-import com.pf.healthybox.domain.config.AuditingFields;
+import com.pf.healthybox.domain.AuditingFields;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
