@@ -1,6 +1,6 @@
 package com.pf.healthybox.service;
 
-import com.pf.healthybox.dto.response.PiDivProductResponse;
+import com.pf.healthybox.dto.response.productInformationRes.PiDivProductResponse;
 import com.pf.healthybox.repository.PiDivProductRepository;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;

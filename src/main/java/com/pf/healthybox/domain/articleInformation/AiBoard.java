@@ -1,12 +1,9 @@
 package com.pf.healthybox.domain.articleInformation;
 
-import com.pf.healthybox.domain.config.AuditingFields;
-import com.pf.healthybox.domain.config.BoardCategory;
-import com.pf.healthybox.domain.config.BoardGroup;
+import com.pf.healthybox.domain.AuditingFields;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Getter

@@ -1,8 +1,6 @@
 package com.pf.healthybox.service;
 
-import com.pf.healthybox.dto.response.PiDivProductResponse;
 import com.pf.healthybox.repository.PiDivProductRepository;
-import com.querydsl.core.Tuple;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

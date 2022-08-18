@@ -1,6 +1,6 @@
 package com.pf.healthybox.domain.orderInformation;
 
-import com.pf.healthybox.domain.config.AuditingFields;
+import com.pf.healthybox.domain.AuditingFields;
 import com.pf.healthybox.domain.config.PayMethod;
 import com.pf.healthybox.domain.config.Status;
 import lombok.Getter;

@@ -1,6 +1,5 @@
-package com.pf.healthybox.dto;
+package com.pf.healthybox.dto.productInformationDto;
 
-import com.pf.healthybox.domain.productInformation.PiDivProduct;
 import com.pf.healthybox.domain.productInformation.PiDivProductPk;
 
 public record PiDivProductPkDto(String productGroup, String productCategory) {

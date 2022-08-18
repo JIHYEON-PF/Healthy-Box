@@ -1,6 +1,6 @@
-package com.pf.healthybox.dto.response;
+package com.pf.healthybox.dto.response.productInformationRes;
 
-import com.pf.healthybox.dto.PiDivProductDto;
+import com.pf.healthybox.dto.productInformationDto.PiDivProductDto;
 
 import java.util.List;
 
