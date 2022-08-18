@@ -31,12 +31,13 @@ public class BiUser extends AuditingFields {
     @Setter @Column(length = 100) private String address2;
     @Setter @Column(nullable = false, length = 14) private String serialCode;
     @Setter @Column(nullable = false, length = 13) private String phoneNumber;
+    @Setter @Column(length = 300) private String email;
     @Setter @Column(length = 8) private String recoCode;
     @Setter @Column(length = 1) private String isDel;
 
     public BiUser() {}
 
-    public BiUser(String userId, String userPw, String authDiv, String authLevel, String userName, String nickname, String compName, String zipcode, String address1, String address2, String serialCode, String phoneNumber, String recoCode, String isDel) {
+    public BiUser(String userId, String userPw, String authDiv, String authLevel, String userName, String nickname, String compName, String zipcode, String address1, String address2, String serialCode, String phoneNumber, String email, String recoCode, String isDel) {
         this.userId = userId;
         this.userPw = userPw;
         this.authDiv = authDiv;
@@ -49,12 +50,13 @@ public class BiUser extends AuditingFields {
         this.address2 = address2;
         this.serialCode = serialCode;
         this.phoneNumber = phoneNumber;
+        this.email = email;
         this.recoCode = recoCode;
         this.isDel = isDel;
     }
 
-    public static BiUser of(String userId, String userPw, String authDiv, String authLevel, String userName, String nickname, String compName, String zipcode, String address1, String address2, String serialCode, String phoneNumber, String recoCode, String isDel) {
-        return new BiUser(userId, userPw, authDiv, authLevel, userName, nickname, compName, zipcode, address1, address2, serialCode, phoneNumber, recoCode, isDel);
+    public static BiUser of(String userId, String userPw, String authDiv, String authLevel, String userName, String nickname, String compName, String zipcode, String address1, String address2, String serialCode, String phoneNumber, String email, String recoCode, String isDel) {
+        return new BiUser(userId, userPw, authDiv, authLevel, userName, nickname, compName, zipcode, address1, address2, serialCode, phoneNumber, email, recoCode, isDel);
     }
 
     @Override
