@@ -10,7 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <!-- jQuery -->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- iamport.payment.js -->
+<!--    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.7.js"></script>-->
 
     <!-- static -->
     <link href="/css/colors.css" rel="stylesheet">
@@ -30,7 +33,7 @@
         <div class="row g-5 align-items-center justify-content-center">
 
             <div class="col-md-7 col-lg-7">
-                <div class="needs-validation" novalidate>
+                <div class="needs-validation">
                     <div class="row g-3">
                         <div class="row g-3">
                             <h5 class="mb-4 borderBottom">필수 입력 정보</h5>
@@ -42,7 +45,7 @@
                                                oninvalid="this.setCustomValidity('아이디를 입력해주세요.')"
                                                oninput="this.setCustomValidity('')">
                                     </div>
-                                    <label for="checkId" hidden>N</label>
+                                    <label id="checkIdLabel" for="checkId" hidden>N</label>
                                     <button type="button" id="checkId" class="joinBtn mx-4">ID 중복확인</button>
                                 </div>
                             </div>
@@ -168,69 +171,68 @@
         푸터 삽입부
     </footer>
 
-    <script>
-
-        $(document).on("click", "#signUpBtn", function () {
-            let input_userId = $('#userId').val();
-            let input_userPassword = $('#userPassword').val();
-            let input_phoneNumber = $('#phoneNumber').val();
-            let input_userName = $('#userName').val();
-            let input_serialCode = $('#serialCodeFirst').val() + $('#serialCodeSecond').val();
-            let input_nickname = $('#nickname').val();
-            let input_email = $('#email').val();
-            let input_zipcode = $('#zipcode').val();
-            let input_address1 = $('#address1').val();
-            let input_address2 = $('#address2').val();
-            let idChecked = $('#checkId').val();
-            let phoneChecked = $('#checkConfirm').val();
-
-            let input_data = {
-                'userId' : input_userId,
-                'userPw' : input_userPassword,
-                'phoneNumber' : input_phoneNumber,
-                'userName' : input_userName,
-                'serialCode' : input_serialCode,
-                'nickname' : input_nickname,
-                'email' : input_email,
-                'zipcode' : input_zipcode,
-                'address1' : input_address1,
-                'address2' : input_address2,
-                'compName' : '',
-                'recoCode' : 'ABC12345',
-                'isDel' : 'X',
-                'authDiv' : 'USE',
-                'authLevel' : 'USE'
-            }
-
-            let json = JSON.stringify(input_data);
-
-            $.ajax({
-                url: "/api/user-manage/sign-up",
-                data : json,
-                method : "POST",
-                contentType : "application/json; charset=utf-8",
-
-                success : function (data) {
-                    alert("회원가입이 완료되었습니다.")
-                    location.replace('/')
-                },
-                error: function(request, status, error) {
-                    console.log("에러");
-                    let errorLog = JSON.parse(request.responseText);
-                    console.log(errorLog.message())
-                },
-                complete: function () {
-                    console.log("완료");
-                }
-            })
-
-        });
-
-
-    </script>
-
+    <script src="/js/signUp.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- 우편번호 검색 OpenAPI -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        $(document).on("click", "#btnZipcode", function () {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    document.getElementById('zipcode').value = data.zonecode;
+                    // document.getElementById("address1").value = data.roadAddress;
+                    // document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                    let extraAddr = '';
+                    if(data.userSelectedType === 'R'){
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if(extraAddr !== ''){
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("address1").value = data.roadAddress + ' ' + extraAddr;
+                    } else {
+                        document.getElementById("address1").value = data.roadAddress;
+                    }
+                }
+            }).open();
+            $('#address2').focus();
+        });
+    </script>
+
+    <!-- 아임포트를 활용한 휴대전화 본인인증 기능 추가 // 다날 결제정보가 필요하여 우선 보류하기로 함 -->
+<!--    <script>-->
+<!--        $(document).on("click", "#checkConfirm", function () {-->
+<!--            let IMP = window.IMP;-->
+<!--            IMP.init('imp24005612');-->
+
+<!--            IMP.certification({-->
+<!--                merchant_uid: 'merchant_' + new Date().getDate()-->
+<!--            }, function (rsp) {-->
+<!--                if (rsp.success) {-->
+<!--                    jQuery.ajax({-->
+<!--                        url: "/user/signUp",-->
+<!--                        method: "POST",-->
+<!--                        headers: {"Content-Type": "application/json"},-->
+<!--                        data: {imp_uid: rsp.imp_uid}-->
+<!--                    });-->
+<!--                } else {-->
+<!--                    alert("인증에 실패하였습니다. 에러내용: " + rsp.error_msg);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+
+
 
 </body>
 </html>
