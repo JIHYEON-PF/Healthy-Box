@@ -68,13 +68,13 @@ class BiUserServiceTest {
 
     private BiUserDto createUserDto() {
         return BiUserDto.of(
-            "testId", "testPw", "USE", "USE", "테스트", "테스트", "", "00000", "테스트 기본 주소", "테스트 상세 주소", "9001011111111", "01012341234", "ABC12345", "N"
+            "testId", "testPw", "USE", "USE", "테스트", "테스트", "", "00000", "테스트 기본 주소", "테스트 상세 주소", "9001011111111", "01012341234", "test@mail.com", "ABC12345", "N"
         );
     }
 
     private BiUser createUser() {
         return BiUser.of(
-                "testId", "testPw", "USE", "USE", "테스트", "테스트", "", "00000", "테스트 기본 주소", "테스트 상세 주소", "9001011111111", "01012341234", "ABC12345", "N"
+                "testId", "testPw", "USE", "USE", "테스트", "테스트", "", "00000", "테스트 기본 주소", "테스트 상세 주소", "9001011111111", "01012341234", "test@mail.com", "ABC12345", "N"
         );
     }
 
