@@ -44,4 +44,9 @@ public class BiUserService {
         return BiUserResponse.from(BiUserDto.from(biUserRepository.getReferenceById(userId)));
     }
 
+    //회원가입 - ID 중복검사 메서드
+    public Boolean confirmId(String userId) {
+        return biUserRepository.existsByUserId(userId);
+    }
+
 }
