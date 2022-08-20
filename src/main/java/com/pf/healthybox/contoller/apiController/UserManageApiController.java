@@ -37,7 +37,11 @@ public class UserManageApiController {
     }
 
 
-    //연락처 인증
+    //ID 중복검사
+    @GetMapping("/confirmId/{userId}")
+    public Boolean confirmId(@PathVariable String userId) {
+        return biUserService.confirmId(userId);
+    }
 
 
 }
