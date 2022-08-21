@@ -6,9 +6,13 @@ import com.pf.healthybox.dto.request.baseInformationReq.BiUserRequest;
 import com.pf.healthybox.dto.response.baseInformationRes.BiUserResponse;
 import com.pf.healthybox.service.BiUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestClientException;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @RequestMapping("/api/user-manage")
@@ -21,6 +25,7 @@ public class UserManageApiController {
         this.biUserService = biUserService;
     }
 
+    // 회원가입 페이지 //
     //회원가입
     @PostMapping("/sign-up")
     public void signUp(@RequestBody BiUserRequest req) {
@@ -36,11 +41,25 @@ public class UserManageApiController {
         }
     }
 
-
     //ID 중복검사
     @GetMapping("/confirmId/{userId}")
     public Boolean confirmId(@PathVariable String userId) {
         return biUserService.confirmId(userId);
+    }
+
+
+    // 로그인 페이지 //
+    //로그인 기능
+    @PostMapping("/login")
+    public Boolean login(@RequestParam String userId, @RequestParam String userPw, HttpServletRequest request) {
+        BiUser user =  biUserService.login(userId, userPw);
+
+        if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("loginUser", user);
+        }
+
+        return (user != null);
     }
 
 
