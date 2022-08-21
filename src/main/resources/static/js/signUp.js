@@ -10,11 +10,10 @@ $(document).on("click", "#signUpBtn", function () {
     let input_zipcode = $('#zipcode').val();
     let input_address1 = $('#address1').val();
     let input_address2 = $('#address2').val();
-    let idChecked = $('#checkId').val();
+    let idChecked = $.trim($("label[for='checkId']").text());
     let phoneChecked = $('#checkConfirm').val();
-    console.log($("label[for='checkId']").text());
 
-    if ($.trim($("label[for='checkId']").text()) == "Y") {
+    if (idChecked === "Y") {
         let input_data = {
             'userId': input_userId,
             'userPw': input_userPassword,
@@ -25,12 +24,7 @@ $(document).on("click", "#signUpBtn", function () {
             'email': input_email,
             'zipcode': input_zipcode,
             'address1': input_address1,
-            'address2': input_address2,
-            'compName': '',
-            'recoCode': 'ABC12345',
-            'isDel': 'X',
-            'authDiv': 'USE',
-            'authLevel': 'USE'
+            'address2': input_address2
         }
 
         let json = JSON.stringify(input_data);
@@ -83,7 +77,6 @@ $(document).on("click", "#checkId", function () {
                     alert("사용가능한 아이디입니다.");
                     $('#userPassword').focus();
                 }
-                console.log($("label[for='checkId']").text());
             },
             error: function (request, status, error) {
                 console.log("에러");
