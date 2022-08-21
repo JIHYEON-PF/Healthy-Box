@@ -79,4 +79,9 @@ public class BiUserService {
         }
     }
 
+    public BiUser login(String userId, String userPw) {
+        return biUserRepository.findById(userId)
+                .filter((data) -> data.getUserPw().equals(userPw))
+                .orElse(null);
+    }
 }
