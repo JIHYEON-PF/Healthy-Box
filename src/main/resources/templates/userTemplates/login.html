@@ -11,8 +11,8 @@
 
     <!-- jQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="/css/colors.css" rel="stylesheet">
     <link href="/css/compProperties.css" rel="stylesheet">
 
@@ -30,7 +30,7 @@
 
             <div class="borderTop my-2"></div>
 
-            <div class="form-floating my-3">
+            <div id="idSection" class="form-floating my-3">
                 <input type="text" class="form-control" id="floatingInput" placeholder="ID">
                 <label for="floatingInput">ID</label>
             </div>
@@ -41,8 +41,8 @@
             </div>
 
             <div class="checkbox my-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
+                <label id="rememberIdLabel">
+                    <input id="rememberId" type="checkbox" value="remember-me"> Remember me
                 </label>
             </div>
             <div id="warningAccount" class="text-center" hidden>

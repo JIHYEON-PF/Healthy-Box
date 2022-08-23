@@ -1,8 +1,14 @@
 /* 로그인 API */
 $(document).on("click", "#loginBtn", function () {
-    console.log('hello')
     let input_userId = $('#floatingInput').val();
     let input_userPassword = $('#floatingPassword').val();
+
+    if ($('#rememberId').is(':checked')) {
+        $.removeCookie('rememberIdCookie');
+        $.cookie('rememberIdCookie', input_userId, {expires:365});
+    } else {
+        $.removeCookie('rememberIdCookie');
+    }
 
     $.ajax({
         url: "/api/user-manage/login?userId="+input_userId+"&userPw="+input_userPassword,
