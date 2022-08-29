@@ -4,6 +4,7 @@ package com.pf.healthybox.domain.baseInformation;
 import com.pf.healthybox.domain.AuditingFields;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import java.util.Objects;
 
 @Getter
 @Entity
+@ToString(callSuper = true)
 @Table(name = "tbl_user")
 public class BiUser extends AuditingFields {
 
