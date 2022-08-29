@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header id="header">
+        헤더 삽입부
+        <hr>
+    </header>
+
+    <main class="container border-top">
+        <div class="d-flex flex-wrap">
+            <div id="myPageSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end" style="width: 280px;">
+                <div class="text-center">
+                    <span class="fs-4">마이페이지</span>
+                    <label id="myPageId" hidden>ordered</label>
+                </div>
+                <div>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a id="ordered" href="#" class="nav-menu nav-link link-dark" aria-current="page">
+                                주문내역
+                            </a>
+                        </li>
+                        <li>
+                            <a id="basket" href="#" class="nav-menu nav-link link-dark">
+                                장바구니
+                            </a>
+                        </li>
+                        <li>
+                            <a id="delivery" href="#" class="nav-menu nav-link link-dark">
+                                배송정보관리
+                            </a>
+                        </li>
+                        <li>
+                            <a id="user-info" href="/mypage/check-pw" class="nav-menu nav-link" style="background-color: rgba(83,146,91,0.8); color: white;">
+                                회원정보 수정
+                            </a>
+                        </li>
+                        <li>
+                            <a id="point" href="#" class="nav-menu nav-link link-dark">
+                                포인트 관리
+                            </a>
+                        </li>
+                        <li>
+                            <a id="unregister" href="#" class="nav-menu nav-link link-dark">
+                                회원 탈퇴
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class="col bg-light">
+                <div id="myPageDiv" class="container">
+                    <div class="py-5 text-center ">
+                        <h2>회원정보 수정</h2>
+                    </div>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 col-lg-7">
+                            <div class="needs-validation">
+                                <div class="row g-3">
+                                    <div class="row g-3">
+                                        <h5 class="mb-4 borderBottom">필수 입력 정보</h5>
+
+                                        <div>
+                                            <label for="userId" class="form-label">ID<span class="requiredData align-top">*</span></label>
+                                            <div class="d-flex flex-wrap">
+                                                <div class="col-7">
+                                                    <input type="text" class="form-control" id="userId" name="userId" placeholder="ID" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-7">
+                                            <label for="userPassword" class="form-label">비밀번호<span class="requiredData align-top">*</span></label>
+                                            <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="password">
+                                        </div>
+
+                                        <div class="col-7">
+                                            <label for="passwordConfirm" class="form-label">비밀번호 확인<span class="requiredData align-top">*</span></label>
+                                            <div class="d-flex flex-wrap">
+                                                <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="password">
+                                                <p id="wrongPw" class="text-danger font-weight-bold" hidden>비밀번호를 확인해주세요.</p>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="phoneNumber" class="form-label">휴대폰 번호<span class="requiredData align-top">*</span></label>
+                                            <div class="d-flex flex-wrap">
+                                                <div class="col-7">
+                                                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="휴대폰 번호 입력(-제외)" maxlength="11">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div hidden>
+                                            <label for="phoneNumber" class="form-label">인증 번호<span class="requiredData align-top">*</span></label>
+                                            <div class="d-flex flex-wrap">
+                                                <div class="col-7">
+                                                    <input type="text" class="form-control" id="confirmNumber" name="confirmNumber" placeholder="인증번호 입력" required maxlength="11"
+                                                           oninvalid="this.setCustomValidity('인증 번호를 입력해주세요.')"
+                                                           oninput="this.setCustomValidity('')">
+                                                </div>
+                                                <label for="checkConfirm" hidden>N</label>
+                                                <button type="button" id="checkConfirm" class="joinBtn mx-4">인증번호 확인</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-7">
+                                            <label for="userName" class="form-label">이름<span class="requiredData align-top">*</span></label>
+                                            <input type="text" class="form-control" id="userName" name="userName" placeholder="홍길동">
+                                        </div>
+
+                                        <div class="col-7">
+                                            <label class="form-label">주민등록번호<span class="requiredData align-top">*</span></label>
+                                            <div class="d-flex">
+                                                <div class="col-4">
+                                                    <label for="serialCodeFirst" hidden>주민번호 앞자리</label>
+                                                    <input type="text" class="form-control" id="serialCodeFirst" name="serialCodeFirst" placeholder="901010" maxlength="6" readonly>
+                                                </div>
+                                                <div class="mx-1">
+                                                    <span class="align-middle">-</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <label for="serialCodeSecond" hidden>주민번호 뒷자리</label>
+                                                    <input type="password" class="form-control" id="serialCodeSecond" name="serialCodeSecond" placeholder="1111111" maxlength="7" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <h5 class="mb-4 borderBottom">선택 입력 정보</h5>
+
+                                        <div class="col-7">
+                                            <label for="nickname" class="form-label">닉네임</label>
+                                            <input type="text" class="form-control" id="nickname" placeholder="닉네임">
+                                        </div>
+
+                                        <div class="col-7">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                                        </div>
+
+                                        <div>
+                                            <label for="zipcode" class="form-label">우편번호</label>
+                                            <div class="d-flex flex-wrap col">
+                                                <div>
+                                                    <input type="text" class="form-control" id="zipcode" placeholder="00000" readonly>
+                                                </div>
+                                                <button type="button" id="btnZipcode" class="joinBtn mx-2">주소검색</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-10">
+                                            <label for="address1" class="form-label">주소</label>
+                                            <input type="text" class="form-control" id="address1" placeholder="">
+                                        </div>
+
+                                        <div class="col-10">
+                                            <label for="address2" class="form-label">상세 주소</label>
+                                            <input type="text" class="form-control" id="address2" placeholder="">
+                                        </div>
+
+                                    </div>
+                                    <h5 class="borderBottom"></h5>
+                                    <div class="row g-3">
+                                        <div class="d-flex flex-wrap justify-content-end">
+                                            <button id="modifyUserInfo" class="joinBtn" type="button">회원정보 수정</button>
+                                            <div class="mx-3"></div>
+                                            <a href="/mypage/" class="joinATag ">취소</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <hr>
+        푸터 삽입부
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <!-- 우편번호 검색 OpenAPI -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        $(document).on("click", "#btnZipcode", function () {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    document.getElementById('zipcode').value = data.zonecode;
+                    // document.getElementById("address1").value = data.roadAddress;
+                    // document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                    let extraAddr = '';
+                    if(data.userSelectedType === 'R'){
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if(extraAddr !== ''){
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("address1").value = data.roadAddress + ' ' + extraAddr;
+                    } else {
+                        document.getElementById("address1").value = data.roadAddress;
+                    }
+                }
+            }).open();
+            $('#address2').focus();
+        });
+    </script>
+
+    <script src="/js/myPage.js"></script>
+
+</body>
+</html>

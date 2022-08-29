@@ -5,7 +5,7 @@ $(document).on("click", "#loginBtn", function () {
 
     if ($('#rememberId').is(':checked')) {
         $.removeCookie('rememberIdCookie');
-        $.cookie('rememberIdCookie', input_userId, {expires:365});
+        $.cookie('rememberIdCookie', input_userId, {expires:365, path:'/'});
     } else {
         $.removeCookie('rememberIdCookie');
     }

@@ -2,13 +2,12 @@ package com.pf.healthybox.service;
 
 import com.pf.healthybox.domain.baseInformation.BiUser;
 import com.pf.healthybox.dto.baseInformationDto.BiUserDto;
-import com.pf.healthybox.dto.response.baseInformationRes.BiUserResponse;
 import com.pf.healthybox.repository.BiUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
-import java.util.Random;
 
 @Slf4j
 @Service
@@ -34,6 +33,11 @@ public class BiUserService {
             insertUser.setIsDel("N");
             insertUser.setAuthDiv("USE");
             insertUser.setAuthLevel("USE");
+
+            if (insertUser.getNickname().isBlank()) {
+                insertUser.setNickname(insertUser.getUserName());
+            }
+
             biUserRepository.save(insertUser);
         } else {
             throw new RuntimeException("UserInfo is exists");
@@ -47,8 +51,10 @@ public class BiUserService {
     }
 
     //사용자 정보를 조회하는 메서드
-    public BiUserResponse showUserInfo(String userId) {
-        return BiUserResponse.from(BiUserDto.from(biUserRepository.getReferenceById(userId)));
+    @Transactional
+    public BiUser showUserInfo(String userId) {
+        return biUserRepository.findById(userId)
+                .orElse(null);
     }
 
     //회원가입 - ID 중복검사 메서드
@@ -83,5 +89,23 @@ public class BiUserService {
         return biUserRepository.findById(userId)
                 .filter((data) -> data.getUserPw().equals(userPw))
                 .orElse(null);
+    }
+
+    @Transactional
+    public void modifyUserInfo(BiUserDto dto) {
+        BiUser findUser = biUserRepository.getReferenceById(dto.userId());
+
+        if (!dto.userPw().isBlank()) {
+            findUser.setUserPw(dto.userPw());
+        }
+        findUser.setPhoneNumber(dto.phoneNumber());
+        findUser.setUserName(dto.userName());
+        findUser.setNickname(dto.nickname());
+        findUser.setEmail(dto.email());
+        findUser.setZipcode(dto.zipcode());
+        findUser.setAddress1(dto.address1());
+        findUser.setAddress2(dto.address2());
+
+        biUserRepository.save(findUser);
     }
 }

@@ -28,7 +28,29 @@ public record BiUserResponse(
 
     // dto >> response
     public static BiUserResponse from(BiUserDto dto) {
-        return new BiUserResponse(dto.userId(), dto.userPw(), dto.authDiv(), dto.authLevel(), dto.userName(), dto.nickname(), dto.compName(), dto.zipcode(), dto.address1(), dto.address2(), dto.serialCode(), dto.phoneNumber(), dto.email(), dto.recoCode(), dto.isDel());
+        String nickname = dto.nickname();
+
+        if (nickname == null || nickname.isBlank()) {
+            nickname = dto.userName();
+        }
+
+        return new BiUserResponse(
+                dto.userId(),
+                dto.userPw(),
+                dto.authDiv(),
+                dto.authLevel(),
+                dto.userName(),
+                nickname,
+                dto.compName(),
+                dto.zipcode(),
+                dto.address1(),
+                dto.address2(),
+                dto.serialCode(),
+                dto.phoneNumber(),
+                dto.email(),
+                dto.recoCode(),
+                dto.isDel()
+        );
     }
 
 }

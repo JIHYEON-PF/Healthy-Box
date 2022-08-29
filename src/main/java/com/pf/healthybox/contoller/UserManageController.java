@@ -23,13 +23,13 @@ public class UserManageController { // 유저 관리에 대한 컨트롤러(회�
     public String showLogin(Model model, HttpServletRequest request) {
 
         Cookie[] cookies = request.getCookies();
-
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("rememberIdCookie")) {
-                model.addAttribute("rememberIdCookie", cookie);
-            }
+        if (cookies != null) {
+            Arrays.stream(cookies).forEach(cookie -> {
+                if (cookie.getName().equals("rememberIdCookie")) {
+                    model.addAttribute("rememberIdCookie", cookie);
+                }
+            });
         }
-
         return "userTemplates/login";
     }
 

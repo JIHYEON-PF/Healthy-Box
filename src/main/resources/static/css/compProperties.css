@@ -45,3 +45,19 @@
 .loginATag.hover {
     color: rgba(83,146,91,0.8);
 }
+
+.inputType {
+    height: 38px;
+    background-color: rgba(83,146,91,0.2);
+    border-color: rgba(83,146,91,0.1);
+    border-radius: 10px;
+}
+
+.inputType:focus {
+    outline: 1px solid rgba(83,146,91,0.2);
+}
+
+.selected-side-bar {
+    background-color: rgba(83, 146, 91, 0.8);
+    color: white;
+}

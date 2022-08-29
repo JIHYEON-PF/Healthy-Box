@@ -37,8 +37,15 @@ public record BiUserDto(
 
     // entity >> dto
     public static BiUserDto from(BiUser entity) {
+
+        String nickname = entity.getNickname();
+
+        if (nickname == null || nickname.isBlank()) {
+            nickname = entity.getUserName();
+        }
+
         return new BiUserDto(
-                entity.getUserId(), entity.getUserPw(), entity.getAuthDiv(), entity.getAuthLevel(), entity.getUserName(), entity.getNickname(), entity.getCompName(), entity.getZipcode(), entity.getAddress1(), entity.getAddress2(), entity.getSerialCode(), entity.getPhoneNumber(), entity.getEmail(), entity.getRecoCode(), entity.getIsDel(), entity.getCreatedAt(), entity.getUpdatedAt()
+                entity.getUserId(), entity.getUserPw(), entity.getAuthDiv(), entity.getAuthLevel(), entity.getUserName(), nickname, entity.getCompName(), entity.getZipcode(), entity.getAddress1(), entity.getAddress2(), entity.getSerialCode(), entity.getPhoneNumber(), entity.getEmail(), entity.getRecoCode(), entity.getIsDel(), entity.getCreatedAt(), entity.getUpdatedAt()
         );
     }
 
