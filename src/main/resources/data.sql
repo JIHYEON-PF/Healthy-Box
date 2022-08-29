@@ -10,5 +10,6 @@ values ('001', '001', '정기구독', '도시락', 'Y'), --정기구독 - 도시
 ('006', '001', '간식', '간식', 'Y'), --간식 - 간식
 ('007', '007', '음료', '음료', 'Y'); --음료 - 음료
 
-insert into tbl_user (user_id, user_pw, auth_div, auth_level, user_name, nickname, comp_name, zipcode, address1, address2, serial_code, phone_number, reco_code, is_del, created_at, updated_at)
-values('testId', 'testPw', 'USE', 'USE', 'testName', 'testNickname', '', '05353', '테스트 기본 주소', '테스트 상세 주소', '9010101111111', '01012341234', 'ABC12345', 'N', now(), now());
+insert into tbl_user (user_id, user_pw, auth_div, auth_level, user_name, nickname, comp_name, zipcode, address1, address2, serial_code, phone_number, email, reco_code, is_del, created_at, updated_at)
+values('testId', 'testPw', 'USE', 'USE', 'testName', 'testNickname', '', '05353', '테스트 기본 주소', '테스트 상세 주소', '9203161234567', '01012341234', 'testId@email.com', 'ABC12345', 'N', now(), now()),
+      ('testId2', 'testPw', 'USE', 'USE', 'testName', '', '', '05353', '테스트 기본 주소', '테스트 상세 주소', '9010101111111', '01012341234', 'testId2@email.com', 'ABC12345', 'N', now(), now());
