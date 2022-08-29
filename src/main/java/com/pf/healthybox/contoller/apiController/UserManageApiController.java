@@ -35,8 +35,8 @@ public class UserManageApiController {
     //회원 탈퇴
     @DeleteMapping("/delete-user")
     public void deleteUser(@RequestParam String userId, @RequestParam String userPw) {
-        BiUserResponse user = biUserService.showUserInfo(userId);
-        if (user.userPw().equals(userPw)) {
+        BiUser user = biUserService.showUserInfo(userId);
+        if (user.getUserPw().equals(userPw)) {
             biUserService.deleteUser(userId, userPw);
         }
     }

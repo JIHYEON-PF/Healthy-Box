@@ -7,7 +7,6 @@ public interface BiUserRepository extends JpaRepository<BiUser, String> {
 
     void deleteByUserIdAndUserPw(String userId, String userPw);
     boolean existsByUserId(String userId);
-
     boolean existsByRecoCode(String recoCode);
 
 }
