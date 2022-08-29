@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#header" th:replace="header :: header"/>
+    <attr sel="#footer" th:replace="footer :: footer"/>
+
+    <!-- session을 통한 user객체 반환 -->
+    <attr sel="#userId" th:value="${session.loginUser.getUserId()}"/>
+    <attr sel="#phoneNumber" th:value="${session.loginUser.getPhoneNumber()}"/>
+    <attr sel="#userName" th:value="${session.loginUser.getUserName()}"/>
+    <attr sel="#serialCodeFirst" th:value="${#strings.substring(session.loginUser.getSerialCode(),0,6)}"/>
+    <attr sel="#serialCodeSecond" th:value="${#strings.substring(session.loginUser.getSerialCode(),6,13)}"/>
+    <attr sel="#nickname" th:value="${session.loginUser.getNickname()}"/>
+    <attr sel="#email" th:value="${session.loginUser.getEmail()}"/>
+    <attr sel="#zipcode" th:value="${session.loginUser.getZipcode()}"/>
+    <attr sel="#address1" th:value="${session.loginUser.getAddress1()}"/>
+    <attr sel="#address2" th:value="${session.loginUser.getAddress2()}"/>
+</thlogic>
