@@ -13,7 +13,9 @@ $(document).on("click", "#signUpBtn", function () {
     let idChecked = $.trim($("label[for='checkId']").text());
     let phoneChecked = $('#checkConfirm').val();
 
-    if (idChecked === "Y") {
+    console.log($('#wrongPw').attr('hidden') !== undefined);
+
+    if (idChecked === "Y" && $('#wrongPw').attr('hidden') !== undefined) {
         let input_data = {
             'userId': input_userId,
             'userPw': input_userPassword,
@@ -48,9 +50,12 @@ $(document).on("click", "#signUpBtn", function () {
                 console.log("완료");
             }
         })
-    } else {
+    } else if (idChecked !== "Y") {
         alert("아이디 중복확인을 해주시기 바랍니다.");
         $('#checkId').focus();
+    } else if ($('#wrongPw').attr('hidden') === undefined) {
+        alert("비밀번호를 확인해주시기 바랍니다.");
+        $('#passwordConfirm').focus();
     }
 
 });
@@ -90,6 +95,20 @@ $(document).on("click", "#checkId", function () {
     }
 });
 
+$(document).on("keyup", "#passwordConfirm", function () {
+    let input_password = $("#userPassword").val();
+    let input_confirmPw = $("#passwordConfirm").val();
+
+
+    if (input_password !== input_confirmPw) {
+        $('#wrongPw').removeAttr('hidden');
+    } else {
+        $('#wrongPw').attr('hidden','true');
+    }
+    console.log($('#wrongPw').attr('hidden') === undefined);
+});
+
+// 공통함수
 const isEmpty=(str)=>{
     let obj = String(str);
     return obj === null || obj === undefined || obj === 'null' || obj === 'undefined' || obj === '';

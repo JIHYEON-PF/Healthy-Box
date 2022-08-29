@@ -59,10 +59,14 @@
 
                             <div class="col-7">
                                 <label for="passwordConfirm" class="form-label">비밀번호 확인<span class="requiredData align-top">*</span></label>
-                                <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="password" required
-                                       oninvalid="this.setCustomValidity('비밀번호를 입력해주세요.')"
-                                       oninput="this.setCustomValidity('')">
+                                <div class="d-flex flex-wrap">
+                                    <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" placeholder="password" required
+                                           oninvalid="this.setCustomValidity('비밀번호를 입력해주세요.')"
+                                           oninput="this.setCustomValidity('')">
+                                    <p id="wrongPw" class="text-danger font-weight-bold" hidden>비밀번호를 확인해주세요.</p>
+                                </div>
                             </div>
+
 
                             <div>
                                 <label for="phoneNumber" class="form-label">휴대폰 번호<span class="requiredData align-top">*</span></label>
