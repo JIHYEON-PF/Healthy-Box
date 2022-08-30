@@ -11,6 +11,7 @@
 
     <!-- jQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <link href="/css/colors.css" rel="stylesheet">
     <link href="/css/compProperties.css" rel="stylesheet">
@@ -49,7 +50,7 @@
                             </a>
                         </li>
                         <li>
-                            <a id="user-info" href="/mypage/check-pw" class="nav-menu nav-link" style="background-color: rgba(83,146,91,0.8); color: white;">
+                            <a id="user-info" href="/mypage/check-pw?separation=modify" class="nav-menu nav-link link-dark">
                                 회원정보 수정
                             </a>
                         </li>
@@ -59,7 +60,7 @@
                             </a>
                         </li>
                         <li>
-                            <a id="unregister" href="#" class="nav-menu nav-link link-dark">
+                            <a id="unregister" href="/mypage/check-pw?separation=unregister" class="nav-menu nav-link link-dark">
                                 회원 탈퇴
                             </a>
                         </li>

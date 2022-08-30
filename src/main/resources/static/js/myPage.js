@@ -1,5 +1,6 @@
 // 비밀번호 확인
 $(document).on("click", "#confirmBtn", function () {
+    let login_userId = $.cookie("rememberIdCookie");
     let input_password = $('#input_pw').val();
 
     if (isNotEmpty(input_password)) {
@@ -8,7 +9,28 @@ $(document).on("click", "#confirmBtn", function () {
             method: "POST",
             success: function (data) {
                 if (data) {
-                    location.replace("/mypage/modify-user");
+                    if ($('#myPageId').text() === 'modify') {
+                        location.replace("/mypage/modify-user");
+                    } else if ($('#myPageId').text() === 'unregister') {
+                        console.log('hello');
+                        if (confirm("정말 탈퇴하시겠습니까?") === true) {
+                            $.ajax({
+                                url: "/api/user-manage/delete-user?userId="+login_userId+"&userPw="+input_password,
+                                method: "DELETE",
+                                success: function (data) {
+                                    alert("회원 탈퇴되었습니다.\n\n감사합니다.");
+                                    location.replace("/");
+                                },
+                                error: function (request, status, error) {
+                                    console.log("에러");
+                                    console.log(JSON.parse(request.responseText));
+                                },
+                                complete: function () {
+                                    console.log("완료");
+                                }
+                            });
+                        }
+                    }
                 } else {
                     alert("비밀번호가 일치하지 않습니다.");
                     $('#input_password').focus();
@@ -113,7 +135,6 @@ $(document).ready(function () {
             }
         }
 
-
         // 색상을 지정해주고 지정된 색상에 따라 빨간색일 경우 앞에 문자열 '-' 추가해줌
         if (className === "pointValue") {
             $(this).css("color", color);
@@ -121,13 +142,37 @@ $(document).ready(function () {
                 $(this).text("-"+$(this).text());
             }
         }
-    })
-    // if ($.trim($('.isExpired').text()) === "Y") {
-    //     console.log("asdf");
-    //     $(".pointValue").css("color","red");
-    // } else {
-    //     $(".pointValue").css("color", "black");
-    // }
+    });
+});
+
+// 비밀번호 확인 페이지의 값에 따라 선택 레이어 변경
+$(document).ready(function () {
+    let separation = $('#myPageId').text();
+    console.log(separation);
+    let idName = '';
+    switch (separation) {
+        case "modify":
+            idName = "#user-info";
+            break;
+        case "point":
+            idName = "#point";
+            break;
+        case "unregister":
+            idName = "#unregister";
+            break;
+    }
+
+    $('.nav-menu').addClass('link-dark');
+    $('.nav-menu').css({
+        "background-color": "",
+        "color": ""
+    });
+    $(idName).removeClass('link-dark');
+    $(idName).css({
+        "background-color": "rgba(83,146,91,0.8)",
+        "color": "white"
+    });
+
 });
 
 //// 공통 함수
