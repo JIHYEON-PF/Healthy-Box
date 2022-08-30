@@ -61,3 +61,8 @@
     background-color: rgba(83, 146, 91, 0.8);
     color: white;
 }
+
+.defaultFontStyle {
+    color: rgba(83,146,91,0.8);
+    font-weight: bold;
+}

@@ -13,3 +13,8 @@ values ('001', '001', '정기구독', '도시락', 'Y'), --정기구독 - 도시
 insert into tbl_user (user_id, user_pw, auth_div, auth_level, user_name, nickname, comp_name, zipcode, address1, address2, serial_code, phone_number, email, reco_code, is_del, created_at, updated_at)
 values('testId', 'testPw', 'USE', 'USE', 'testName', 'testNickname', '', '05353', '테스트 기본 주소', '테스트 상세 주소', '9203161234567', '01012341234', 'testId@email.com', 'ABC12345', 'N', now(), now()),
       ('testId2', 'testPw', 'USE', 'USE', 'testName', '', '', '05353', '테스트 기본 주소', '테스트 상세 주소', '9010101111111', '01012341234', 'testId2@email.com', 'ABC12345', 'N', now(), now());
+
+insert into tbl_point(content, expire_date, is_expired, occur_date, occur_point, user_id)
+values ('친구추가','2022-09-13', 'N', '2022-08-29', 200, 'testId'),
+       ('기간만료 소멸', '2022-08-30', 'N', '2022-08-30', 200, 'testId'),
+       ('회원가입 포인트', '2022-08-30', 'Y', '2022-08-15', 200, 'testId');
