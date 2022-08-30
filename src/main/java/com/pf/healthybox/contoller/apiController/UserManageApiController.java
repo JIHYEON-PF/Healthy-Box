@@ -13,6 +13,7 @@ import org.springframework.web.client.RestClientException;
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 @Slf4j
 @RequestMapping("/api/user-manage")
@@ -33,11 +34,13 @@ public class UserManageApiController {
     }
 
     //회원 탈퇴
+    @Transactional
     @DeleteMapping("/delete-user")
-    public void deleteUser(@RequestParam String userId, @RequestParam String userPw) {
+    public void deleteUser(@RequestParam String userId, @RequestParam String userPw, HttpServletRequest request) {
         BiUser user = biUserService.showUserInfo(userId);
         if (user.getUserPw().equals(userPw)) {
             biUserService.deleteUser(userId, userPw);
+            request.getSession().invalidate();
         }
     }
 
