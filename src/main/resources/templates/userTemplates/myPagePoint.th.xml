@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#header" th:replace="header :: header"/>
+    <attr sel="#footer" th:replace="footer :: footer"/>
+
+    <attr sel="#pointDetail">
+        <attr sel="#allPoint" th:text="${allPoint}"/>
+        <attr sel="#expirePoint" th:text="${expirePoint}"/>
+    </attr>
+    <attr sel="#pointDetailTable">
+        <attr sel="tbody" th:remove="all-but-first">
+            <attr sel="tr[0]" th:each="pointList : ${pointList}">
+                <attr sel="td.occurDate" th:text="${#temporals.format(pointList.occurDate, 'yyyy-MM-dd')}"/>
+                <attr sel="td.expireDate" th:text="${#temporals.format(pointList.expireDate, 'yyyy-MM-dd')}"/>
+                <attr sel="td.pointContent" th:text="${pointList.content}"/>
+                <attr sel="td.isExpired" th:text="${pointList.isExpired}"/>
+                <attr sel="td.pointValue" th:text="${pointList.occurPoint}"/>
+            </attr>
+        </attr>
+    </attr>
+</thlogic>
