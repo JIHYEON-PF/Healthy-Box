@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,17 +31,20 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
 
     //GET
     @GetMapping("/")
-    public String showMyPage() {
+    public String showMyPage(ModelMap model) {
+        model.addAttribute("separation", "ordered");
         return isLogin("userTemplates/myPage");
     }
 
     @GetMapping("/check-pw")
-    public String showMyPageCheckPw() {
+    public String showMyPageCheckPw(@RequestParam String separation, ModelMap model) {
+        model.addAttribute("separation", separation);
         return isLogin("userTemplates/myPageCheckPw");
     }
 
     @GetMapping("/modify-user")
     public String showMyPageModifyUser(ModelMap model) {
+        model.addAttribute("separation", "modify");
         return isLogin("userTemplates/myPageModifyUser");
     }
 
@@ -54,6 +58,7 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
             model.addAttribute("recoCode", entity.getRecoCode());
             model.addAttribute("allPoint", biPointService.sumAllPoint(entity.getUserId()));
             model.addAttribute("expirePoint", biPointService.expirePoint(entity.getUserId()));
+            model.addAttribute("separation", "point");
         }
 
         return isLogin("userTemplates/myPagePoint");

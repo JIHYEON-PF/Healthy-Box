@@ -2,6 +2,7 @@
 <thlogic>
     <attr sel="#header" th:replace="header :: header"/>
     <attr sel="#footer" th:replace="footer :: footer"/>
+    <attr sel="#myPageId" th:text="${separation}"/>
 
     <attr sel="#pointDetail">
         <attr sel="#allPoint" th:text="${allPoint}"/>
