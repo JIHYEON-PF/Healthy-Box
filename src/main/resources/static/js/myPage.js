@@ -151,6 +151,15 @@ $(document).ready(function () {
     console.log(separation);
     let idName = '';
     switch (separation) {
+        case "ordered":
+            idName = "#ordered";
+            break;
+        case "basket":
+            idName = "#basket";
+            break;
+        case "delivery":
+            idName = "#delivery";
+            break;
         case "modify":
             idName = "#user-info";
             break;
@@ -173,6 +182,14 @@ $(document).ready(function () {
         "color": "white"
     });
 
+});
+
+// 배송정보 테이블 크기 조정
+$(document).ready(function () {
+    $('#registeredButtons').width($('#defaultButtons').width());
+});
+$(window).resize(function() {
+    $('#registeredButtons').width($('#defaultButtons').width());
 });
 
 //// 공통 함수
