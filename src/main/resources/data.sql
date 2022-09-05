@@ -18,3 +18,8 @@ insert into tbl_point(content, expire_date, is_expired, occur_date, occur_point,
 values ('친구추가','2022-09-13', 'N', '2022-08-29', 200, 'testId'),
        ('기간만료 소멸', '2022-08-30', 'N', '2022-08-30', 200, 'testId'),
        ('회원가입 포인트', '2022-08-30', 'Y', '2022-08-15', 200, 'testId');
+
+insert into tbl_deliver (delivery_name, address1, address2, delivery_flag, user_id, zipcode)
+values ('DB 등록 집', '테스트 기본 주소', '테스트 상세 주소', 0, 'testId', '12345'),
+       ('회사', '테스트 기본 주소2', '테스트 상세 주소2', 1, 'testId', '00001'),
+       ('DB등록 추가', '서울특별시 강남구 테헤란로 503', '패스트파이브 11층 1119호', 1, 'testId', '22222');
