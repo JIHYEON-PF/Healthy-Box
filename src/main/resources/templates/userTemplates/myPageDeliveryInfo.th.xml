@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#deliverTable" th:object="${inform}">
+        <attr sel="#insertBtn" th:value="*{idx}"/>
+        <attr sel="#deliverInfoName" th:value="*{deliveryName}"/>
+        <attr sel="#deliverInfoZipcode" th:value="*{zipcode}"/>
+        <attr sel="#deliverInfoAddress1" th:value="*{address1}"/>
+        <attr sel="#deliverInfoAddress2" th:value="*{address2}"/>
+    </attr>
+</thlogic>

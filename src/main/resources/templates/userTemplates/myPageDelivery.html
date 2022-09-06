@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header id="header">
+        헤더 삽입부
+        <hr>
+    </header>
+
+    <main class="container border-top">
+        <div class="d-flex flex-wrap">
+            <div id="myPageSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end" style="width: 280px;">
+                <div class="text-center">
+                    <a id="myPageTitle" class="myPageTitle" href="#">마이페이지</a>
+                    <label id="myPageId" hidden>ordered</label>
+                </div>
+                <div>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item">
+                            <a id="ordered" href="#" class="nav-menu nav-link link-dark" aria-current="page">
+                                주문내역
+                            </a>
+                        </li>
+                        <li>
+                            <a id="basket" href="#" class="nav-menu nav-link link-dark">
+                                장바구니
+                            </a>
+                        </li>
+                        <li>
+                            <a id="delivery" href="#" class="nav-menu nav-link link-dark">
+                                배송정보관리
+                            </a>
+                        </li>
+                        <li>
+                            <a id="user-info" href="#" class="nav-menu nav-link link-dark">
+                                회원정보 수정
+                            </a>
+                        </li>
+                        <li>
+                            <a id="point" href="#" class="nav-menu nav-link link-dark">
+                                포인트 관리
+                            </a>
+                        </li>
+                        <li>
+                            <a id="unregister" href="#" class="nav-menu nav-link link-dark">
+                                회원 탈퇴
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+            <div class="col bg-light d-flex align-items-center justify-content-center">
+                <div id="myPageDiv" class="container">
+                    <div id="defaultDelivery" class="borderBottom">
+                        <div class="my-3">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center pb-2 border-bottom">
+                                <span class="defaultFontStyle fs-5">기본 배송정보</span>
+                            </div>
+                            <div class="py-2">
+                                <div>
+                                    <span class="defaultFontStyle">배송지 이름</span>
+                                    <span id="defaultName">집</span>
+                                </div>
+                                <div class="py-1">
+                                    <span class="defaultFontStyle">배송지 주소</span>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td width="95px">우편주소</td>
+                                                <td id="defaultZipcode">00000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>주소</td>
+                                                <td id="defaultAddress1">마크업 기본 주소 정보</td>
+                                            </tr>
+                                            <tr>
+                                                <td>상세 주소</td>
+                                                <td id="defaultAddress2">마크업 상세 주소 정보</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="defaultButtons" class="py-2" align="right">
+                                <button id="defaultModifying" type="button" class="btnGroup modifyBtn deliveryBtn">수정</button>
+                                <button id="defaultDeleting" type="button" class="btnGroup deleteBtn deliveryBtn">삭제</button>
+                                <button id="unDefaulting" type="button" class="btnGroup deliveryBtnInvert">기본 배송지 해제</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        <div>
+                            <div class="d-flex flex-wrap justify-content-between align-items-center pb-2 border-bottom">
+                                <span class="defaultFontStyle fs-5">등록 배송정보</span>
+                                <button id="registerDeliverInformation" type="button" class="deliveryBtn" onclick="openPopup();">등록</button>
+                            </div>
+                            <div id="tableArea">
+                                <table id="registeredDelivery">
+                                    <tbody id="deliveryList" class="border-bottom">
+                                        <tr>
+                                            <td class="defaultFontStyle" width="95px">배송지 이름</td>
+                                            <td class="registeredName">집</td>
+                                        </tr>
+                                        <tr class="py-1">
+                                            <td class="defaultFontStyle">배송지 주소</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="95px">우편주소</td>
+                                            <td class="registeredZipcode">00000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>주소</td>
+                                            <td class="registeredAddress1">마크업 기본 주소 정보</td>
+                                        </tr>
+                                        <tr>
+                                            <td>상세 주소</td>
+                                            <td class="registeredAddress2">마크업 상세 주소 정보</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="registeredButtons" colspan="2" align="right">
+                                                <button type="button" class="btnGroup registerModifying modifyBtn deliveryBtn">수정</button>
+                                                <button type="button" class="btnGroup registerDeleting deleteBtn deliveryBtn">삭제</button>
+                                                <button type="button" class="btnGroup doDefaulting deliveryBtnInvert">기본 배송지 지정</button>
+                                            </td>
+                                        </tr>
+                                        <tr height="10px"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <hr>
+        푸터 삽입부
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <script src="/js/myPage.js"></script>
+    <script src="/js/deliver.js"></script>
+
+</body>
+</html>

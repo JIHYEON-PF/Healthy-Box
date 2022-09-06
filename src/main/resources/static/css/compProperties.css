@@ -66,3 +66,25 @@
     color: rgba(83,146,91,0.8);
     font-weight: bold;
 }
+
+.myPageTitle {
+    color: rgba(83,146,91,0.8);
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.deliveryBtn {
+    color: rgba(83, 146, 91, 0.8);
+    background-color: white;
+    border: 1px solid rgba(83, 146, 91, 0.8);
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.deliveryBtnInvert {
+    color: white;
+    background-color: rgba(83, 146, 91, 0.8);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
