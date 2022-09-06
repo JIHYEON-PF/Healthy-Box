@@ -17,9 +17,13 @@ public record OiDeliverDto(
         return new OiDeliverDto(idx, userId, deliveryName, zipcode, address1, address2, deliveryFlag);
     }
 
+    public static OiDeliverDto of(String userId, String deliveryName, String zipcode, String address1, String address2, DeliveryFlag deliveryFlag) {
+        return new OiDeliverDto(null, userId, deliveryName, zipcode, address1, address2, deliveryFlag);
+    }
+
     // dto >> entity
-    public OiDeliver toEntity(OiDeliverDto dto) {
-        return OiDeliver.of(dto.userId, dto.deliveryName, dto.zipcode, dto.address1, dto.address2, dto.deliveryFlag);
+    public OiDeliver toEntity() {
+        return OiDeliver.of(userId, deliveryName, zipcode, address1, address2, deliveryFlag);
     }
 
     //entity >> dto
