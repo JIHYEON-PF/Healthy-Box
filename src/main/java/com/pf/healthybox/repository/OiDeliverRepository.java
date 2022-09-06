@@ -9,5 +9,11 @@ import java.util.List;
 public interface OiDeliverRepository extends JpaRepository<OiDeliver, Long> {
 
     List<OiDeliver> findByUserIdAndDeliveryFlag(String userId, DeliveryFlag flag);
+    Integer countByUserIdAndDeliveryNameLike(String userId, String name);
 
+    void deleteByIdxAndUserId(Long idx, String userId);
+
+    OiDeliver findByIdxAndUserId(Long idx, String userId);
+
+    OiDeliver findByIdx(Long idx);
 }
