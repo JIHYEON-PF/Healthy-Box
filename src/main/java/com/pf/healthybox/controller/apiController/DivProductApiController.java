@@ -1,4 +1,4 @@
-package com.pf.healthybox.contoller.apiController;
+package com.pf.healthybox.controller.apiController;
 
 import com.pf.healthybox.dto.response.productInformationRes.PiDivProductResponse;
 import com.pf.healthybox.repository.PiDivProductRepository;

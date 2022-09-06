@@ -1,4 +1,4 @@
-package com.pf.healthybox.contoller;
+package com.pf.healthybox.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

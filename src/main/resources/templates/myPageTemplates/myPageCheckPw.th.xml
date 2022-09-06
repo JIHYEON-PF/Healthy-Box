@@ -2,6 +2,7 @@
 <thlogic>
     <attr sel="#header" th:replace="header :: header"/>
     <attr sel="#footer" th:replace="footer :: footer"/>
+    <attr sel="#myPageNav" th:replace="/myPageTemplates/myPageNav :: data-nav"/>
 
     <attr sel="#myPageSidebar">
         <attr sel="#myPageId" th:text="${separation}"/>
@@ -14,5 +15,4 @@
         <attr sel="#point" th:href="@{/mypage/point}"/>
         <attr sel="#unregister" th:href="@{/mypage/check-pw?separation=unregister}"/>
     </attr>
-
 </thlogic>

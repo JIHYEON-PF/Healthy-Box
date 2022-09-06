@@ -1,4 +1,4 @@
-package com.pf.healthybox.contoller;
+package com.pf.healthybox.controller;
 
 import com.pf.healthybox.domain.baseInformation.BiUser;
 import com.pf.healthybox.domain.config.DeliveryFlag;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RequestMapping("/mypage")
 @Controller
@@ -40,20 +39,20 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
     @GetMapping("/")
     public String showMyPage(ModelMap model) {
         model.addAttribute("separation", "ordered");
-        return isLogin("userTemplates/myPage");
+        return isLogin("myPageTemplates/myPage");
     }
 
     @GetMapping("/check-pw")
     public String showMyPageCheckPw(@RequestParam String separation, ModelMap model) {
 
         model.addAttribute("separation", separation);
-        return isLogin("userTemplates/myPageCheckPw");
+        return isLogin("myPageTemplates/myPageCheckPw");
     }
 
     @GetMapping("/modify-user")
     public String showMyPageModifyUser(ModelMap model) {
         model.addAttribute("separation", "modify");
-        return isLogin("userTemplates/myPageModifyUser");
+        return isLogin("myPageTemplates/myPageModifyUser");
     }
 
     @GetMapping("/point")
@@ -69,7 +68,7 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
             model.addAttribute("separation", "point");
         }
 
-        return isLogin("userTemplates/myPagePoint");
+        return isLogin("myPageTemplates/myPagePoint");
     }
 
     @GetMapping("/delivery")
@@ -90,13 +89,13 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
             );
             model.addAttribute("separation", "delivery");
         }
-        return isLogin("userTemplates/myPageDelivery");
+        return isLogin("myPageTemplates/myPageDelivery");
     }
 
     @GetMapping("/deliverInfo")
     public String showDeliverInfo(ModelMap model) {
         model.addAttribute("inform", OiDeliver.of("", "", "", "", "", null));
-        return "userTemplates/myPageDeliveryInfo";
+        return "myPageTemplates/myPageDeliveryInfo";
     }
 
     @GetMapping("/deliverInfoDetail")
@@ -106,7 +105,7 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
         OiDeliver deliverInform = oiDeliverService.showDeliveryDetail(userId, idx);
 
         model.addAttribute("inform", deliverInform);
-        return "userTemplates/myPageDeliveryInfo";
+        return "myPageTemplates/myPageDeliveryInfo";
     }
 
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단

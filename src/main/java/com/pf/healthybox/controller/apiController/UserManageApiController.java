@@ -1,16 +1,11 @@
-package com.pf.healthybox.contoller.apiController;
+package com.pf.healthybox.controller.apiController;
 
 import com.pf.healthybox.domain.baseInformation.BiUser;
-import com.pf.healthybox.dto.baseInformationDto.BiUserDto;
 import com.pf.healthybox.dto.request.baseInformationReq.BiUserRequest;
-import com.pf.healthybox.dto.response.baseInformationRes.BiUserResponse;
 import com.pf.healthybox.service.BiUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestClientException;
 
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
