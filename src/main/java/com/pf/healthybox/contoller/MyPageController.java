@@ -93,6 +93,22 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
         return isLogin("userTemplates/myPageDelivery");
     }
 
+    @GetMapping("/deliverInfo")
+    public String showDeliverInfo(ModelMap model) {
+        model.addAttribute("inform", OiDeliver.of("", "", "", "", "", null));
+        return "userTemplates/myPageDeliveryInfo";
+    }
+
+    @GetMapping("/deliverInfoDetail")
+    public String showDeliverInfoDetail(@RequestParam String userId,
+                                        @RequestParam Long idx,
+                                        ModelMap model) {
+        OiDeliver deliverInform = oiDeliverService.showDeliveryDetail(userId, idx);
+
+        model.addAttribute("inform", deliverInform);
+        return "userTemplates/myPageDeliveryInfo";
+    }
+
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단
     private String isLogin(String location) {
 
