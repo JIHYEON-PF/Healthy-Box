@@ -20,11 +20,12 @@
         <attr sel="#defaultZipcode" th:text="*{zipcode}"/>
         <attr sel="#defaultAddress1" th:text="*{address1}"/>
         <attr sel="#defaultAddress2" th:text="*{address2}"/>
+        <attr sel=".btnGroup" th:value="*{idx}"/>
     </attr>
 
     <attr sel="#registeredDelivery" th:remove="all-but-first">
         <attr sel="#deliveryList" th:each="deliveryList : ${registeredDelivery}">
-            <attr sel=".registeredDelivery" th:text="${deliveryList.idx}"/>
+            <attr sel=".btnGroup" th:value="${deliveryList.idx}"/>
             <attr sel=".registeredName" th:text="${deliveryList.deliveryName}"/>
             <attr sel=".registeredZipcode" th:text="${deliveryList.zipcode}"/>
             <attr sel=".registeredAddress1" th:text="${deliveryList.address1}"/>
