@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <thlogic>
-    <attr sel="#header" th:replace="header :: header"/>
-    <attr sel="#footer" th:replace="footer :: footer"/>
-    <attr sel="#myPageNav" th:replace="/myPageTemplates/myPageNav :: data-nav"/>
-
     <attr sel="#myPageSidebar">
         <attr sel="#myPageId" th:text="${separation}"/>
 

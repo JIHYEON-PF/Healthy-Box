@@ -2,17 +2,18 @@
 <thlogic>
     <attr sel="#header" th:replace="header :: header"/>
     <attr sel="#footer" th:replace="footer :: footer"/>
+    <attr sel="#myPageNav" th:replace="/myPageTemplates/myPageNav :: data-nav"/>
 
-    <attr sel="#myPageSidebar">
-        <attr sel="#myPageId" th:text="${separation}"/>
+<!--    <attr sel="#myPageSidebar">-->
+<!--        <attr sel="#myPageId" th:text="${separation}"/>-->
 
-        <attr sel="#myPageTitle" th:href="@{/mypage/}"/>
-        <attr sel="#ordered" th:href="@{/mypage/}"/>
-        <attr sel="#basket" th:href="@{/mypage/}"/>
-        <attr sel="#delivery" th:href="@{/mypage/delivery}"/>
-        <attr sel="#user-info" th:href="@{/mypage/check-pw?separation=modify}"/>
-        <attr sel="#point" th:href="@{/mypage/point}"/>
-        <attr sel="#unregister" th:href="@{/mypage/check-pw?separation=unregister}"/>
-    </attr>
+<!--        <attr sel="#myPageTitle" th:href="@{/mypage/}"/>-->
+<!--        <attr sel="#ordered" th:href="@{/mypage/}"/>-->
+<!--        <attr sel="#basket" th:href="@{/mypage/}"/>-->
+<!--        <attr sel="#delivery" th:href="@{/mypage/delivery}"/>-->
+<!--        <attr sel="#user-info" th:href="@{/mypage/check-pw?separation=modify}"/>-->
+<!--        <attr sel="#point" th:href="@{/mypage/point}"/>-->
+<!--        <attr sel="#unregister" th:href="@{/mypage/check-pw?separation=unregister}"/>-->
+<!--    </attr>-->
 
 </thlogic>
