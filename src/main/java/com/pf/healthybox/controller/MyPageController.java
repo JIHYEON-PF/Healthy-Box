@@ -1,4 +1,4 @@
-package com.pf.healthybox.contoller;
+package com.pf.healthybox.controller;
 
 import com.pf.healthybox.domain.baseInformation.BiUser;
 import com.pf.healthybox.domain.config.DeliveryFlag;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RequestMapping("/mypage")
 @Controller
