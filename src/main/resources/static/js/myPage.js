@@ -145,7 +145,7 @@ $(document).ready(function () {
     });
 });
 
-// 비밀번호 확인 페이지의 값에 따라 선택 레이어 변경
+// 마이페이지의 선택된 페이지의 값에 따라 선택 레이어 변경
 $(document).ready(function () {
     let separation = $('#myPageId').text();
     console.log(separation);
@@ -191,6 +191,21 @@ $(document).ready(function () {
 $(window).resize(function() {
     $('#registeredButtons').width($('#defaultButtons').width());
 });
+
+/** 주문내역 색상 조정 */
+$(document).ready(function () {
+    $('.orderListBody').each(function (index, item) {
+
+        if (index % 2 === 0) {
+            $(this).removeClass('orderListBodyEven');
+            $(this).addClass('orderListBodyOdd');
+        } else {
+            $(this).removeClass('orderListBodyOdd');
+            $(this).addClass('orderListBodyEven');
+        }
+    });
+});
+
 
 //// 공통 함수
 const isEmpty=(str)=>{

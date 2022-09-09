@@ -4,9 +4,11 @@ import com.pf.healthybox.domain.baseInformation.BiUser;
 import com.pf.healthybox.domain.config.DeliveryFlag;
 import com.pf.healthybox.domain.orderInformation.OiDeliver;
 import com.pf.healthybox.dto.response.orderInformationRes.OiDeliverResponse;
+import com.pf.healthybox.dto.response.orderInformationRes.OiOrderListResponse;
 import com.pf.healthybox.service.BiPointService;
 import com.pf.healthybox.service.BiUserService;
 import com.pf.healthybox.service.OiDeliverService;
+import com.pf.healthybox.service.OiOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RequestMapping("/mypage")
 @Controller
@@ -23,15 +26,17 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
 
     private final BiPointService biPointService;
     private final OiDeliverService oiDeliverService;
+    private final OiOrderService oiOrderService;
 
     private final HttpServletRequest request;
 
     public MyPageController(@Autowired BiUserService biUserService,
                             @Autowired BiPointService biPointService,
                             @Autowired OiDeliverService oiDeliverService,
-                            HttpServletRequest request) {
+                            OiOrderService oiOrderService, HttpServletRequest request) {
         this.biPointService = biPointService;
         this.oiDeliverService = oiDeliverService;
+        this.oiOrderService = oiOrderService;
         this.request = request;
     }
 
@@ -106,6 +111,21 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
 
         model.addAttribute("inform", deliverInform);
         return "myPageTemplates/myPageDeliveryInfo";
+    }
+
+    @GetMapping("/order-list")
+    public String showOrderList(ModelMap model) {
+
+        HttpSession session = request.getSession();
+        BiUser entity = (BiUser) session.getAttribute("loginUser");
+
+        if (entity != null) {
+            List<OiOrderListResponse> list = oiOrderService.findOrderList(entity.getUserId());
+
+            model.addAttribute("orderList", list);
+            model.addAttribute("separation", "ordered");
+        }
+        return isLogin("myPageTemplates/myPageOrderList");
     }
 
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단
