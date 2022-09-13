@@ -94,3 +94,14 @@
     background-color: rgba(83,146,91,0.8);
     font-size: 14px;
 }
+
+.orderListHref {
+    text-decoration: none;
+    color: inherit;
+}
+
+.orderListHref:hover {
+    color: inherit;
+}
+
+
