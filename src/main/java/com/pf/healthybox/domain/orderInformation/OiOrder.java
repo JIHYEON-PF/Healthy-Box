@@ -18,6 +18,8 @@ public class OiOrder extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
+    @Setter @Column(nullable = false, length = 10) private String orderNo;
+    @Setter @Column(nullable = false) private int orderIdx;
     @Setter @Column(nullable = false, length = 20) private Status status;
     @Setter @Column(nullable = false, length = 50) private String userId;
     @Setter @Column(nullable = false) private Long deliverIdx;
@@ -31,7 +33,9 @@ public class OiOrder extends AuditingFields {
 
     public OiOrder() {}
 
-    public OiOrder(Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int amount, PayMethod payMethod, String apiCode) {
+    public OiOrder(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int amount, PayMethod payMethod, String apiCode) {
+        this.orderNo = orderNo;
+        this.orderIdx = orderIdx;
         this.status = status;
         this.userId = userId;
         this.deliverIdx = deliverIdx;
@@ -44,8 +48,8 @@ public class OiOrder extends AuditingFields {
         this.apiCode = apiCode;
     }
 
-    public static OiOrder of(Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int amount, PayMethod payMethod, String apiCode) {
-        return new OiOrder(status, userId, deliverIdx, productCode, sellerCode, qty, unitCost, amount, payMethod, apiCode);
+    public static OiOrder of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int amount, PayMethod payMethod, String apiCode) {
+        return new OiOrder(orderNo, orderIdx, status, userId, deliverIdx, productCode, sellerCode, qty, unitCost, amount, payMethod, apiCode);
     }
 
     @Override

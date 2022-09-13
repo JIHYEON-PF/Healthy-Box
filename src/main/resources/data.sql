@@ -23,3 +23,13 @@ insert into tbl_deliver (delivery_name, address1, address2, delivery_flag, user_
 values ('DB 등록 집', '테스트 기본 주소', '테스트 상세 주소', 0, 'testId', '12345'),
        ('회사', '테스트 기본 주소2', '테스트 상세 주소2', 1, 'testId', '00001'),
        ('DB등록 추가', '서울특별시 강남구 테헤란로 503', '패스트파이브 11층 1119호', 1, 'testId', '22222');
+
+insert into tbl_product (product_code, seller_code, created_at, updated_at, detail, is_used, price, product_category, product_group, product_name, stock)
+values('00001', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품1', 100),
+      ('00002', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품2', 100);
+
+insert into tbl_order (created_at, updated_at, amount, api_code, deliver_idx, order_idx, order_no, pay_method, product_code, qty, seller_code, status, unit_cost, user_id)
+VALUES (now(), now(), 100000, null, 1, 1,'2209080001',0, '00001', 1, '00001', 0, 100000, 'testId'),
+       (now(), now(), 100000, null, 1, 2,'2209080001',0, '00001', 1, '00001', 0, 100000, 'testId'),
+       (now(), now(), 100000, null, 1, 1,'2209080002',0, '00001', 1, '00001', 0, 100000, 'testId');
+
