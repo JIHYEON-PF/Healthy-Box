@@ -10,4 +10,5 @@ public interface OiOrderRepositoryCustom {
 
     List<Tuple> findOrderList(String userId);
 
+    List<Tuple> findOrderDetail(String userId, String orderNo);
 }

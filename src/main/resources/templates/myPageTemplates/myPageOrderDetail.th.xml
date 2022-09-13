@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#header" th:replace="header :: header"/>
+    <attr sel="#footer" th:replace="footer :: footer"/>
+    <attr sel="#myPageNav" th:replace="/myPageTemplates/myPageNav :: data-nav"/>
+
+    <attr sel="#orderItemListBody" th:remove="all-but-first">
+        <attr sel="tr[0]" th:each="detail:${details}">
+            <attr sel=".orderItemImage/img" th:alt="${#strings.concat(detail.productCode,'.jpg')}" th:src="@{'/image/Products/' + ${#strings.concat(detail.productCode,'.jpg')}}"/>
+            <attr sel=".orderItemName" th:text="${detail.productName}"/>
+            <attr sel=".orderItemQty" th:text="${#numbers.formatInteger(detail.qty, 0, 'COMMA')}"/>
+            <attr sel=".orderItemUnitCost" th:text="${#numbers.formatInteger(detail.unitCost, 0, 'COMMA')} + ' 원'"/>
+            <attr sel=".orderItemDcCost" th:text="${#numbers.formatInteger(detail.dcCost, 0, 'COMMA')} + ' 원'"/>
+            <attr sel=".orderItemAmount" th:text="${#numbers.formatInteger(detail.amount, 0, 'COMMA')} + ' 원'"/>
+        </attr>
+    </attr>
+
+    <attr sel="#deliveryInfo" th:object="${details[0]}">
+        <attr sel="#deliveryCompData" th:text="*{deliveryComp}"/>
+        <attr sel="#deliveryCompData" th:text="*{deliveryCode}"/>
+        <attr sel="#deliveryNameData" th:text="*{deliveryName}"/>
+        <attr sel="#zipcodeData" th:text="*{zipcode}"/>
+        <attr sel="#address1Data" th:text="*{address1}"/>
+        <attr sel="#address2Data" th:text="*{address2}"/>
+    </attr>
+
+    <attr sel="#payMethodInfo" th:object="${details[0]}">
+        <attr sel="#payMethodData" th:text="*{payMethod}"/>
+        <attr sel="#orderPriceData" th:text="*{#numbers.formatInteger(totalAmount, 0, 'COMMA')}"/>
+        <attr sel="#deliveryPriceData" th:text="*{#numbers.formatInteger(deliveryCost, 0, 'COMMA')}"/>
+        <attr sel="#dcPriceData" th:text="*{#numbers.formatInteger(totalDcCost, 0, 'COMMA')}"/>
+        <attr sel="#amountData" th:text="*{#numbers.formatInteger(totalAmount + deliveryCost - totalDcCost, 0, 'COMMA')}"/>
+    </attr>
+
+    <attr sel="#test" th:text="${#numbers.formatInteger(details[0].totalAmount + details[0].deliveryCost - details[0].totalDcCost, 0, 'COMMA')} + ' 원'"/>
+</thlogic>

@@ -6,5 +6,6 @@
         <attr sel="#deliverInfoZipcode" th:value="*{zipcode}"/>
         <attr sel="#deliverInfoAddress1" th:value="*{address1}"/>
         <attr sel="#deliverInfoAddress2" th:value="*{address2}"/>
+        <attr sel="#userIdHidden" th:text="*{userId}"/>
     </attr>
 </thlogic>
