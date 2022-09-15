@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/mypage")
@@ -151,6 +152,34 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
 
         return isLogin("myPageTemplates/myPageOrderDetail");
 
+    }
+
+    @GetMapping("/tracking")
+    public String showTrackingPackages(@RequestParam String code,
+                                       @RequestParam String invoice,
+                                       ModelMap model) {
+        String apiCode = oiOrderService.getLogisticsApiCode();
+        List<Object> data = List.of(apiCode, code, invoice);
+
+        if (!apiCode.isBlank() && !code.isBlank() && !invoice.isBlank()) {
+            model.addAttribute("data", data);
+        }
+        return "myPageTemplates/myPageOrderDeliveryCheck";
+    }
+
+    @GetMapping("/change-status/{orderNo}")
+    public String changeStatus(@PathVariable String orderNo,
+                               ModelMap model) {
+        HttpSession session = request.getSession();
+        BiUser entity = (BiUser) session.getAttribute("loginUser");
+
+        if (entity != null) {
+            List<OiOrderDetailResponse> list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo);
+
+            model.addAttribute("details", list);
+            model.addAttribute("separation", "ordered");
+        }
+        return isLogin("myPageTemplates/myPageOrderDetailStatusChange");
     }
 
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단
