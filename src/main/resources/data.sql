@@ -28,8 +28,10 @@ insert into tbl_product (product_code, seller_code, created_at, updated_at, deta
 values('00001', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품1', 100),
       ('00002', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품2', 100);
 
-insert into tbl_order (created_at, updated_at, amount, api_code, deliver_idx, order_idx, order_no, pay_method, product_code, qty, seller_code, status, unit_cost, user_id)
-VALUES (now(), now(), 100000, null, 1, 1,'2209080001',0, '00001', 1, '00001', 0, 100000, 'testId'),
-       (now(), now(), 100000, null, 1, 2,'2209080001',0, '00001', 1, '00001', 0, 100000, 'testId'),
-       (now(), now(), 100000, null, 1, 1,'2209080002',0, '00001', 1, '00001', 0, 100000, 'testId');
+insert into tbl_order (created_at, updated_at, amount, api_code, deliver_idx, order_idx, order_no, pay_method, product_code, qty, seller_code, status, unit_cost, user_id, dc_cost, delivery_comp, delivery_cost, delivery_code)
+VALUES (now(), now(), 100000, null, 1, 1,'2209080001',0, '00001', 1, '00001', 0, 100000, 'testId', 10000, '05', 3000, '450725434935'),
+       (now(), now(), 200000, null, 1, 2,'2209080001',0, '00002', 2, '00001', 0, 100000, 'testId', 5000, '05', 0, '450725434935'),
+       (now(), now(), 100000, null, 1, 1,'2209080002',0, '00001', 1, '00001', 0, 100000, 'testId', 0, '04', 0, '651122270741');
 
+insert into tbl_environment(logistics_api_code)
+values('ntjhULvF5RyvYWCavkeV8w');

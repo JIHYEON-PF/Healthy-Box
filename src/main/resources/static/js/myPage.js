@@ -1,6 +1,6 @@
 // 비밀번호 확인
 $(document).on("click", "#confirmBtn", function () {
-    let login_userId = $.cookie("rememberIdCookie");
+    let login_userId = $('#loginBtnUnSession').val();
     let input_password = $('#input_pw').val();
 
     if (isNotEmpty(input_password)) {
@@ -91,6 +91,8 @@ $(document).on("click", "#modifyUserInfo", function () {
 
         let json = JSON.stringify(input_data);
 
+        console.log(json);
+
         $.ajax({
             url: "/api/mypage/modify-user",
             data: json,
@@ -99,7 +101,7 @@ $(document).on("click", "#modifyUserInfo", function () {
 
             success: function (data) {
                 alert("회원정보 수정이 완료되었습니다.")
-                location.replace('/mypage/')
+                location.replace('/mypage/order-list')
             },
             error: function (request, status, error) {
                 console.log("에러");
@@ -149,6 +151,9 @@ $(document).ready(function () {
 $(document).ready(function () {
     let separation = $('#myPageId').text();
     console.log(separation);
+
+    console.log($('#loginBtnUnSession').val());
+
     let idName = '';
     switch (separation) {
         case "ordered":

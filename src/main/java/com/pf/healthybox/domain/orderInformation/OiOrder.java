@@ -1,6 +1,7 @@
 package com.pf.healthybox.domain.orderInformation;
 
 import com.pf.healthybox.domain.AuditingFields;
+import com.pf.healthybox.domain.config.DeliveryComp;
 import com.pf.healthybox.domain.config.PayMethod;
 import com.pf.healthybox.domain.config.Status;
 import lombok.Getter;
@@ -27,13 +28,17 @@ public class OiOrder extends AuditingFields {
     @Setter @Column(nullable = false, length = 8) private String sellerCode;
     @Setter @Column(nullable = false) private int qty;
     @Setter @Column(nullable = false) private int unitCost;
+    @Setter @Column private int dcCost;
+    @Setter @Column private int deliveryCost;
     @Setter @Column(nullable = false) private int amount;
     @Setter @Column(nullable = false, length = 4) private PayMethod payMethod;
     @Setter @Column(length = 30) private String apiCode;
+    @Setter @Column(nullable = true, length=10) private String deliveryComp;
+    @Setter @Column(length=50) private String deliveryCode;
 
     public OiOrder() {}
 
-    public OiOrder(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int amount, PayMethod payMethod, String apiCode) {
+    public OiOrder(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, String deliveryComp, String deliveryCode) {
         this.orderNo = orderNo;
         this.orderIdx = orderIdx;
         this.status = status;
@@ -43,13 +48,17 @@ public class OiOrder extends AuditingFields {
         this.sellerCode = sellerCode;
         this.qty = qty;
         this.unitCost = unitCost;
+        this.dcCost = dcCost;
+        this.deliveryCost = deliveryCost;
         this.amount = amount;
         this.payMethod = payMethod;
         this.apiCode = apiCode;
+        this.deliveryComp = deliveryComp;
+        this.deliveryCode = deliveryCode;
     }
 
-    public static OiOrder of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int amount, PayMethod payMethod, String apiCode) {
-        return new OiOrder(orderNo, orderIdx, status, userId, deliverIdx, productCode, sellerCode, qty, unitCost, amount, payMethod, apiCode);
+    public static OiOrder of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, String deliveryComp, String deliveryCode) {
+        return new OiOrder(orderNo, orderIdx, status, userId, deliverIdx, productCode, sellerCode, qty, unitCost, dcCost, deliveryCost, amount, payMethod, apiCode, deliveryComp, deliveryCode);
     }
 
     @Override

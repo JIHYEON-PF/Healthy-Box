@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+<body>
+
+    <form action="http://info.sweettracker.co.kr/tracking/5" method="post" hidden>
+        <div class="form-group">
+            <label for="t_key">API key</label>
+            <input type="text" class="form-control" id="t_key" name="t_key" placeholder="제공받은 APIKEY">
+        </div>
+        <div class="form-group">
+            <label for="t_code">택배사 코드</label>
+            <input type="text" class="form-control" name="t_code" id="t_code" placeholder="택배사 코드">
+        </div>
+        <div class="form-group">
+            <label for="t_invoice">운송장 번호</label>
+            <input type="text" class="form-control" name="t_invoice" id="t_invoice" placeholder="운송장 번호">
+        </div>
+        <button id="submitBtn" type="submit" class="btn btn-default">조회하기</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            if ($('#t_key').attr('value') !== ''
+                && $('#t_code').attr('value') !== ''
+                && $('#t_invoice').attr('value') !== '') {
+                $('#submitBtn').trigger("click");
+        }
+        });
+    </script>
+</body>
+</html>
