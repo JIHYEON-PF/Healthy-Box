@@ -1,12 +1,13 @@
 package com.pf.healthybox.service;
 
-import com.pf.healthybox.domain.config.DeliveryComp;
 import com.pf.healthybox.domain.config.PayMethod;
 import com.pf.healthybox.domain.config.Status;
-import com.pf.healthybox.dto.orderInformationDto.OiOrderListDto;
+import com.pf.healthybox.dto.request.orderInformationReq.OiOrderStatusContentRequest;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderDetailResponse;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderListResponse;
+import com.pf.healthybox.repository.EnvironmentRepository;
 import com.pf.healthybox.repository.OiOrderRepository;
+import com.pf.healthybox.repository.OiOrderStatusContentRepository;
 import com.querydsl.core.Tuple;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,13 @@ import java.util.List;
 public class OiOrderService {
 
     private final OiOrderRepository oiOrderRepository;
+    private final EnvironmentRepository environmentRepository;
+    private final OiOrderStatusContentRepository oiOrderStatusContentRepository;
 
-    public OiOrderService(@Autowired OiOrderRepository oiOrderRepository) {
+    public OiOrderService(@Autowired OiOrderRepository oiOrderRepository, EnvironmentRepository environmentRepository, OiOrderStatusContentRepository oiOrderStatusContentRepository) {
         this.oiOrderRepository = oiOrderRepository;
+        this.environmentRepository = environmentRepository;
+        this.oiOrderStatusContentRepository = oiOrderStatusContentRepository;
     }
 
     @Transactional
@@ -64,7 +69,7 @@ public class OiOrderService {
                             tuple.get(6, int.class),
                             tuple.get(7, int.class),
                             tuple.get(8, int.class),
-                            tuple.get(9, DeliveryComp.class).getDescription(),
+                            tuple.get(9, String.class),
                             tuple.get(10, String.class),
                             tuple.get(11, String.class),
                             tuple.get(12, String.class),
@@ -77,7 +82,33 @@ public class OiOrderService {
                     )
             );
         }
-        System.out.println("res = " + res);
         return res;
+    }
+
+    public String getLogisticsApiCode() {
+        return environmentRepository.findLogisticsApiCode();
+    }
+
+    @Transactional
+    public void deleteOrderDetail(String userId, String orderNo) {
+        oiOrderRepository.deleteOrderDetail(userId, orderNo);
+    }
+
+    @Transactional
+    public void changeStatus(OiOrderStatusContentRequest req) {
+        req = OiOrderStatusContentRequest.of(
+                req.orderNo(),
+                oiOrderRepository.findSellerCodeByOrderNo(req.orderNo()),
+                req.division(),
+                req.title(),
+                req.content()
+            );
+        oiOrderStatusContentRepository.save(req.toDto().toEntity());
+
+        String statusCode = req.division().toUpperCase();
+
+        if (!statusCode.equals("")) {
+            oiOrderRepository.updateStatusCode(req.orderNo(), req.sellerCode(), statusCode);
+        }
     }
 }

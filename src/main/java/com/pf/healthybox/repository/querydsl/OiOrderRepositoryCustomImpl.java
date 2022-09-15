@@ -1,6 +1,7 @@
 package com.pf.healthybox.repository.querydsl;
 
 import com.pf.healthybox.domain.baseInformation.QBiPoint;
+import com.pf.healthybox.domain.config.Status;
 import com.pf.healthybox.domain.orderInformation.OiOrder;
 import com.pf.healthybox.domain.orderInformation.QOiDeliver;
 import com.pf.healthybox.domain.orderInformation.QOiOrder;
@@ -93,5 +94,40 @@ public class OiOrderRepositoryCustomImpl extends QuerydslRepositorySupport imple
                         oiOrder.amount, oiOrder.deliveryComp, oiOrder.deliveryCode, oiDeliver.deliveryName,oiDeliver.zipcode, oiDeliver.address1, oiDeliver.address2, oiOrder.payMethod, oiOrder.deliveryCost, oiOrder.orderIdx)
                 .orderBy(oiOrder.orderIdx.asc())
                 .fetch();
+    }
+
+    @Override
+    public void deleteOrderDetail(String userId, String orderNo) {
+
+        QOiOrder qOiOrder = QOiOrder.oiOrder;
+
+        queryFactory
+                .delete(qOiOrder)
+                .where(qOiOrder.userId.eq(userId)
+                        .and(qOiOrder.orderNo.eq(orderNo)))
+                .execute();
+    }
+
+    @Override
+    public String findSellerCodeByOrderNo(String orderNo) {
+
+        QOiOrder qOiOrder = QOiOrder.oiOrder;
+
+        return queryFactory
+                .select(qOiOrder.sellerCode)
+                .from(qOiOrder)
+                .where(qOiOrder.orderNo.eq(orderNo))
+                .fetchFirst();
+    }
+
+    @Override
+    public void updateStatusCode(String orderNo, String sellerCode, String statusCode) {
+        QOiOrder oiOrder = QOiOrder.oiOrder;
+
+        queryFactory
+                .update(oiOrder)
+                .set(oiOrder.status, Status.valueOf(Status.class, statusCode))
+                .where(oiOrder.orderNo.eq(orderNo).and(oiOrder.sellerCode.eq(sellerCode)))
+                .execute();
     }
 }

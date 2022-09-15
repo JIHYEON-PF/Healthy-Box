@@ -20,11 +20,11 @@ public record OiOrderDto(
         int amount,
         PayMethod payMethod,
         String apiCode,
-        DeliveryComp deliveryComp,
+        String deliveryComp,
         String deliveryCode
 ) {
 
-    public static OiOrderDto of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, DeliveryComp deliveryComp, String deliveryCode) {
+    public static OiOrderDto of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, String deliveryComp, String deliveryCode) {
         return new OiOrderDto(orderNo, orderIdx, status, userId, deliverIdx, productCode, sellerCode, qty, unitCost, dcCost, deliveryCost, amount, payMethod, apiCode, deliveryComp, deliveryCode);
     }
 

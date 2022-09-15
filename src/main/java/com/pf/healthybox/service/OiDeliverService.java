@@ -79,11 +79,9 @@ public class OiDeliverService {
     }
 
     public void modifyDeliveryInform(OiDeliverDto dto) {
-        System.out.println("dto = " + dto);
         Long idx = dto.idx();
         String userId = dto.userId();
         OiDeliver deliver = oiDeliverRepository.findByIdxAndUserId(idx, userId);
-        System.out.println("deliver = " + deliver);
 
         if (deliver != null) {
             deliver.setDeliveryName(dto.deliveryName());
