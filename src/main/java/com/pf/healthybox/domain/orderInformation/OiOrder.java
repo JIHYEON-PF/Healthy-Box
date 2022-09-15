@@ -33,12 +33,12 @@ public class OiOrder extends AuditingFields {
     @Setter @Column(nullable = false) private int amount;
     @Setter @Column(nullable = false, length = 4) private PayMethod payMethod;
     @Setter @Column(length = 30) private String apiCode;
-    @Setter @Column(nullable = true, length=10) private DeliveryComp deliveryComp;
+    @Setter @Column(nullable = true, length=10) private String deliveryComp;
     @Setter @Column(length=50) private String deliveryCode;
 
     public OiOrder() {}
 
-    public OiOrder(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, DeliveryComp deliveryComp, String deliveryCode) {
+    public OiOrder(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, String deliveryComp, String deliveryCode) {
         this.orderNo = orderNo;
         this.orderIdx = orderIdx;
         this.status = status;
@@ -57,7 +57,7 @@ public class OiOrder extends AuditingFields {
         this.deliveryCode = deliveryCode;
     }
 
-    public static OiOrder of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, DeliveryComp deliveryComp, String deliveryCode) {
+    public static OiOrder of(String orderNo, int orderIdx, Status status, String userId, Long deliverIdx, String productCode, String sellerCode, int qty, int unitCost, int dcCost, int deliveryCost, int amount, PayMethod payMethod, String apiCode, String deliveryComp, String deliveryCode) {
         return new OiOrder(orderNo, orderIdx, status, userId, deliverIdx, productCode, sellerCode, qty, unitCost, dcCost, deliveryCost, amount, payMethod, apiCode, deliveryComp, deliveryCode);
     }
 
