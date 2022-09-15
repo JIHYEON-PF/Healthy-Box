@@ -6,7 +6,7 @@
             <attr sel="#signUpBtnSession" th:text="Sign-Up" th:onclick="|location.href='@{/user/signUp}'|"/>
         </attr>
         <attr sel="#sessionOut" th:unless="${session.loginUser == null}">
-            <attr sel="#loginBtnUnSession" th:text="(${#strings.isEmpty(session.loginUser.getNickname())} ? ${session.loginUser.getUserName()} : ${session.loginUser.getNickname()})" th:onclick="|location.href='@{/mypage/}'|"/>-->
+            <attr sel="#loginBtnUnSession" th:text="(${#strings.isEmpty(session.loginUser.getNickname())} ? ${session.loginUser.getUserName()} : ${session.loginUser.getNickname()})" th:onclick="|location.href='@{/mypage/order-list}'|" th:value="${session.loginUser.getUserId()}"/>-->
             <attr sel="#signUpBtnUnSession" th:text="Log-Out" th:onclick="|location.href='@{/user/logout}'|"/>
         </attr>
     </attr>

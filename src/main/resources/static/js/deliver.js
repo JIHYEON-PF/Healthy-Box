@@ -1,6 +1,7 @@
 /** 저장버튼 */
 $(document).on("click", "#insertBtn", function () {
-    let userId = $.cookie('rememberIdCookie');
+    let userId = $('#userIdHidden').text();
+    console.log(userId);
     let delivery_name = $('#deliverInfoName').val();
     let flag = $(location).attr('pathname').indexOf('deliverInfoDetail')
 
@@ -110,7 +111,7 @@ function openPopup() {
 
 /** 배송지 수정 팝업 등록 후 페이지 리로드 */
 $(document).on("click", ".modifyBtn", function () {
-    window.open('/mypage/deliverInfoDetail?userId=' + $.cookie('rememberIdCookie') + '&idx=' + $(this).attr('value'), 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
+    window.open('/mypage/deliverInfoDetail?userId=' + $('#loginBtnUnSession').val() + '&idx=' + $(this).attr('value'), 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
 });
 
 /** 기본배송지 해제 */
@@ -120,7 +121,7 @@ $(document).on("click", "#unDefaulting", function () {
         return;
     }
     $.ajax({
-        url: "/api/deliver/undefault/" + $.cookie('rememberIdCookie'),
+        url: "/api/deliver/undefault/" + $('#loginBtnUnSession').val(),
         method: "PATCH",
 
         success: function (data) {
@@ -141,7 +142,7 @@ $(document).on("click", "#unDefaulting", function () {
 /** 기본 배송지로 지정 */
 $(document).on("click", ".doDefaulting", function () {
     let idx = $(this).val();
-    let userId = $.cookie('rememberIdCookie');
+    let userId = $('#loginBtnUnSession').val();
 
     $.ajax({
         url: "/api/deliver/dodefault?userId=" + userId + '&idx=' + idx,
@@ -177,7 +178,7 @@ $(document).on("click", ".deleteBtn", function () {
     }
     if (confirm('배송지를 삭제하시겠습니까?') === true) {
         $.ajax({
-            url: "/api/deliver/delete?userId=" + $.cookie('rememberIdCookie') + '&idx=' + $(this).val(),
+            url: "/api/deliver/delete?userId=" + $('#loginBtnUnSession').val() + '&idx=' + $(this).val(),
             method: "DELETE",
 
             success: function (data) {

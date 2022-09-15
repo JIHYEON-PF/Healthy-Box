@@ -1,6 +1,6 @@
 // 비밀번호 확인
 $(document).on("click", "#confirmBtn", function () {
-    let login_userId = $.cookie("rememberIdCookie");
+    let login_userId = $('#loginBtnUnSession').val();
     let input_password = $('#input_pw').val();
 
     if (isNotEmpty(input_password)) {
@@ -91,6 +91,8 @@ $(document).on("click", "#modifyUserInfo", function () {
 
         let json = JSON.stringify(input_data);
 
+        console.log(json);
+
         $.ajax({
             url: "/api/mypage/modify-user",
             data: json,
@@ -99,7 +101,7 @@ $(document).on("click", "#modifyUserInfo", function () {
 
             success: function (data) {
                 alert("회원정보 수정이 완료되었습니다.")
-                location.replace('/mypage/')
+                location.replace('/mypage/order-list')
             },
             error: function (request, status, error) {
                 console.log("에러");
@@ -145,10 +147,13 @@ $(document).ready(function () {
     });
 });
 
-// 비밀번호 확인 페이지의 값에 따라 선택 레이어 변경
+// 마이페이지의 선택된 페이지의 값에 따라 선택 레이어 변경
 $(document).ready(function () {
     let separation = $('#myPageId').text();
     console.log(separation);
+
+    console.log($('#loginBtnUnSession').val());
+
     let idName = '';
     switch (separation) {
         case "ordered":
@@ -191,6 +196,21 @@ $(document).ready(function () {
 $(window).resize(function() {
     $('#registeredButtons').width($('#defaultButtons').width());
 });
+
+/** 주문내역 색상 조정 */
+$(document).ready(function () {
+    $('.orderListBody').each(function (index, item) {
+
+        if (index % 2 === 0) {
+            $(this).removeClass('orderListBodyEven');
+            $(this).addClass('orderListBodyOdd');
+        } else {
+            $(this).removeClass('orderListBodyOdd');
+            $(this).addClass('orderListBodyEven');
+        }
+    });
+});
+
 
 //// 공통 함수
 const isEmpty=(str)=>{

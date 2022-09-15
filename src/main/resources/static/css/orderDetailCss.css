@@ -1,0 +1,129 @@
+/** 주문목록 부분 */
+#orderItemList {
+    width: 100%;
+    border-bottom: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#orderItemSpan {
+    padding: 10px 0px;
+    font-weight: bold;
+}
+
+#orderItemListBodyHead th {
+    border-top: 1px solid rgba(83,146,91,0.8);
+    background-color: rgba(83,146,91,0.5);
+    color: white;
+    padding: 10px 0px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.orderItemListBodyContent td {
+    border-top: 1px solid rgba(83,146,91,0.8);
+}
+
+.orderItemCheckBox {
+    padding: 8px 0px;
+    width: 5%;
+    text-align: center;
+}
+
+.orderItemImage {
+    padding: 8px 0px;
+    width: 15%;
+    text-align: center;
+}
+
+.orderItemImage img {
+    width: 120px;
+    height: 80px;
+}
+
+.orderItemName {
+    padding: 8px 15px;
+    text-align: left;
+}
+
+.orderItemQty {
+    text-align: center;
+    width: 10%;
+}
+
+.orderItemUnitCost {
+    padding: 8px;
+    text-align: right;
+    width: 12%;
+}
+
+.orderItemDcCost {
+    padding: 8px;
+    text-align: right;
+    width: 12%;
+}
+
+.orderItemAmount {
+    padding: 8px;
+    text-align: right;
+    width: 12%;
+}
+
+/** 배송정보 ~ 결제정보 공통부분 */
+.dataTableHead {
+    width: 100%;
+    border-bottom: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.titleSect {
+    padding: 10px 0px;
+    font-weight: bold;
+}
+
+.NameSect {
+    background-color: rgba(83,146,91,0.5);
+    width: 15%;
+    color: white;
+    padding: 8px;
+    font-weight: bold;
+}
+
+.DataSect {
+    color: rgba(83,146,91,0.8);
+    padding: 8px;
+}
+
+.orderDetailBtn1 {
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(83,146,91,0.8);
+    color: white;
+    padding: 6px 10px;
+}
+
+.orderDetailBtn2 {
+    border-radius: 5px;
+    border: 1px solid rgba(83,146,91,0.8);
+    background-color: white;
+    color: rgba(83,146,91,0.8);
+    padding: 6px 10px;
+}
+
+/** 주문 상태 변경 관련 스타일지정 */
+#changeStatusTable {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataSect {
+    margin: 5px 10px;
+    align-items: center;
+}
+
+#changeStatusTable textarea {
+    resize: none;
+}

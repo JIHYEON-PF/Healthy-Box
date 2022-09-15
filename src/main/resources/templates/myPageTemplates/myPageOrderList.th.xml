@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#header" th:replace="header :: header"/>
+    <attr sel="#footer" th:replace="footer :: footer"/>
+    <attr sel="#myPageNav" th:replace="/myPageTemplates/myPageNav :: data-nav"/>
+
+    <attr sel="#orderListBody" th:remove="all-but-first">
+        <attr sel="tr[0]" th:each="order:${orderList}">
+            <attr sel="td.orderDate" th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd')}"/>
+            <attr sel="td.orderNo" th:text="${order.orderNo}"/>
+            <attr sel="td.orderProducts/a" th:href="@{'/mypage/order-list/'+${order.orderNo}}" th:text="${order.productCount} > 1
+                                                    ? ${order.productName} + ' 외 ' + ${#strings.toString(order.productCount - 1)}
+                                                    : ${order.productName}"/>
+            <attr sel="td.orderPrice" th:text="${#numbers.formatInteger(order.amount, 0, 'COMMA')}"/>
+            <attr sel="td.orderStatus" th:text="${order.status}"/>
+        </attr>
+    </attr>
+
+</thlogic>

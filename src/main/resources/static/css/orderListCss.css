@@ -1,0 +1,107 @@
+#statusTable table {
+    width: 100%;
+    border: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+}
+
+#statusTable th {
+    background-color: rgba(83,146,91,0.8);
+    color: white;
+    border: 1px solid rgba(83,146,91,0.8);
+    padding: 7px 10px;
+}
+
+#statusTable td {
+    border: 1px solid rgba(83,146,91,0.8);
+    background-color: rgba(83,146,91,0.2);
+    text-align: center;
+    padding: 7px;
+    font-size: 14px;
+}
+
+#statusTable-bodyTitle td {
+    border: 1px solid rgba(83,146,91,0.8);
+    background-color: rgba(83,146,91,0.4);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    width: 20%;
+    padding: 7px;
+}
+
+#orderListTable {
+    width: 100%;
+    border-top: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+}
+
+#orderListTable th {
+    color: rgba(83,146,91,0.8);
+    border-bottom: 1px solid rgba(83,146,91,0.8);
+    padding: 7px;
+    text-align: center;
+}
+
+.orderListBodyOdd td {
+    border-bottom: 1px solid rgba(83,146,91,0.8);
+    background-color: rgba(83,146,91,0.4);
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.orderListBodyEven td {
+    border-bottom: 1px solid rgba(83,146,91,0.8);
+    text-align: center;
+    color: rgba(83,146,91,0.8);
+    font-weight: bold;
+    padding: 10px;
+}
+
+.orderListBodyOdd .orderDate {
+    width: 12%;
+}
+
+.orderListBodyOdd .orderProducts {
+    width:46%;
+}
+
+.orderListBodyOdd .orderPrice {
+    width: 12%;
+}
+
+.orderListBodyOdd .orderStatus {
+    width: 10%
+}
+
+.orderListBodyOdd .orderBtn {
+    width: 20%
+}
+
+.btnOrderDetail {
+    border: 1px solid rgba(83,146,91,1);
+    border-radius: 7px;
+    color: rgba(83,146,91,0.8);
+    background-color: white;
+    font-size: 14px;
+}
+
+.btnOrderDelivery {
+    border: 1px solid rgba(83,146,91,1);
+    border-radius: 7px;
+    color: white;
+    background-color: rgba(83,146,91,0.8);
+    font-size: 14px;
+}
+
+.orderListHref {
+    text-decoration: none;
+    color: inherit;
+}
+
+.orderListHref:hover {
+    color: inherit;
+}
+
+

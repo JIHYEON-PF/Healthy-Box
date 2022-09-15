@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#t_key" th:value="${data[0]}"/>
+    <attr sel="#t_code" th:value="${data[1]}"/>
+    <attr sel="#t_invoice" th:value="${data[2]}"/>
+</thlogic>

@@ -73,6 +73,10 @@
     text-decoration: none;
 }
 
+.myPageTitle:hover{
+    color: rgba(83,146,91,0.8);
+}
+
 .deliveryBtn {
     color: rgba(83, 146, 91, 0.8);
     background-color: white;

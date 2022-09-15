@@ -3,8 +3,8 @@
     <attr sel="#myPageSidebar">
         <attr sel="#myPageId" th:text="${separation}"/>
 
-        <attr sel="#myPageTitle" th:href="@{/mypage/}"/>
-        <attr sel="#ordered" th:href="@{/mypage/}"/>
+        <attr sel="#myPageTitle" th:href="@{/mypage/order-list}"/>
+        <attr sel="#ordered" th:href="@{/mypage/order-list}"/>
         <attr sel="#basket" th:href="@{/mypage/}"/>
         <attr sel="#delivery" th:href="@{/mypage/delivery}"/>
         <attr sel="#user-info" th:href="@{/mypage/check-pw?separation=modify}"/>
