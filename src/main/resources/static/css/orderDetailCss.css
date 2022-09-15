@@ -24,6 +24,12 @@
     border-top: 1px solid rgba(83,146,91,0.8);
 }
 
+.orderItemCheckBox {
+    padding: 8px 0px;
+    width: 5%;
+    text-align: center;
+}
+
 .orderItemImage {
     padding: 8px 0px;
     width: 15%;
@@ -103,4 +109,21 @@
     background-color: white;
     color: rgba(83,146,91,0.8);
     padding: 6px 10px;
+}
+
+/** 주문 상태 변경 관련 스타일지정 */
+#changeStatusTable {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataSect {
+    margin: 5px 10px;
+    align-items: center;
+}
+
+#changeStatusTable textarea {
+    resize: none;
 }
