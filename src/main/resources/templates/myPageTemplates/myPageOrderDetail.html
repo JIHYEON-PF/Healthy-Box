@@ -79,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <td id="deliveryCodeTitle" class="NameSect">운송장번호</td>
-                                    <td id="c" class="DataSect">0000000000</td>
+                                    <td id="deliveryCodeData" class="DataSect">0000000000</td>
                                 </tr>
                                 <tr class="borderTop borderBottom" style="height: 10px;"></tr>
                                 <tr>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div id="payMethodInfo" class="pt-5 pb-2">
-                        <span class="titleSect defaultFontStyle fs-5">배송정보</span>
+                        <span class="titleSect defaultFontStyle fs-5">결제정보</span>
                         <table id="payMethodTable" class="dataTableHead borderTop">
                             <tbody>
                                 <tr>
@@ -132,13 +132,11 @@
 
                     <div id="buttons" class="pt-5 pb-2">
                         <div class="d-flex flex-warp justify-content-center align-items-center">
+                            <button id="toOrderList" class="orderDetailBtn2 mx-2" onclick="location.href='javascript:history.back()'">목록</button>
                             <button id="searchDeliveryInfo" class="orderDetailBtn1 mx-2">배송 조회</button>
-                            <button id="cancelOrder" class="orderDetailBtn2 mx-2">주문·배송 취소</button>
+                            <button id="changeStatus" class="orderDetailBtn2 mx-2">취소·교환·반품</button>
                             <button id="deleteOrderDetail" class="orderDetailBtn1 mx-2">주문내역 삭제</button>
                         </div>
-                    </div>
-                    <div>
-                        <span id="test"></span>
                     </div>
                 </div>
             </div>
@@ -153,5 +151,30 @@
 
     <script src="/js/myPage.js"></script>
     <script src="/js/order.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            let code = $('#deliveryCompData').attr('value');
+            let LogisticName = '';
+            switch (code) {
+                case '01':
+                    LogisticName = '우체국택배';
+                    break;
+                case '04':
+                    LogisticName = 'CJ대한통운';
+                    break;
+                case '05':
+                    LogisticName = '한진택배';
+                    break;
+                case '06':
+                    LogisticName = '로젠택배';
+                    break;
+                case '08':
+                    LogisticName = '롯데택배';
+                    break;
+            }
+            $('#deliveryCompData').text(LogisticName);
+        });
+    </script>
 </body>
 </html>
