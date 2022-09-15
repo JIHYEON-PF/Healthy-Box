@@ -8,9 +8,9 @@ public enum Status {
     BEFOREDELIVERY("출고"),
     DELIVERING("배송중"),
     AFTERDELIVERY("배송완료"),
-    RETURN("반품"),
+    CANCEL("취소"),
     EXCHANGE("교환"),
-    CANCEL("취소");
+    RETURN("반품");
 
     @Getter
     private final String description;
