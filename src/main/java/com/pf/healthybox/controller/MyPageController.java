@@ -6,10 +6,7 @@ import com.pf.healthybox.domain.orderInformation.OiDeliver;
 import com.pf.healthybox.dto.response.orderInformationRes.OiDeliverResponse;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderDetailResponse;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderListResponse;
-import com.pf.healthybox.service.BiPointService;
-import com.pf.healthybox.service.BiUserService;
-import com.pf.healthybox.service.OiDeliverService;
-import com.pf.healthybox.service.OiOrderService;
+import com.pf.healthybox.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/mypage")
@@ -30,16 +26,20 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
     private final BiPointService biPointService;
     private final OiDeliverService oiDeliverService;
     private final OiOrderService oiOrderService;
+    private final OiBasketService oiBasketService;
 
     private final HttpServletRequest request;
 
     public MyPageController(@Autowired BiUserService biUserService,
                             @Autowired BiPointService biPointService,
                             @Autowired OiDeliverService oiDeliverService,
-                            OiOrderService oiOrderService, HttpServletRequest request) {
+                            @Autowired OiOrderService oiOrderService,
+                            @Autowired OiBasketService oiBasketService,
+                            HttpServletRequest request) {
         this.biPointService = biPointService;
         this.oiDeliverService = oiDeliverService;
         this.oiOrderService = oiOrderService;
+        this.oiBasketService = oiBasketService;
         this.request = request;
     }
 
@@ -180,6 +180,20 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
             model.addAttribute("separation", "ordered");
         }
         return isLogin("myPageTemplates/myPageOrderDetailStatusChange");
+    }
+
+    @GetMapping("/basket")
+    public String showBasket(ModelMap model) {
+        HttpSession session = request.getSession();
+        BiUser entity = (BiUser) session.getAttribute("loginUser");
+
+        if (entity != null) {
+            model.addAttribute("basketList", oiBasketService.returnBasketList(entity.getUserId()));
+            model.addAttribute("priceInfo", oiBasketService.returnPriceInformation(entity.getUserId()));
+            model.addAttribute("separation", "basket");
+        }
+
+        return isLogin("myPageTemplates/myPageBasket");
     }
 
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단
