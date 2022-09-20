@@ -60,4 +60,16 @@ public class OiBasketRepositoryCustomImpl extends QuerydslRepositorySupport impl
                 .fetch();
 
     }
+
+    @Override
+    public void updateBasketQty(String userId, String productCode, Integer qty) {
+
+        QOiBasket oiBasket = QOiBasket.oiBasket;
+
+        queryFactory
+            .update(oiBasket)
+            .set(oiBasket.qty, qty)
+            .where(oiBasket.userId.eq(userId).and(oiBasket.productCode.eq(productCode)))
+            .execute();
+    }
 }

@@ -1,5 +1,6 @@
 package com.pf.healthybox.service;
 
+import com.pf.healthybox.domain.orderInformation.OiBasket;
 import com.pf.healthybox.dto.response.orderInformationRes.OiBasketListResponse;
 import com.pf.healthybox.repository.OiBasketRepository;
 import com.querydsl.core.Tuple;
@@ -7,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,5 +54,10 @@ public class OiBasketService {
         }
 
         return List.of(amount, deliveryCost);
+    }
+
+    @Transactional
+    public void updateBasketQty(String userId, String productCode, Integer qty) {
+        oiBasketRepository.updateBasketQty(userId, productCode, qty);
     }
 }

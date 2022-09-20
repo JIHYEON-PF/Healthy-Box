@@ -8,13 +8,14 @@
         <attr sel="tr[0]" th:each="basket:${basketList}">
             <attr sel=".dataSectSellerCode" th:text="${basket.sellerCode}"/>
             <attr sel=".dataSectImg/img" th:src="@{'/image/products/'+${basket.productCode}+'.jpg'}" th:alt="${basket.productCode}"/>
+            <attr sel=".dataSectProdCode" th:text="${basket.productCode}"/>
             <attr sel=".dataSectProdName" th:text="${basket.productName}"/>
-            <attr sel=".dataSectQty" th:text="${#numbers.formatInteger(basket.qty, 0 , 'COMMA')}" th:value="${basket.qty}"/>
+            <attr sel=".dataSectQtyBox" th:value="${basket.qty}"/>
             <attr sel=".dataSectUnitCost" th:text="${#numbers.formatInteger(basket.unitCost, 0, 'COMMA')} + ' 원'" th:value="${basket.unitCost}"/>
             <attr sel=".dataSectAmount" th:text="${#numbers.formatInteger(basket.amount, 0, 'COMMA')} + ' 원'" th:value="${basket.amount}"/>
         </attr>
     </attr>
-    <attr sel="#basketPriceAmount" th:text="${#numbers.formatInteger(priceInfo[0], 0, 'COMMA')} + '원'"/>
-    <attr sel="#basketPriceDeliveryCost" th:text="${#numbers.formatInteger(priceInfo[1], 0, 'COMMA')} + ' 원'"/>
-    <attr sel="#basketPriceTotal" th:text="${#numbers.formatInteger(priceInfo[0]+priceInfo[1], 0, 'COMMA')} + ' 원'"/>
+<!--    <attr sel="#basketPriceAmount" th:text="${#numbers.formatInteger(priceInfo[0], 0, 'COMMA')} + '원'"/>-->
+<!--    <attr sel="#basketPriceDeliveryCost" th:text="${#numbers.formatInteger(priceInfo[1], 0, 'COMMA')} + ' 원'"/>-->
+<!--    <attr sel="#basketPriceTotal" th:text="${#numbers.formatInteger(priceInfo[0]+priceInfo[1], 0, 'COMMA')} + ' 원'"/>-->
 </thlogic>

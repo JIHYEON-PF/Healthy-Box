@@ -189,7 +189,6 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
 
         if (entity != null) {
             model.addAttribute("basketList", oiBasketService.returnBasketList(entity.getUserId()));
-            model.addAttribute("priceInfo", oiBasketService.returnPriceInformation(entity.getUserId()));
             model.addAttribute("separation", "basket");
         }
 

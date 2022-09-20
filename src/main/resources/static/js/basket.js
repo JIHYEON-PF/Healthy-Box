@@ -1,3 +1,5 @@
+let userId = $('#loginBtnUnSession').attr('value');
+
 /** 선택 부분 전체 선택 및 전체 해제 기능부 */
 $(document).on("click", "#allCheck", function () {
     if ($("#allCheck").prop("checked")) {
@@ -6,40 +8,83 @@ $(document).on("click", "#allCheck", function () {
         $("input[type=checkbox]").prop("checked", false);
 });
 
-/** 결제 금액 표시 부분 */
-$(document).ready(function() {
-    let totalWon = 0; // 배송비 계산을 위한 동일 판매자 코드의 총 금액
-    let sellerCode = ''; // 배송비 계산을 위한 판매자 코드
-    let deliveryCost = 0; // 배송비
-    let ifDeliveryCostAdded = 0; //0 : 배송비가 부가되지 않은 상태, 1 : 배송비가 부가되고 변경되어야 하는 상태, -1 : 배송비가 부가되고 변경되면 안되는 상태
-    let allAmount = 0; // 결제금액 레이어에서 금액을 출력하기 위한 금액
-    $('#basketTableBody').find('.dataSectSellerCode').each(function (i, e) { //반복문 돌면서 클래스명 확인
+/** 수량 변경 버튼 클릭 이벤트 */
+$(document).on("click", ".dataSectDecreaseQtyBtn", function () {
+    let qty = $(this).closest('tr').find('.dataSectQtyBox').val();
+    if (qty > 0)
+        qty -= 1;
+    $(this).closest('tr').find('.dataSectQtyBox').val(qty);
 
-        allAmount += Number($(this).closest('tr').find('.dataSectAmount').attr('value'));
+    let unitCost = $(this).closest('tr').find('.dataSectUnitCost').attr('value');
+    let amount = qty * unitCost;
+    $(this).closest('tr').find('.dataSectAmount').text(String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 
-        if (sellerCode !== $(this).text()) {
-            sellerCode = $(this).text();
-            totalWon = Number($(this).closest('tr').find('.dataSectAmount').attr('value'));
-            ifDeliveryCostAdded = 0;
-        } else {
-            totalWon += Number($(this).closest('tr').find('.dataSectAmount').attr('value'));
+    updateQty(qty, $(this).closest('tr').find('.dataSectProdCode').text());
+    setPrice();
+});
+
+$(document).on("click", ".dataSectIncreaseQtyBtn", function () {
+    let qty = Number($(this).closest('tr').find('.dataSectQtyBox').val());
+    if (qty < 999)
+        qty += 1;
+    $(this).closest('tr').find('.dataSectQtyBox').val(qty);
+
+    let unitCost = $(this).closest('tr').find('.dataSectUnitCost').attr('value');
+    let amount = qty * unitCost;
+    $(this).closest('tr').find('.dataSectAmount').text(String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+
+    updateQty(qty, $(this).closest('tr').find('.dataSectProdCode').text());
+    setPrice();
+});
+
+$(document).on("input change keyup paste", ".dataSectQtyBox", function () {
+    let qty = $(this).val()
+    let unitCost = $(this).closest('tr').find('.dataSectUnitCost').attr('value');
+    let amount = qty * unitCost;
+    $(this).closest('tr').find('.dataSectAmount').text(String(amount).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+
+    updateQty(qty, $(this).closest('tr').find('.dataSectProdCode').text());
+    setPrice();
+});
+
+const updateQty=(qty, productCode)=>{
+    $.ajax({
+        url: "/api/basket/update-qty?userId=" + userId + "&productCode=" + productCode + "&qty=" + qty,
+        method: "PATCH",
+        async: false,
+
+        success: function (data) {
+            console.log("성공")
+        },
+        error: function (request, status, error) {
+            console.log("에러");
+            let errorLog = JSON.parse(request.responseText);
+            console.log(errorLog.message())
+        },
+        complete: function () {
+            console.log("완료");
         }
-
-        if (ifDeliveryCostAdded === 0 && totalWon >= 50000) {
-            ifDeliveryCostAdded = -1;
-        } else if (ifDeliveryCostAdded === 0 && totalWon < 50000) {
-            deliveryCost += Number(3000);
-            ifDeliveryCostAdded = 1;
-        } else if (ifDeliveryCostAdded === 1 && totalWon >= 50000) {
-            deliveryCost -= Number(3000);
-            ifDeliveryCostAdded = -1;
-        } else if (ifDeliveryCostAdded === -1) {
-            return true;
-        }
-
-
     });
-    console.log(deliveryCost);
-    console.log(allAmount);
-    console.log(allAmount + deliveryCost);
-})
+}
+
+const setPrice=()=>{
+    $.ajax({
+        url: "/api/basket/price-info/"+$('#loginBtnUnSession').attr('value'),
+        method: "GET",
+        async: false,
+
+        success: function (data) {
+            $('#basketPriceAmount').text(String(data[0]).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+            $('#basketPriceDeliveryCost').text(String(data[1]).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+            $('#basketPriceTotal').text(String(data[0]+data[1]).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+        },
+        error: function (request, status, error) {
+            console.log("에러");
+            let errorLog = JSON.parse(request.responseText);
+            console.log(errorLog.message())
+        },
+        complete: function () {
+            console.log("완료");
+        }
+    })
+}
