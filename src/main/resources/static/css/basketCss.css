@@ -112,3 +112,19 @@
     width: 100px;
     height: 45px;
 }
+
+.dataSectChangeQty {
+    text-align: center;
+}
+
+.dataSectQtyBox {
+    width: 35px;
+    height: 30px;
+    text-align: center;
+}
+
+.dataSectChangeBtn{
+    border:none;
+    background-color: rgb(248,249,250);
+    color: rgba(84,146,91,1);
+}
