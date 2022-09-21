@@ -6,6 +6,7 @@
 
     <attr sel="#basketTableBody" th:remove="all-but-first">
         <attr sel="tr[0]" th:each="basket:${basketList}">
+            <attr sel=".itemCheck" th:value="${basket.productCode}"/>
             <attr sel=".dataSectSellerCode" th:text="${basket.sellerCode}"/>
             <attr sel=".dataSectImg/img" th:src="@{'/image/products/'+${basket.productCode}+'.jpg'}" th:alt="${basket.productCode}"/>
             <attr sel=".dataSectProdCode" th:text="${basket.productCode}"/>
