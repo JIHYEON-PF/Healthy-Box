@@ -5,10 +5,11 @@ import com.pf.healthybox.domain.orderInformation.QOiBasket;
 import com.pf.healthybox.domain.productInformation.QPiProduct;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OiBasketRepositoryCustomImpl extends QuerydslRepositorySupport implements OiBasketRepositoryCustom {
@@ -71,5 +72,20 @@ public class OiBasketRepositoryCustomImpl extends QuerydslRepositorySupport impl
             .set(oiBasket.qty, qty)
             .where(oiBasket.userId.eq(userId).and(oiBasket.productCode.eq(productCode)))
             .execute();
+    }
+
+    @Override
+    public void deleteBasketItems(String userId, String[] productCode) {
+
+        QOiBasket oiBasket = QOiBasket.oiBasket;
+
+        queryFactory
+            .delete(oiBasket)
+            .where(oiBasket.userId.eq(userId)
+                    .and(oiBasket.productCode.in(productCode))
+            )
+            .execute();
+
+
     }
 }
