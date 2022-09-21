@@ -16,8 +16,6 @@ $(document).on("click", "#insertBtn", function () {
             },
             error: function (request, status, error) {
                 console.log("에러");
-                let errorLog = JSON.parse(request.responseText);
-                console.log(errorLog.message())
             },
             complete: function () {
                 console.log("완료");
@@ -63,8 +61,6 @@ $(document).on("click", "#insertBtn", function () {
                 },
                 error: function (request, status, error) {
                     console.log("에러");
-                    let errorLog = JSON.parse(request.responseText);
-                    console.log(errorLog.message())
                 },
                 complete: function () {
                     console.log("완료");
@@ -86,8 +82,6 @@ $(document).on("click", "#insertBtn", function () {
                 },
                 error: function (request, status, error) {
                     console.log("에러");
-                    let errorLog = JSON.parse(request.responseText);
-                    console.log(errorLog.message())
                 },
                 complete: function () {
                     console.log("완료");
@@ -106,7 +100,7 @@ $(document).on("click", "#cancelBtn", function () {
 
 /** 배송지 등록 팝업 등록 후 페이지 리로드 */
 function openPopup() {
-    let popup = window.open('/mypage/deliverInfo', 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
+    window.open('/mypage/deliverInfo', 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
 }
 
 /** 배송지 수정 팝업 등록 후 페이지 리로드 */
@@ -130,8 +124,6 @@ $(document).on("click", "#unDefaulting", function () {
         },
         error: function (request, status, error) {
             console.log("에러");
-            let errorLog = JSON.parse(request.responseText);
-            console.log(errorLog.message())
         },
         complete: function () {
             console.log("완료");
@@ -154,8 +146,6 @@ $(document).on("click", ".doDefaulting", function () {
         },
         error: function (request, status, error) {
             console.log("에러");
-            let errorLog = JSON.parse(request.responseText);
-            console.log(errorLog.message())
         },
         complete: function () {
             console.log("완료");
@@ -186,9 +176,7 @@ $(document).on("click", ".deleteBtn", function () {
                 location.reload();
             },
             error: function (request, status, error) {
-                console.log('에러');
-                let errorLog = JSON.parse(request.responseText);
-                console.log(errorLog.message())
+                console.log("에러");
             },
             complete: function () {
                 console.log("완료");
@@ -196,9 +184,3 @@ $(document).on("click", ".deleteBtn", function () {
         });
     }
 });
-
-/** 저장배송지 수정 */
-
-
-/** 저장배송지 삭제 */
-
