@@ -39,13 +39,11 @@ public class OiBasketService {
                     )
             );
         }
-        System.out.println("res = " + res);
         return res;
     }
 
     public List<Integer> returnPriceInformation(String userId) {
         List<Tuple> tuples = oiBasketRepository.showBasketPrice(userId);
-        System.out.println("tuples = " + tuples);
         Integer amount = 0;
         Integer deliveryCost = 0;
         for (Tuple tuple : tuples) {
@@ -59,5 +57,10 @@ public class OiBasketService {
     @Transactional
     public void updateBasketQty(String userId, String productCode, Integer qty) {
         oiBasketRepository.updateBasketQty(userId, productCode, qty);
+    }
+
+    @Transactional
+    public void deleteBasketItems(String userId, String[] productCode) {
+        oiBasketRepository.deleteBasketItems(userId, productCode);
     }
 }

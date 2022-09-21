@@ -28,4 +28,9 @@ public class BasketApiController {
         return oiBasketService.returnPriceInformation(userId);
     }
 
+    @DeleteMapping("/delete-basket")
+    public void deleteBasketItems(@RequestParam String userId, @RequestParam String[] productCode) {
+        oiBasketService.deleteBasketItems(userId, productCode);
+    }
+
 }

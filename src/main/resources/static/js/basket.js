@@ -47,6 +47,32 @@ $(document).on("input change keyup paste", ".dataSectQtyBox", function () {
     setPrice();
 });
 
+/** 선택 삭제 */
+$(document).on("click", "#btnDeleteSelected", function () {
+    let userId = $('#loginBtnUnSession').attr('value');
+    let itemCodes = [];
+    $("input[name=itemCheckBox]:checked").each(function() {
+        itemCodes.push($(this).val());
+    });
+
+    $.ajax({
+        url: "/api/basket/delete-basket?userId="+userId+"&productCode="+itemCodes.toString(),
+        method: "DELETE",
+
+        success: function (data) {
+            alert("선택하신 상품이 삭제되었습니다.");
+            location.reload();
+            console.log("성공");
+        },
+        error: function (request, status, error) {
+            console.log("에러");
+        },
+        complete: function () {
+            console.log("완료");
+        }
+    });
+});
+
 const updateQty=(qty, productCode)=>{
     $.ajax({
         url: "/api/basket/update-qty?userId=" + userId + "&productCode=" + productCode + "&qty=" + qty,
