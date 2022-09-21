@@ -129,5 +129,21 @@
 
     <script src="/js/myPage.js"></script>
     <script src="/js/order.js"></script>
+
+    <script>
+        /** 주문내역 색상 조정 */
+        $(document).ready(function () {
+            $('.orderListBody').each(function (index, item) {
+
+                if (index % 2 === 0) {
+                    $(this).removeClass('orderListBodyEven');
+                    $(this).addClass('orderListBodyOdd');
+                } else {
+                    $(this).removeClass('orderListBodyOdd');
+                    $(this).addClass('orderListBodyEven');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

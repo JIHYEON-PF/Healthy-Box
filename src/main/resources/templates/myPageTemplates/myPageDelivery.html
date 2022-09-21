@@ -125,5 +125,15 @@
     <script src="/js/myPage.js"></script>
     <script src="/js/deliver.js"></script>
 
+    <script>
+        // 배송정보 테이블 크기 조정
+        $(document).ready(function () {
+            $('#registeredButtons').width($('#defaultButtons').width());
+        });
+        $(window).resize(function() {
+            $('#registeredButtons').width($('#defaultButtons').width());
+        });
+    </script>
+
 </body>
 </html>
