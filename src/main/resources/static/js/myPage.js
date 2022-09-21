@@ -111,38 +111,6 @@ $(document).on("click", "#modifyUserInfo", function () {
     }
 });
 
-//// 포인트 관리
-//포인트 발생금액 색상 조정
-$(document).ready(function () {
-    let color = "black"; //기본 색상을 검정색으로 지정
-    $('tbody').find('td').each(function (i, e) { //반복문 돌면서 클래스명 확인
-        let className = ""; //클래스 명 조정
-        // 클래스가 복수개 있는지 확인하고 제일 앞에 있는 클래스만 가져옴
-        if (e.className.indexOf(" ") > 0 ) {
-            className = e.className.substring(0, e.className.indexOf(" "));
-        } else {
-            className = e.className;
-        }
-
-        // 클래스 명 판단하여 색상 지정
-        if (className === "isExpired") {
-            if ($(this).text() === "Y") {
-                color = "red";
-            } else {
-                color = "black";
-            }
-        }
-
-        // 색상을 지정해주고 지정된 색상에 따라 빨간색일 경우 앞에 문자열 '-' 추가해줌
-        if (className === "pointValue") {
-            $(this).css("color", color);
-            if ($(this).css("color") === "rgb(255, 0, 0)") {
-                $(this).text("-"+$(this).text());
-            }
-        }
-    });
-});
-
 // 마이페이지의 선택된 페이지의 값에 따라 선택 레이어 변경
 $(document).ready(function () {
     let separation = $('#myPageId').text();
@@ -184,29 +152,6 @@ $(document).ready(function () {
     });
 
 });
-
-// 배송정보 테이블 크기 조정
-$(document).ready(function () {
-    $('#registeredButtons').width($('#defaultButtons').width());
-});
-$(window).resize(function() {
-    $('#registeredButtons').width($('#defaultButtons').width());
-});
-
-/** 주문내역 색상 조정 */
-$(document).ready(function () {
-    $('.orderListBody').each(function (index, item) {
-
-        if (index % 2 === 0) {
-            $(this).removeClass('orderListBodyEven');
-            $(this).addClass('orderListBodyOdd');
-        } else {
-            $(this).removeClass('orderListBodyOdd');
-            $(this).addClass('orderListBodyEven');
-        }
-    });
-});
-
 
 //// 공통 함수
 const isEmpty=(str)=>{
