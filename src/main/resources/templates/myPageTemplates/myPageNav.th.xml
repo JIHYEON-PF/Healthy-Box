@@ -5,7 +5,7 @@
 
         <attr sel="#myPageTitle" th:href="@{/mypage/order-list}"/>
         <attr sel="#ordered" th:href="@{/mypage/order-list}"/>
-        <attr sel="#basket" th:href="@{/mypage/}"/>
+        <attr sel="#basket" th:href="@{/mypage/basket}"/>
         <attr sel="#delivery" th:href="@{/mypage/delivery}"/>
         <attr sel="#user-info" th:href="@{/mypage/check-pw?separation=modify}"/>
         <attr sel="#point" th:href="@{/mypage/point}"/>

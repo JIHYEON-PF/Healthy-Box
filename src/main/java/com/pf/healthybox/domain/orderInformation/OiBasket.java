@@ -1,15 +1,18 @@
 package com.pf.healthybox.domain.orderInformation;
 
+import com.pf.healthybox.domain.AuditingFields;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
 @Entity
+@ToString(callSuper = true)
 @Table(name = "tbl_basket")
-public class OiBasket {
+public class OiBasket extends AuditingFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

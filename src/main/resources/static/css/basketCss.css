@@ -1,0 +1,130 @@
+/** 품목 리스트 테이블 스타일 지정 */
+#basketTable {
+    width: 100%;
+    border: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+}
+
+#basketTableHead th {
+    background-color: rgba(83,146,91,0.8);
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+}
+
+#nameSectCheckbox {
+    width: 3%;
+}
+
+#nameSectImg {
+    width: 15%;
+}
+
+#nameSectProdName {
+    width: auto;
+}
+
+#nameSectQty {
+    width: 10%;
+}
+
+#nameSectUnitCost {
+    width: 12%;
+}
+
+#nameSectAmount {
+    width: 12%;
+}
+
+#basketTableBody td {
+    border-top: 1px solid rgba(83,146,91,0.2);
+    padding: 7px 5px;
+    color: rgba(83,146,91,0.8);
+}
+
+.dataSectCheckbox {
+    text-align: center;
+}
+
+.dataSectImg {
+    text-align: center;
+}
+
+.dataSectImg img {
+    width: 120px;
+    height: 80px;
+}
+
+.dataSectProdName {
+    text-align: left;
+}
+
+.dataSectQty {
+    text-align: center;
+}
+
+.dataSectAmount, .dataSectUnitCost {
+    text-align: center;
+}
+
+/** 금액 출력부분 스타일 지정 */
+#basketPriceTable {
+    width: 50%;
+    border: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+}
+
+#basketPriceTableHead th {
+    background-color: rgba(83,146,91,0.8);
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    padding: 4px;
+}
+
+#basketPriceTableBody {
+    text-align: center;
+    color: rgba(83,146,91,1);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 4px;
+}
+
+/** 버튼부분 스타일 지정 */
+.btnStyle1 {
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(83,146,91,0.5);
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    width: 100px;
+    height: 45px;
+}
+
+.btnStyle2 {
+    border: 1px solid rgba(83,146,91,0.8);
+    border-radius: 10px;
+    background-color: white;
+    color: rgba(83,146,91,0.8);
+    font-weight: bold;
+    padding: 5px;
+    width: 100px;
+    height: 45px;
+}
+
+.dataSectChangeQty {
+    text-align: center;
+}
+
+.dataSectQtyBox {
+    width: 35px;
+    height: 30px;
+    text-align: center;
+}
+
+.dataSectChangeBtn{
+    border:none;
+    background-color: rgb(248,249,250);
+    color: rgba(84,146,91,1);
+}

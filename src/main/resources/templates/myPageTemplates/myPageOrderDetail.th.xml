@@ -6,7 +6,7 @@
 
     <attr sel="#orderItemListBody" th:remove="all-but-first">
         <attr sel="tr[0]" th:each="detail:${details}">
-            <attr sel=".orderItemImage/img" th:alt="${#strings.concat(detail.productCode,'.jpg')}" th:src="@{'/image/Products/' + ${#strings.concat(detail.productCode,'.jpg')}}"/>
+            <attr sel=".orderItemImage/img" th:alt="${#strings.concat(detail.productCode,'.jpg')}" th:src="@{'/image/products/' + ${#strings.concat(detail.productCode,'.jpg')}}"/>
             <attr sel=".orderItemName" th:text="${detail.productName}"/>
             <attr sel=".orderItemQty" th:text="${#numbers.formatInteger(detail.qty, 0, 'COMMA')}"/>
             <attr sel=".orderItemUnitCost" th:text="${#numbers.formatInteger(detail.unitCost, 0, 'COMMA')} + ' 원'"/>

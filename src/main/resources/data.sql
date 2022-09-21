@@ -16,8 +16,8 @@ values('testId', 'testPw', 'USE', 'USE', 'testName', 'testNickname', '', '05353'
 
 insert into tbl_point(content, expire_date, is_expired, occur_date, occur_point, user_id)
 values ('친구추가','2022-09-13', 'N', '2022-08-29', 200, 'testId'),
-       ('기간만료 소멸', '2022-08-30', 'N', '2022-08-30', 200, 'testId'),
-       ('회원가입 포인트', '2022-08-30', 'Y', '2022-08-15', 200, 'testId');
+       ('기간만료 소멸', '2022-08-30', 'Y', '2022-08-30', 200, 'testId'),
+       ('회원가입 포인트', '2022-08-30', 'N', '2022-08-15', 200, 'testId');
 
 insert into tbl_deliver (delivery_name, address1, address2, delivery_flag, user_id, zipcode)
 values ('DB 등록 집', '테스트 기본 주소', '테스트 상세 주소', 0, 'testId', '12345'),
@@ -26,7 +26,10 @@ values ('DB 등록 집', '테스트 기본 주소', '테스트 상세 주소', 0
 
 insert into tbl_product (product_code, seller_code, created_at, updated_at, detail, is_used, price, product_category, product_group, product_name, stock)
 values('00001', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품1', 100),
-      ('00002', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품2', 100);
+      ('00002', '00001', now(), now(), 'text', 'Y', 100000, 0, 0, '테스트 상품2', 100),
+      ('00003', '00002', now(), now(), 'text', 'Y', 5000, 0, 0, '테스트 상품 3', 100),
+      ('00004', '0000.', now(), now(), 'text', 'Y', 45000, 0, 0, '테스트 상품 4', 100);
+
 
 insert into tbl_order (created_at, updated_at, amount, api_code, deliver_idx, order_idx, order_no, pay_method, product_code, qty, seller_code, status, unit_cost, user_id, dc_cost, delivery_comp, delivery_cost, delivery_code)
 VALUES (now(), now(), 100000, null, 1, 1,'2209080001',0, '00001', 1, '00001', 0, 100000, 'testId', 10000, '05', 3000, '450725434935'),
@@ -35,3 +38,9 @@ VALUES (now(), now(), 100000, null, 1, 1,'2209080001',0, '00001', 1, '00001', 0,
 
 insert into tbl_environment(logistics_api_code)
 values('ntjhULvF5RyvYWCavkeV8w');
+
+insert into tbl_basket(product_code, qty, seller_code, user_id, created_at, updated_at)
+values('00001', 2, '00001', 'testId', '2022-09-08 15:00:01', '2022-09-08 15:00:01'),
+      ('00003', 1, '00002', 'testId', '2022-09-08 15:00:02', '2022-09-08 15:00:02'),
+      ('00002', 1, '00001', 'testId', '2022-09-08 15:00:03', '2022-09-08 15:00:03'),
+      ('00004', 1, '00002', 'testId', '2022-09-08 15:00:04', '2022-09-08 15:00:04');
