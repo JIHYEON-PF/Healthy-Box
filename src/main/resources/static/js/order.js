@@ -16,8 +16,6 @@ $(document).on("click", "#deleteOrderDetail", function () {
         error: function (request, status, error) {
             alert('주문내역 삭제에 실패하였습니다.');
             console.log("에러");
-            let errorLog = JSON.parse(request.responseText);
-            console.log(errorLog.message())
         },
         complete: function () {
             console.log("완료");
@@ -78,8 +76,6 @@ $(document).on("click", "#changeStatusDetail", function () {
         error: function (request, status, error) {
             alert('주문 상태 변경에 실패했습니다.\n관리자에게 문의해주시기 바랍니다.');
             console.log("에러");
-            let errorLog = JSON.parse(request.responseText);
-            console.log(errorLog.message())
         },
         complete: function () {
             console.log("완료");

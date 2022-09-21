@@ -85,8 +85,6 @@ $(document).on("click", "#checkId", function () {
             },
             error: function (request, status, error) {
                 console.log("에러");
-                let errorLog = JSON.parse(request.responseText);
-                console.log(errorLog.message())
             },
             complete: function () {
                 console.log("완료");

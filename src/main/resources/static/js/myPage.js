@@ -23,7 +23,6 @@ $(document).on("click", "#confirmBtn", function () {
                                 },
                                 error: function (request, status, error) {
                                     console.log("에러");
-                                    console.log(JSON.parse(request.responseText));
                                 },
                                 complete: function () {
                                     console.log("완료");
@@ -38,7 +37,6 @@ $(document).on("click", "#confirmBtn", function () {
             },
             error: function (request, status, error) {
                 console.log("에러");
-                console.log(JSON.parse(request.responseText));
             },
             complete: function () {
                 console.log("완료");
@@ -105,8 +103,6 @@ $(document).on("click", "#modifyUserInfo", function () {
             },
             error: function (request, status, error) {
                 console.log("에러");
-                let errorLog = JSON.parse(request.responseText);
-                console.log(errorLog.message())
             },
             complete: function () {
                 console.log("완료");

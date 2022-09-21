@@ -84,13 +84,11 @@ const updateQty=(qty, productCode)=>{
         },
         error: function (request, status, error) {
             console.log("에러");
-            let errorLog = JSON.parse(request.responseText);
-            console.log(errorLog.message())
         },
         complete: function () {
             console.log("완료");
         }
-    });
+    })
 }
 
 const setPrice=()=>{
@@ -106,8 +104,6 @@ const setPrice=()=>{
         },
         error: function (request, status, error) {
             console.log("에러");
-            let errorLog = JSON.parse(request.responseText);
-            console.log(errorLog.message())
         },
         complete: function () {
             console.log("완료");
