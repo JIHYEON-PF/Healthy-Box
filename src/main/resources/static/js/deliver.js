@@ -1,11 +1,10 @@
-/** 저장버튼 */
+// 저장버튼 
 $(document).on("click", "#insertBtn", function () {
     let userId = $('#userIdHidden').text();
-    console.log(userId);
     let delivery_name = $('#deliverInfoName').val();
     let flag = $(location).attr('pathname').indexOf('deliverInfoDetail')
 
-    /** 배송지 이름을 입력하지 않을 경우 이름을 자동으로 배정 */
+    // 배송지 이름을 입력하지 않을 경우 이름을 자동으로 배정 
     if ($.trim(delivery_name) === '') {
         $.ajax({
             url: "/api/deliver/get-count/" + userId,
@@ -23,7 +22,7 @@ $(document).on("click", "#insertBtn", function () {
         });
     }
 
-    /** 데이터 DB 등록 */
+    // 데이터 DB 등록 
     let delivery_zipcode = $('#deliverInfoZipcode').val();
     let delivery_address1 = $('#deliverInfoAddress1').val();
     let delivery_address2 = $('#deliverInfoAddress2').val();
@@ -93,22 +92,22 @@ $(document).on("click", "#insertBtn", function () {
     }
 });
 
-/** 취소버튼 */
+// 취소버튼 
 $(document).on("click", "#cancelBtn", function () {
     window.open('about:blank', '_self').close();
 });
 
-/** 배송지 등록 팝업 등록 후 페이지 리로드 */
+// 배송지 등록 팝업 등록 후 페이지 리로드 
 function openPopup() {
     window.open('/mypage/deliverInfo', 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
 }
 
-/** 배송지 수정 팝업 등록 후 페이지 리로드 */
+// 배송지 수정 팝업 등록 후 페이지 리로드 
 $(document).on("click", ".modifyBtn", function () {
     window.open('/mypage/deliverInfoDetail?userId=' + $('#loginBtnUnSession').val() + '&idx=' + $(this).attr('value'), 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
 });
 
-/** 기본배송지 해제 */
+// 기본배송지 해제 
 $(document).on("click", "#unDefaulting", function () {
     if ($('#defaultName').text() ==='등록정보 없음') {
         alert('기본 배송지로 지정된 내역이 없습니다.');
@@ -131,7 +130,7 @@ $(document).on("click", "#unDefaulting", function () {
     });
 });
 
-/** 기본 배송지로 지정 */
+// 기본 배송지로 지정 
 $(document).on("click", ".doDefaulting", function () {
     let idx = $(this).val();
     let userId = $('#loginBtnUnSession').val();
@@ -153,14 +152,14 @@ $(document).on("click", ".doDefaulting", function () {
     });
 });
 
-/** 기본배송지 수정 */
+// 기본배송지 수정 
 $(document).on("click", "#insertBtn", function () {
     let idx = $(this).val()
     console.log(idx)
 });
 
 
-/** 기본배송지 삭제 */
+// 기본배송지 삭제 
 $(document).on("click", ".deleteBtn", function () {
     if ($(this).val() === '0') {
         alert('저장된 배송지 내역이 없습니다.');

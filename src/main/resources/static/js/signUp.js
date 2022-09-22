@@ -1,4 +1,4 @@
-/* 회원가입 API 호출부 */
+// 회원가입 API 호출부
 $(document).on("click", "#signUpBtn", function () {
     let input_userId = $('#userId').val();
     let input_userPassword = $('#userPassword').val();
@@ -11,7 +11,7 @@ $(document).on("click", "#signUpBtn", function () {
     let input_address1 = $('#address1').val();
     let input_address2 = $('#address2').val();
     let idChecked = $.trim($("label[for='checkId']").text());
-    let phoneChecked = $('#checkConfirm').val();
+    // let phoneChecked = $('#checkConfirm').val();
 
     console.log($('#wrongPw').attr('hidden') !== undefined);
 
@@ -60,7 +60,7 @@ $(document).on("click", "#signUpBtn", function () {
 
 });
 
-/* ID 중복확인 API 호출부 */
+// ID 중복확인 API 호출부
 $(document).on("click", "#checkId", function () {
     let input_userId = $('#userId').val()
 

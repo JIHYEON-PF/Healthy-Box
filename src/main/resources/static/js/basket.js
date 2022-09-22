@@ -1,6 +1,6 @@
 let userId = $('#loginBtnUnSession').attr('value');
 
-/** 선택 부분 전체 선택 및 전체 해제 기능부 */
+// 선택 부분 전체 선택 및 전체 해제 기능부 
 $(document).on("click", "#allCheck", function () {
     if ($("#allCheck").prop("checked")) {
         $("input[type=checkbox]").prop("checked", true);
@@ -8,11 +8,12 @@ $(document).on("click", "#allCheck", function () {
         $("input[type=checkbox]").prop("checked", false);
 });
 
-/** 수량 변경 버튼 클릭 이벤트 */
+// 수량 변경 버튼 클릭 이벤트 
 $(document).on("click", ".dataSectDecreaseQtyBtn", function () {
     let qty = $(this).closest('tr').find('.dataSectQtyBox').val();
-    if (qty > 0)
+    if (qty > 0) {
         qty -= 1;
+    }
     $(this).closest('tr').find('.dataSectQtyBox').val(qty);
 
     let unitCost = $(this).closest('tr').find('.dataSectUnitCost').attr('value');
@@ -47,7 +48,7 @@ $(document).on("input change keyup paste", ".dataSectQtyBox", function () {
     setPrice();
 });
 
-/** 선택 삭제 */
+// 선택 삭제 
 $(document).on("click", "#btnDeleteSelected", function () {
     let userId = $('#loginBtnUnSession').attr('value');
     let itemCodes = [];
