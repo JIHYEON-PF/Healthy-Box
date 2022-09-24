@@ -32,4 +32,5 @@ Spring Boot
 * Heroku(예정)
 
 ## 데모 페이지
-* 사용자 레이어 개발 후 배포 및 추가 개발 진행
+* https://healthy-box.herokuapp.com
+* 현재 로그인, 회원가입, 마이페이지 조회 기능만 구현되어 있음
