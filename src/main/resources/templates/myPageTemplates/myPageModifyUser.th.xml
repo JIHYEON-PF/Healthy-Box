@@ -2,7 +2,7 @@
 <thlogic>
     <attr sel="#header" th:replace="header :: header"/>
     <attr sel="#footer" th:replace="footer :: footer"/>
-    <attr sel="#myPageNav" th:replace="/myPageTemplates/myPageNav :: #myPageNavigation"/>
+    <attr sel="#myPageNav" th:replace="myPageTemplates/myPageNav :: #myPageNavigation"/>
 
     <!-- session을 통한 user객체 반환 -->
     <attr sel="#userId" th:value="${session.loginUser.getUserId()}"/>
