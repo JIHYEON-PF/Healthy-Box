@@ -19,7 +19,7 @@ public class OiOrder extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
-    @Setter @Column(nullable = false, length = 10) private String orderNo;
+    @Setter @Column(nullable = false, length = 20) private String orderNo;
     @Setter @Column(nullable = false) private int orderIdx;
     @Setter @Column(nullable = false, length = 20) private Status status;
     @Setter @Column(nullable = false, length = 50) private String userId;
@@ -32,7 +32,7 @@ public class OiOrder extends AuditingFields {
     @Setter @Column private int deliveryCost;
     @Setter @Column(nullable = false) private int amount;
     @Setter @Column(nullable = false, length = 4) private PayMethod payMethod;
-    @Setter @Column(length = 30) private String apiCode;
+    @Setter @Column(length = 16) private String apiCode;
     @Setter @Column(nullable = true, length=10) private String deliveryComp;
     @Setter @Column(length=50) private String deliveryCode;
 
