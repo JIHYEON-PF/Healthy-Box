@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#header" th:replace="header :: header"/>
+    <attr sel="#footer" th:replace="footer :: footer"/>
+
+    <attr sel="#productTableBody" th:remove="all-but-first">
+        <attr sel="tr[0]" th:each="product:${products}">
+            <attr sel=".productDataSectImg/img" th:src="@{'/image/products/'+${product.productCode}+'.jpg'}" th:alt="${product.productCode}"/>
+            <attr sel=".productDataSectName" th:text="${product.productName}"/>
+            <attr sel=".productDataSectProductCode" th:text="${product.productCode}"/>
+            <attr sel=".productDataSectSellerCode" th:text="${product.sellerCode}"/>
+            <attr sel=".qtyInputBox" th:value="${#numbers.formatInteger(product.qty, 0, 'COMMA')}"/>
+            <attr sel=".productDataSectUnitCost" th:text="${#numbers.formatInteger(product.unitCost, 0, 'COMMA')} + ' 원'" th:value="${product.unitCost}"/>
+            <attr sel=".productDataSectDcCost" th:text="${#numbers.formatInteger(product.dcCost, 0, 'COMMA')} + ' 원'" th:value="${product.dcCost}"/>
+            <attr sel=".productDataSectAmount" th:text="${#numbers.formatInteger((product.qty * product.unitCost) - product.dcCost, 0, 'COMMA')} + ' 원'"
+                  th:value="${(product.qty * product.unitCost) - product.dcCost}"/>
+            <attr sel=".productDataSectDeliveryCost" th:text="${product.deliveryCost}"/>
+        </attr>
+    </attr>
+
+    <attr sel="#deliveryTableBody" th:object="${delivery}">
+        <attr sel="#deliveryDataSectName" th:text="*{deliveryName}"/>
+        <attr sel="#deliveryDataSectIdx" th:text="*{idx}"/>
+        <attr sel="#deliveryDataSectZipcode" th:text="*{zipcode}"/>
+        <attr sel="#deliveryDataSectAddress1" th:text="*{address1}"/>
+        <attr sel="#deliveryDataSectAddress2" th:text="*{address2}"/>
+    </attr>
+
+    <attr sel="#payersTableBody" th:object="${user}">
+        <attr sel="#payerDataSectName" th:text="*{userName}"/>
+        <attr sel="#payerDataSectEmail" th:text="*{email}"/>
+        <attr sel="#payerDataSectTel" th:text="*{phoneNumber}"/>
+    </attr>
+
+    <attr sel="#paymentDataSectUnitPrice" th:text="${#numbers.formatInteger(payInform[0], 0, 'COMMA')} + ' 원'" th:value="${payInform[0]}"/>
+    <attr sel="#paymentDataSectDeliveryCost" th:text="${#numbers.formatInteger(payInform[1], 0, 'COMMA')} + ' 원'" th:value="${payInform[1]}"/>
+    <attr sel="#paymentDataSectDiscountPrice" th:text="${#numbers.formatInteger(payInform[2], 0, 'COMMA')} + ' 원'" th:value="${payInform[2]}"/>
+    <attr sel="#paymentDataSectAmount" th:text="${#numbers.formatInteger(payInform[3], 0, 'COMMA')} + ' 원'" th:value="${payInform[3]}"/>
+</thlogic>

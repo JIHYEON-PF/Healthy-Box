@@ -50,7 +50,6 @@ $(document).on("input change keyup paste", ".dataSectQtyBox", function () {
 
 // 선택 삭제 
 $(document).on("click", "#btnDeleteSelected", function () {
-    let userId = $('#loginBtnUnSession').attr('value');
     let itemCodes = [];
     $("input[name=itemCheckBox]:checked").each(function() {
         itemCodes.push($(this).val());
@@ -72,6 +71,29 @@ $(document).on("click", "#btnDeleteSelected", function () {
             console.log("완료");
         }
     });
+});
+
+//선택주문
+$(document).on("click",".btnOrder", function () {
+    let selector = $(this).attr('id');
+
+    if (selector === 'btnOrderAll') {
+        $("input[type=checkbox]").prop("checked", true);
+    }
+
+    let codes = []
+
+    $('.itemCheck').each(function () {
+        if ($(this).prop("checked")) {
+            codes.push(
+                $(this).closest('tr').find('.dataSectProdCode').text() + '-' +
+                $(this).closest('tr').find('.dataSectSellerCode').text() + '-' +
+                $(this).closest('tr').find('.dataSectQtyBox').val()
+            );
+        }
+    });
+
+    location.replace("/order/single-item/" + codes);
 });
 
 const updateQty=(qty, productCode)=>{

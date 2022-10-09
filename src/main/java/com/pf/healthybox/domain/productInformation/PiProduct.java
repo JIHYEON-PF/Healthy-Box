@@ -21,10 +21,11 @@ public class PiProduct extends AuditingFields {
     @Setter @Column(nullable = false) private int stock;
     @Setter @Column(nullable = false, columnDefinition = "MEDIUMBLOB") private String detail;
     @Setter @Column(nullable = false, length = 1) private String isUsed;
+    @Setter @Column private int dcCost;
 
     public PiProduct() {}
 
-    public PiProduct(PiProductPk piProductPk, String productName, String productGroup, String productCategory, int price, int stock, String detail, String isUsed) {
+    public PiProduct(PiProductPk piProductPk, String productName, String productGroup, String productCategory, int price, int stock, String detail, String isUsed, int dcCost) {
         this.piProductPk = piProductPk;
         this.productName = productName;
         this.productGroup = productGroup;
@@ -33,10 +34,11 @@ public class PiProduct extends AuditingFields {
         this.stock = stock;
         this.detail = detail;
         this.isUsed = isUsed;
+        this.dcCost = dcCost;
     }
 
-    public static PiProduct of(PiProductPk piProductPk, String productName, String productGroup, String productCategory, int price, int stock, String detail, String isUsed) {
-        return new PiProduct(piProductPk, productName, productGroup, productCategory, price, stock, detail, isUsed);
+    public static PiProduct of(PiProductPk piProductPk, String productName, String productGroup, String productCategory, int price, int stock, String detail, String isUsed, int dcCost) {
+        return new PiProduct(piProductPk, productName, productGroup, productCategory, price, stock, detail, isUsed, dcCost);
     }
 
     @Override

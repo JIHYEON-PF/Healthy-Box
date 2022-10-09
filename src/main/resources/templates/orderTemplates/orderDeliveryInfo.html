@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <!-- css -->
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
+    <link href="/css/orderDelivery.css" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <div class="bg-light">
+            <div>
+                <div class="d-flex flex-wrap justify-content-between align-items-center borderBottom py-3">
+                    <label class="title defaultFontStyle">배송 정보</label>
+                    <button type="button" id="registerDelivery" class="btnCase1" onclick="openPopup();">신규등록</button>
+                </div>
+            </div>
+            <div>
+                <div class="borderBottom py-2">
+                    <label class="subTitle defaultFontStyle">기본 배송지</label>
+                </div>
+                <div class="borderBottom py-2">
+                    <table id="defaultTable">
+                        <tbody id="defaultTableBody">
+                            <tr>
+                                <td class="titleLabel defaultFontStyle py-1">배송지 명칭</td>
+                                <td id="defaultDataSectIdx" class="deliveryIdx" hidden>배송지 인덱스 번호</td>
+                                <td id="defaultDataSectName" class="deliveryName">배송지 명칭</td>
+                            </tr>
+                            <tr>
+                                <td class="titleLabel defaultFontStyle py-1">주소</td>
+                                <td id="defaultDataSectAddress" class="deliveryAddress">(우편주소) 기본 주소 + 상세 주소</td>
+                            </tr>
+                            <tr align="right">
+                                <td colspan="2" class="py-1"><button type="button" id="defaultSelect" class="deliverySelect btnCase2">선택</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="borderBottom py-2">
+                    <label class="subTitle defaultFontStyle">등록된 배송지</label>
+                </div>
+                <div class="borderBottom py-2">
+                    <table id="registeredTable">
+                        <tbody id="registeredTableBody">
+                            <tr>
+                                <td class="titleLabel defaultFontStyle py-1">배송지 명칭</td>
+                                <td class="registeredDataSectIdx deliveryIdx" hidden>배송지 인덱스 번호</td>
+                                <td class="registeredDataSectName deliveryName">배송지 명칭</td>
+                            </tr>
+                            <tr>
+                                <td class="titleLabel defaultFontStyle py-1">주소</td>
+                                <td class="registeredDataSectAddress deliveryAddress">(우편주소) 기본 주소 + 상세 주소</td>
+                            </tr>
+                            <tr align="right">
+                                <td colspan="2" class="py-1"><button type="button" class="registeredDelivery deliverySelect btnCase2">선택</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <script src="/js/orderForm.js"></script>
+    <script src="/js/deliver.js"></script>
+
+</body>
+</html>

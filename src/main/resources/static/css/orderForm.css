@@ -1,0 +1,117 @@
+#productTable {
+    width: 100%;
+    border: 1px solid rgba(83,146,91,0.8);
+    border-collapse: collapse;
+}
+
+#productTableHead th {
+    background-color: rgba(83,146,91,0.8);
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+}
+
+#productNameSectImg {
+    width: 15%;
+}
+
+#productNameSectName {
+    width: auto;
+}
+
+#productNameSectQty {
+    width: 10%;
+}
+
+#productNameSectUnitCost, #productNameSectDcCost, #productNameSectAmount {
+    width: 12%;
+}
+
+#productTableBody td {
+    border-top: 1px solid rgba(83,146,91,0.2);
+    padding: 7px 5px;
+    color: rgba(83,146,91,0.8);
+}
+
+.productDataSectImg, .productDataSectQty, .productDataSectUnitCost, .productDataSectDcCost, .productDataSectAmount {
+    text-align: center;
+    font-size: 18px;
+}
+
+.productDataSectImg img {
+    width: 180px;
+    height: 120px;
+}
+
+.productDataSectName {
+    text-align: left;
+    font-size: 18px;
+}
+
+.qtyInputBox {
+    width: 35px;
+    height: 30px;
+    text-align: center;
+}
+
+.changeQtyBtn {
+    border: none;
+    background-color: rgb(248, 249, 250);
+    color: rgba(84, 146, 91, 1);
+}
+
+.title {
+    font-size: 20px;
+}
+
+#deliveryTableBody td {
+    padding: 2px 10px 2px 0px;
+}
+
+#deliveryChangeBtn {
+    border: 1px solid rgba(84,146,91,1);
+    border-radius: 10px;
+    color: rgba(84,146,91,1);
+    background-color: white;
+    padding: 5px;
+}
+
+#deliveryChangeBtn:hover {
+    border: 1px solid rgba(84,146,91,1);
+    border-radius: 10px;
+    color: white;
+    background-color: rgba(84,146,91, 0.8);
+    padding: 5px;
+}
+
+#paymentTableBody td {
+    padding: 2px 10px 2px 0px;
+}
+
+#paymentDataSectMethod input[type=radio]:checked {
+    accent-color: rgba(84,146,91,0.2);
+}
+
+#doOrder {
+    border: 1px solid rgba(84,146,91,0.8);
+    background-color: rgba(84,146,91,0.8);
+    color: white;
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+}
+
+#cancelOrder {
+    border: 1px solid rgba(84,146,91,0.8);
+    background-color: white;
+    color: rgba(84,146,91,0.8);
+    border-radius: 10px;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+}
+
+#payersTableBody td {
+    padding: 2px 10px 2px 0px;
+}
