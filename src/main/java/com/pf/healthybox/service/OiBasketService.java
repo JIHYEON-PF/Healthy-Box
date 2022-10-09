@@ -48,7 +48,7 @@ public class OiBasketService {
         Integer deliveryCost = 0;
         for (Tuple tuple : tuples) {
             amount += tuple.get(0, Integer.class);
-            deliveryCost += tuple.get(1, Integer.class);
+            deliveryCost += (tuple.get(0, Integer.class) == 0 ? 0 :tuple.get(1, Integer.class));
         }
 
         return List.of(amount, deliveryCost);
