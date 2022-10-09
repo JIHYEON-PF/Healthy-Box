@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <!-- import Javascript -->
+    <script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
+    <link href="/css/orderForm.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header id="header">
+        헤더 삽입부
+        <hr>
+    </header>
+
+    <main class="container border-top">
+        <div class="bg-light">
+            <div class="col bg-light container px-4">
+                <div>
+                    <h4 class="defaultFontStyle border-bottom py-3">주문 정보</h4>
+                </div>
+                <div>
+                    <div class="py-2">
+                        <span class="title defaultFontStyle">상품 목록</span>
+                    </div>
+                    <table id="productTable">
+                        <thead id="productTableHead">
+                            <tr>
+                                <th id="productNameSectImg">이미지</th>
+                                <th id="productNameSectName">품명</th>
+                                <th id="productNameSectQty">수량</th>
+                                <th id="productNameSectUnitCost">단가</th>
+                                <th id="productNameSectDcCost">할인금액</th>
+                                <th id="productNameSectAmount">금액</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+                            <tr>
+                                <td class="productDataSectImg"><img src="/image/products/00001.jpg" alt="00001"></td>
+                                <td class="productDataSectName">품명출력구역</td>
+                                <td class="productDataSectProductCode" hidden>00001</td>
+                                <td class="productDataSectSellerCode" hidden>00001</td>
+                                <td class="productDataSectQty">
+                                    <button type="button" class="decreaseQtyBtn changeQtyBtn">◀</button>
+                                    <input type="text" class="qtyInputBox" value="1">
+                                    <button type="button" class="increaseQtyBtn changeQtyBtn">▶</button>
+                                </td>
+                                <td class="productDataSectUnitCost">1,000 원</td>
+                                <td class="productDataSectDcCost">0 원</td>
+                                <td class="productDataSectAmount">1,000 원</td>
+                                <td class="productDataSectDeliveryCost" hidden>3,000 원</td>
+                            </tr>
+                            <tr>
+                                <td class="productDataSectImg"><img src="/image/products/00001.jpg" alt="00001"></td>
+                                <td class="productDataSectName">품명출력구역</td>
+                                <td class="productDataSectProductCode" hidden>00002</td>
+                                <td class="productDataSectSellerCode" hidden>00001</td>
+                                <td class="productDataSectQty">
+                                    <button type="button" class="decreaseQtyBtn changeQtyBtn">◀</button>
+                                    <input type="text" class="qtyInputBox" value="1">
+                                    <button type="button" class="increaseQtyBtn changeQtyBtn">▶</button>
+                                </td>
+                                <td class="productDataSectUnitCost">1,000 원</td>
+                                <td class="productDataSectDcCost">0 원</td>
+                                <td class="productDataSectAmount">1,000 원</td>
+                                <td class="productDataSectDeliveryCost" hidden>0 원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="d-flex flex-wrap justify-content-start align-items-center pt-5 pb-2">
+                        <span class="title defaultFontStyle pe-3">배송 정보</span>
+                        <button type="button" id="deliveryChangeBtn">배송지 변경</button>
+                    </div>
+                    <table id="deliveryTable">
+                        <tbody id="deliveryTableBody">
+                            <tr>
+                                <td id="deliveryNameSectName" class="defaultFontStyle">배송지 이름</td>
+                                <td id="deliveryDataSectIdx" hidden>1</td>
+                                <td id="deliveryDataSectName">배송지 명칭 표현 부분</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="defaultFontStyle">배송지 주소</td>
+                            </tr>
+                            <tr>
+                                <td id="deliveryNameSectZipcode">우편 주소</td>
+                                <td id="deliveryDataSectZipcode">00000</td>
+                            </tr>
+                            <tr>
+                                <td id="deliveryNameSectAddress1">주소</td>
+                                <td id="deliveryDataSectAddress1">기본 주소 출력 부분</td>
+                            </tr>
+                            <tr>
+                                <td id="deliveryNameSectAddress2">상세 주소</td>
+                                <td id="deliveryDataSectAddress2">상세 주소 출력 부분</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <div class="pt-5 pb-2">
+                        <span class="title defaultFontStyle">결제자 정보</span>
+                    </div>
+                    <table id="payersTable">
+                        <tbody id="payersTableBody">
+                            <tr>
+                                <td id="payerNameSectName" class="defaultFontStyle">결제자</td>
+                                <td id="payerDataSectName">테스트이름</td>
+                            </tr>
+                            <tr>
+                                <td id="payerNameSectEmail" class="defaultFontStyle">이메일</td>
+                                <td id="payerDataSectEmail">test@email.com</td>
+                            </tr>
+                            <tr>
+                                <td id="payerNameSectTel" class="defaultFontStyle">연락처</td>
+                                <td id="payerDataSectTel">010-1111-1111</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="border-bottom pb-3">
+                    <div class="pt-5 pb-2">
+                        <span class="title defaultFontStyle">결제정보</span>
+                    </div>
+                    <table id="paymentTable">
+                        <tbody id="paymentTableBody">
+                            <tr>
+                                <td id="paymentNameSectMethod" class="defaultFontStyle">결제 수단</td>
+                                <td id="paymentDataSectMethod">
+                                    <input id="paymentCard" type="radio" name="method" value="card" checked>
+                                    <label for="paymentCard" class="paymentLabel">신용카드/체크카드</label>
+                                    <input id="paymentCash" type="radio" name="method" value="trans">
+                                    <label for="paymentCash" class="paymentLabel">계좌이체/무통장입금</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="paymentNameSectUnitPrice" class="defaultFontStyle">상품 금액</td>
+                                <td id="paymentDataSectUnitPrice">1,000 원</td>
+                            </tr>
+                            <tr>
+                                <td id="paymentNameSectDeliveryCost" class="defaultFontStyle">배송비</td>
+                                <td id="paymentDataSectDeliveryCost">3,000 원</td>
+                            </tr>
+                            <tr>
+                                <td id="paymentNameSectDiscountPrice" class="defaultFontStyle">할인 금액</td>
+                                <td id="paymentDataSectDiscountPrice">0 원</td>
+                            </tr>
+                            <tr>
+                                <td id="paymentNameSectAmount" class="defaultFontStyle">결제 금액</td>
+                                <td id="paymentDataSectAmount">4,000 원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pt-3 py-2">
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <button type="button" id="doOrder" class="mx-2">결제하기</button>
+                        <button type="button" id="cancelOrder" class="mx-2" onclick="location.href='javascript:history.back()'">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <hr>
+        푸터 삽입부
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <script src="/js/orderForm.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#payerDataSectTel").text($("#payerDataSectTel").text().replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3"));
+        })
+    </script>
+
+</body>
+</html>

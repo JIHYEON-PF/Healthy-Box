@@ -99,7 +99,7 @@ $(document).on("click", "#cancelBtn", function () {
 
 // 배송지 등록 팝업 등록 후 페이지 리로드 
 function openPopup() {
-    window.open('/mypage/deliverInfo', 'Healthy-Box', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
+    window.open('/mypage/deliverInfo', '_blank', 'width=460, height=240, toolbar=yes, location=no, status=no, resizable=no, scrollbars=no');
 }
 
 // 배송지 수정 팝업 등록 후 페이지 리로드 
@@ -152,14 +152,7 @@ $(document).on("click", ".doDefaulting", function () {
     });
 });
 
-// 기본배송지 수정 
-$(document).on("click", "#insertBtn", function () {
-    let idx = $(this).val()
-    console.log(idx)
-});
-
-
-// 기본배송지 삭제 
+// 기본배송지 삭제
 $(document).on("click", ".deleteBtn", function () {
     if ($(this).val() === '0') {
         alert('저장된 배송지 내역이 없습니다.');

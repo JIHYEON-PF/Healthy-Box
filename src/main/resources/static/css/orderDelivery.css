@@ -1,0 +1,35 @@
+.title {
+    font-size: 20px;
+}
+
+.subTitle {
+    font-size: 18px;
+}
+
+.titleLabel {
+    width: 96px;
+}
+
+.btnCase1 {
+    border: 1px solid rgba(84,146,91,1);
+    border-radius: 10px;
+    color: white;
+    background-color: rgba(84,146,91,0.8);
+    padding: 5px;
+    width: 80px;
+    height: 40px;
+}
+
+.btnCase2 {
+    border: 1px solid rgba(84,146,91,1);
+    border-radius: 10px;
+    color: rgba(84,146,91,1);
+    background-color: white;
+    padding: 5px;
+    width: 80px;
+    height: 40px;
+}
+
+#defaultTable, #registeredTable {
+    width: 100%;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#defaultTableBody" th:object="${default}">
+        <attr sel="#defaultDataSectIdx" th:text="*{idx}"/>
+        <attr sel="#defaultDataSectName" th:text="*{deliveryName}"/>
+        <attr sel="#defaultDataSectAddress" th:text="'(' + *{zipcode} + ') ' + *{address1} + ' ' + *{address2}"
+                                            th:value="*{zipcode} + '^' + *{address1} + '^' + *{address2}"/>
+    </attr>
+
+    <attr sel="#registeredTable" th:remove="all-but-first">
+        <attr sel="#registeredTableBody" th:each="registeredList : ${registered}">
+            <attr sel=".registeredDataSectIdx" th:text="${registeredList.idx}"/>
+            <attr sel=".registeredDataSectName" th:text="${registeredList.deliveryName}"/>
+            <attr sel=".registeredDataSectAddress" th:text="'(' + ${registeredList.zipcode} + ') ' + ${registeredList.address1} + ' ' + ${registeredList.address2}"
+                                                   th:value="${registeredList.zipcode} + '^' + ${registeredList.address1} + '^' + ${registeredList.address2}"/>
+        </attr>
+    </attr>
+</thlogic>
