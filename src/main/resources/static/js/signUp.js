@@ -11,11 +11,19 @@ $(document).on("click", "#signUpBtn", function () {
     let input_address1 = $('#address1').val();
     let input_address2 = $('#address2').val();
     let idChecked = $.trim($("label[for='checkId']").text());
-    // let phoneChecked = $('#checkConfirm').val();
 
-    console.log($('#wrongPw').attr('hidden') !== undefined);
-
-    if (idChecked === "Y" && $('#wrongPw').attr('hidden') !== undefined) {
+    if (idChecked !== "Y") {
+        alert("아이디 중복확인을 해주시기 바랍니다.");
+        $('#checkId').focus();
+    } else if ($('#wrongPw').attr('hidden') === undefined) {
+        alert("비밀번호를 확인해주시기 바랍니다.");
+        $('#passwordConfirm').focus();
+    } else if ($("#checkPhoneLabel").text() === "N" || $("#checkPhoneLabel").attr('value') === undefined) {
+        alert("본인인증을 진행해주시기 바랍니다.");
+    } else if ($("#serialCodeSecond").val() === '') {
+        alert("정확한 주민등록 번호를 입력해주시기 바랍니다.");
+        $("#serialCodeSecond").focus();
+    } else {
         let input_data = {
             'userId': input_userId,
             'userPw': input_userPassword,
@@ -49,13 +57,7 @@ $(document).on("click", "#signUpBtn", function () {
             complete: function () {
                 console.log("완료");
             }
-        })
-    } else if (idChecked !== "Y") {
-        alert("아이디 중복확인을 해주시기 바랍니다.");
-        $('#checkId').focus();
-    } else if ($('#wrongPw').attr('hidden') === undefined) {
-        alert("비밀번호를 확인해주시기 바랍니다.");
-        $('#passwordConfirm').focus();
+        });
     }
 
 });
@@ -104,6 +106,40 @@ $(document).on("keyup", "#passwordConfirm", function () {
         $('#wrongPw').attr('hidden','true');
     }
     console.log($('#wrongPw').attr('hidden') === undefined);
+});
+
+//본인인증
+$(document).on("click", "#checkPhone", function () {
+    let IMP = window.IMP;
+    IMP.init('imp24005612');
+
+    IMP.certification({
+        name: $("#userName").val(),
+        phone: $("#phoneNumber").val()
+    }, function(rsp) {
+        if (rsp.success) {
+            $("#checkPhoneLabel").attr("value", rsp.imp_uid);
+            $.ajax({
+                url: "/iamport/getCertification/" + rsp.imp_uid,
+                method: "GET",
+                success: function (data) {
+                    $("#checkPhoneLabel").text("Y");
+                    $("#userName").val(data.name);
+                    $("#serialCodeFirst").val(data.birth);
+                    $("#phoneNumber").val(data.phone);
+                    $("#serialCodeSecond").focus();
+                },
+                error: function (request, status, error) {
+                    console.log("에러");
+                },
+                complete: function () {
+                    console.log("완료");
+                }
+            })
+        } else {
+            console.log("인증 실패");
+        }
+    });
 });
 
 // 공통함수
