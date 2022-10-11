@@ -46,6 +46,13 @@ dependencies {
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api" //java.lang.NoClassDefFoundError {javax.annotation.Generated) 대응 코드
     annotationProcessor "jakarta.persistence:jakarta.persistence-api" //java.lange.NoClassDefFoundError {javax.annotation.Entity) 대응 코드
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-email
+    implementation 'org.apache.commons:commons-email:1.5'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+
 }
 
 tasks.named('test') {
