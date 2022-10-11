@@ -60,5 +60,17 @@ public class UserManageApiController {
         return (user != null);
     }
 
+    //아이디 찾기
+    @GetMapping("/find-id")
+    public String findId(@RequestParam String userName, @RequestParam String email) {
+        return biUserService.findUserIdByNameAndEmail(userName, email);
+    }
+
+    //비밀번호 찾기
+    @GetMapping("/find-password")
+    public Boolean findPassword(@RequestParam String userId, @RequestParam String name, @RequestParam String email) {
+        return biUserService.findPassword(userId, name, email);
+    }
+
 
 }
