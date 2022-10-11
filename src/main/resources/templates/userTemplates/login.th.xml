@@ -2,6 +2,6 @@
 <thlogic>
     <attr sel="#header" th:replace="header :: header"/>
     <attr sel="#footer" th:replace="footer :: footer"/>
-    <attr sel="#floatingInput" th:value="${rememberIdCookie != null} ? ${rememberIdCookie.value} : ''"/>
-    <attr sel="#rememberId" th:checked="${rememberIdCookie != null} ? true : false"/>
+    <attr sel="#floatingInput" th:value="${userId != null} ? ${userId} : ''"/>
+    <attr sel="#rememberId" th:checked="${userId != null} ? true : false"/>
 </thlogic>
