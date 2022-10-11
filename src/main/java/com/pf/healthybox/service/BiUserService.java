@@ -4,6 +4,8 @@ import com.pf.healthybox.domain.baseInformation.BiUser;
 import com.pf.healthybox.dto.baseInformationDto.BiUserDto;
 import com.pf.healthybox.repository.BiUserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -107,5 +109,82 @@ public class BiUserService {
         findUser.setAddress2(dto.address2());
 
         biUserRepository.save(findUser);
+    }
+
+    @Transactional
+    public Boolean findPassword(String userId, String name, String email) {
+        BiUser entity = biUserRepository.findByUserIdAndUserNameAndEmail(userId, name, email);
+
+        if (entity == null) {
+            return false;
+        }
+
+        //비밀번호 변경 로직 추가
+        String tempPw = RandomStringUtils.randomAlphanumeric(10);
+        entity.setUserPw(tempPw);
+
+        //mail Server 설정
+        String charSet = "utf-8";
+        String hostSMTP = "smtp.naver.com";
+        String hostSMTPId = "kenj_h";
+        String hostSMTPPw = "GGNVCK!!1203";
+
+        //Sender
+        String fromEmail = "kenj_h@naver.com";
+        String fromName = "Healthy Box";
+
+        //Mail Content
+        String subject = name + "님의 임시 비밀번호가 발급되었습니다.";
+        String msg = "";
+
+        msg += "<div style='text-align: center; justify-content: center; align-items: center; width: 600px;'>";
+        msg += "    <div>";
+        msg += "        <img src='https://healthy-box.herokuapp.com/image/logo.jpg' alt='logo'>";
+        msg += "    </div>";
+        msg += "    <div style='background-color: rgba(84,146,91,0.2); padding: 5px;'>";
+        msg += "        <div style='font-weight: bold; font-size: 20px; color: rgba(84,146,91,0.8); padding: 5px'>";
+        msg += "            <span>회원님의 임시 비밀번호가 발급되었습니다.</span>";
+        msg += "        </div>";
+        msg += "        <hr style='background-color: white; border: 0px; height: 1px;'>";
+        msg += "        <div>";
+        msg += "            <p>";
+        msg += "                <span>" + name + "회원님의 임시 비밀번호는</span>";
+        msg += "                <span style='font-weight: bold; font-size: 15px;'>" + tempPw + "</span>";
+        msg += "                <span>입니다.</span>";
+        msg += "            </p>";
+        msg += "            <p>";
+        msg += "                <span style='font-weight: bold; color: red;'>임시비밀번호로 로그인 후 비밀번호 변경 후 사용부탁드립니다.</span>";
+        msg += "            </p>";
+        msg += "        </div>";
+        msg += "    </div>";
+        msg += "</div>";
+
+        //Mail Receiver
+        String receiver = email;
+
+        try {
+            HtmlEmail mail = new HtmlEmail();
+
+            mail.setDebug(true);
+            mail.setCharset(charSet);
+            mail.setSSLOnConnect(true);
+            mail.setHostName(hostSMTP);
+            mail.setSmtpPort(587);
+            mail.setAuthentication(hostSMTPId, hostSMTPPw);
+            mail.setStartTLSEnabled(false);
+            mail.addTo(receiver);
+            mail.setFrom(fromEmail, fromName);
+            mail.setSubject(subject);
+            mail.setHtmlMsg(msg);
+            mail.send();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public String findUserIdByNameAndEmail(String userName, String email) {
+        return (biUserRepository.findUserIdByUserNameAndEmail(userName, email) == null ? "" : biUserRepository.findUserIdByUserNameAndEmail(userName, email));
     }
 }

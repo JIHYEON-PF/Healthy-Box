@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- CSS -->
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
+    <link href="/css/findUserDetail.css" rel="stylesheet">
+</head>
+<body>
+    <header id="header">
+        헤더 표시 부분
+        <hr>
+    </header>
+    <div class="container text-center border-top">
+        <div class="pt-5">
+            <span class="mainTitle">ID 찾기</span>
+        </div>
+        <div id="findSect">
+            <div>
+                <div class="inputSector my-4 py-2">
+                    <div>
+                        <label class="label py-3" for="idInputSectName">이름</label>
+                        <input type="text" id="idInputSectName" class="inputBox" placeholder="이름를 입력하세요.">
+                    </div>
+                    <div>
+                        <label class="label py-3" for="idInputSectEmail">이메일</label>
+                        <input type="email" id="idInputSectEmail" class="inputBox" placeholder="이메일을 입력하세요.">
+                    </div>
+                </div>
+            </div>
+            <div class="py-4">
+                <button id="btnFindId" class="btnCase1" type="button">아이디 찾기</button>
+                <button class="btnCase2" type="button" onclick="location.href='javascript:history.back()'">취소</button>
+            </div>
+        </div>
+        <div id="foundSect" hidden>
+            <div>
+                <div class="inputSector my-4 py-2">
+                    <div>
+                        <span id="labelFoundName" class="labelData">이름</span>
+                        <span class="labelContent"> 님의 아이디는 </span>
+                        <span id="labelFoundId" class="labelData"> 아이디 </span>
+                        <span class="labelContent">입니다.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="py-4">
+                <button id="btnLocationLogin" class="btnCase1" type="button">로그인 하기</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <hr>
+        푸터 표시 부분
+    </footer>
+
+    <script src="/js/login.js"> </script>
+</body>
+</html>
