@@ -2,7 +2,9 @@ package com.pf.healthybox.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.Cookie;
@@ -25,10 +27,16 @@ public class UserManageController { // 유저 관리에 대한 컨트롤러(회�
         if (cookies != null) {
             Arrays.stream(cookies).forEach(cookie -> {
                 if (cookie.getName().equals("rememberIdCookie")) {
-                    model.addAttribute("rememberIdCookie", cookie);
+                    model.addAttribute("userId", cookie.getValue());
                 }
             });
         }
+        return "userTemplates/login";
+    }
+
+    @GetMapping("/login/{userId}")
+    public String showLoginWithId(@PathVariable String userId, ModelMap model) {
+        model.addAttribute("userId", userId);
         return "userTemplates/login";
     }
 
@@ -38,6 +46,16 @@ public class UserManageController { // 유저 관리에 대한 컨트롤러(회�
             request.getSession().invalidate();
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/find-id")
+    public String showFindId() {
+        return "userTemplates/findId";
+    }
+
+    @GetMapping("/find-pw")
+    public String showFindPw() {
+        return "userTemplates/findPw";
     }
 
 }
