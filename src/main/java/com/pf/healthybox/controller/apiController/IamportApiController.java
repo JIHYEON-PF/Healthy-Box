@@ -47,16 +47,26 @@ public class IamportApiController extends IamportClient {
 
     //결제 취소
     @PostMapping("/cancel-payment")
-    public Boolean cancelPaymentByMerchantUid(@RequestBody OiOrderCancelDataRequest req) throws IamportResponseException, IOException {
+    public HashMap<String, Object> cancelPaymentByMerchantUid(@RequestBody OiOrderCancelDataRequest req) throws IamportResponseException, IOException {
         CancelData cancelData = new CancelData(req.merchantUid(), false);
         cancelData.setReason(req.reason());
         cancelData.setRefund_holder(req.refundHolder());
         cancelData.setRefund_account(req.refundAccount());
         cancelData.setRefund_bank(req.refundBank());
 
+        /*
+        * REST API(POST https://api.iamport.kr/payments/cancel) 요청에 대한 응답 코드가 200이라도
+        * 응답 body의 code가 0이 아니면 환불에 실패했다는 의미입니다.
+        * 실패 사유는 body의 message를 통해 확인하실 수 있습니다.
+        *  */
+
         IamportResponse<Payment> response = cancelPaymentByImpUid(cancelData);
 
-        return (response.getResponse() != null);
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("code", response.getCode());
+        result.put("msg", response.getMessage());
+
+        return result;
     }
 
 }
