@@ -104,7 +104,12 @@ $(document).on("click", "#changeStatusDetail", function () {
             async: false,
 
             success: function (data) {
-                continueFlag = data;
+                console.log(data);
+                if (data.code === 0) {
+                    continueFlag = true;
+                } else {
+                    msg = "결제 취소에 실패하였습니다.\n실패 사유 : " + data.msg;
+                }
             },
             error: function (request, status, error) {
                 console.log('에러');
@@ -116,7 +121,7 @@ $(document).on("click", "#changeStatusDetail", function () {
     }
 
     if (!continueFlag && (option.toLowerCase() === 'cancel' || option.toLowerCase() === 'return')) {
-        alert('주문 상태 변경에 실패했습니다.\n관리자에게 문의해주시기 바랍니다.');
+        alert(msg);
         return;
     }
 
