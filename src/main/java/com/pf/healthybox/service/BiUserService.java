@@ -126,8 +126,9 @@ public class BiUserService {
         //mail Server 설정
         String charSet = "utf-8";
         String hostSMTP = "smtp.naver.com";
+        // TODO : 아이디, 비밀번호, SMTP PORT는 DB에서 조회해서 가져오도록 변경
         String hostSMTPId = "kenj_h";
-        String hostSMTPPw = "GGNVCK!!1203";
+        String hostSMTPPw = "WLGUS!!1203";
 
         //Sender
         String fromEmail = "kenj_h@naver.com";
