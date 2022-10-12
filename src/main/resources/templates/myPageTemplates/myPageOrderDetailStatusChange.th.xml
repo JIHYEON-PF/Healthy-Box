@@ -15,20 +15,5 @@
         </attr>
     </attr>
 
-    <attr sel="#deliveryInfo" th:object="${details[0]}">
-        <attr sel="#deliveryCompData" th:value="*{deliveryComp}"/>
-        <attr sel="#deliveryCodeData" th:text="*{deliveryCode}"/>
-        <attr sel="#deliveryNameData" th:text="*{deliveryName}"/>
-        <attr sel="#zipcodeData" th:text="*{zipcode}"/>
-        <attr sel="#address1Data" th:text="*{address1}"/>
-        <attr sel="#address2Data" th:text="*{address2}"/>
-    </attr>
-
-    <attr sel="#payMethodInfo" th:object="${details[0]}">
-        <attr sel="#payMethodData" th:text="*{payMethod}"/>
-        <attr sel="#orderPriceData" th:text="*{#numbers.formatInteger(totalAmount, 0, 'COMMA')}"/>
-        <attr sel="#deliveryPriceData" th:text="*{#numbers.formatInteger(deliveryCost, 0, 'COMMA')}"/>
-        <attr sel="#dcPriceData" th:text="*{#numbers.formatInteger(totalDcCost, 0, 'COMMA')}"/>
-        <attr sel="#amountData" th:text="*{#numbers.formatInteger(totalAmount + deliveryCost - totalDcCost, 0, 'COMMA')}"/>
-    </attr>
+    <attr sel="#orderStatus" th:text="${details[0].status}"/>
 </thlogic>
