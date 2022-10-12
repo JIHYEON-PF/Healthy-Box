@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Entity
 @Table(name = "tbl_orderStatusContent")
 public class OiOrderStatusContent extends AuditingFields {
@@ -18,7 +18,7 @@ public class OiOrderStatusContent extends AuditingFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
-    @Setter @Column(nullable = false, length = 10) private String orderNo;
+    @Setter @Column(nullable = false, length = 20) private String orderNo;
     @Setter @Column(nullable = false, length = 8) private String sellerCode;
     @Setter @Column(nullable = false, length = 8) private String division;
     @Setter @Column(nullable = false, length = 100) private String title;
