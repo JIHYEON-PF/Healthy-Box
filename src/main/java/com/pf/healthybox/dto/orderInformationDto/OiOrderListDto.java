@@ -11,19 +11,14 @@ public record OiOrderListDto(
         String productName,
         Long productCount,
         int amount,
-        String status
+        String status,
+        String isSubscribe,
+        String subscribeCode,
+        LocalDateTime deliveryDate
 ) {
 
-    public static OiOrderListDto of(String orderNo, LocalDateTime createdAt, String productName, Long productCount, int amount, String status) {
-        return new OiOrderListDto(orderNo, createdAt, productName, productCount, amount, status);
+    public static OiOrderListDto of(String orderNo, LocalDateTime createdAt, String productName, Long productCount, int amount, String status, String isSubscribe, String subscribeCode, LocalDateTime deliveryDate) {
+        return new OiOrderListDto(orderNo, createdAt, productName, productCount, amount, status, isSubscribe, subscribeCode, deliveryDate);
     }
-
-    // dto >> req
-    public OiOrderListRequest toReq() {
-        return OiOrderListRequest.of(
-                orderNo, createdAt, productName, productCount, amount, status
-        );
-    }
-
 
 }
