@@ -64,19 +64,23 @@
 }
 
 .orderListBodyOdd .orderProducts {
-    width:46%;
+    width:auto;
 }
 
 .orderListBodyOdd .orderPrice {
-    width: 12%;
+    width: 10%;
 }
 
 .orderListBodyOdd .orderStatus {
-    width: 10%
+    width: 10%;
+}
+
+.orderListBodyOdd .orderDeliveryDate {
+    width: 15%;
 }
 
 .orderListBodyOdd .orderBtn {
-    width: 20%
+    width: 20%;
 }
 
 .btnOrderDetail {
@@ -104,4 +108,8 @@
     color: inherit;
 }
 
-
+.orderListTitle {
+    color: rgba(83,146,91,0.8);
+    font-weight: bold;
+    font-size: 22px;
+}

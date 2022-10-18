@@ -114,9 +114,6 @@ $(document).on("click", "#modifyUserInfo", function () {
 // 마이페이지의 선택된 페이지의 값에 따라 선택 레이어 변경
 $(document).ready(function () {
     let separation = $('#myPageId').text();
-    console.log(separation);
-
-    console.log($('#loginBtnUnSession').val());
 
     let idName = '';
     switch (separation) {

@@ -8,11 +8,10 @@
         <attr sel="tr[0]" th:each="order:${orderList}">
             <attr sel="td.orderDate" th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd')}"/>
             <attr sel="td.orderNo" th:text="${order.orderNo}"/>
-            <attr sel="td.orderProducts/a" th:href="@{'/mypage/order-list/single/'+${order.orderNo}}" th:text="${order.productCount} > 1
-                                                    ? ${order.productName} + ' 외 ' + ${#strings.toString(order.productCount - 1)}
-                                                    : ${order.productName}"/>
+            <attr sel="td.orderProducts/a" th:href="@{'/mypage/order-list/subscribe/'+${order.orderNo}}" th:text="${order.subscribeName}"/>
             <attr sel="td.orderPrice" th:text="${#numbers.formatInteger(order.amount, 0, 'COMMA')}"/>
             <attr sel="td.orderStatus" th:text="${order.status}"/>
+            <attr sel="td.orderDeliveryDate" th:text="${#temporals.format(order.startDate, 'yyyy-MM-dd')} + ' ~ ' + ${#temporals.format(order.endDate, 'yyyy-MM-dd')}"/>
         </attr>
     </attr>
 

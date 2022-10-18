@@ -63,7 +63,10 @@ $(document).on("click", "#doOrder", function () {
                     'payMethod': rsp.pay_method,
                     'apiCode': rsp.imp_uid,
                     'deliveryComp': '',
-                    'deliveryCode': ''
+                    'deliveryCode': '',
+                    "cardName": rsp.card_name,
+                    "cardNum": rsp.card_number,
+                    "quota": rsp.card_quota
                 }
 
                 productCodes.push(input_data.productCode);
@@ -106,7 +109,7 @@ $(document).on("click", "#doOrder", function () {
             });
 
             alert("주문이 완료되었습니다.");
-            location.replace("/mypage/order-list");
+            location.replace("/mypage/order-list/single");
         } else {
             // 결제 실패 시 로직,
             console.log("결제 실패")
