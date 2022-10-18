@@ -1,5 +1,6 @@
 package com.pf.healthybox.controller.apiController;
 
+import com.pf.healthybox.dto.request.orderInformationReq.OiOrderDetailRequest;
 import com.pf.healthybox.dto.request.orderInformationReq.OiOrderRequest;
 import com.pf.healthybox.dto.request.orderInformationReq.OiOrderStatusContentRequest;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderProductQtyResponse;
@@ -8,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -34,6 +37,11 @@ public class OrderApiController {
         oiOrderService.changeStatus(req);
     }
 
+    @PostMapping("/change-subscribe-status")
+    public void changeSubscribeStatus(@RequestBody OiOrderStatusContentRequest req) {
+        oiOrderService.changeSubscribeStatus(req);
+    }
+
     //주문 등록
     @PostMapping("/insert-order")
     public void insertOrder(@RequestBody OiOrderRequest req) {
@@ -50,6 +58,14 @@ public class OrderApiController {
         }
 
         return oiOrderService.getOrderPrice(oiOrderService.settingDeliveryCost(foundProduct));
+    }
+
+    @PatchMapping("/modify-delivery-date")
+    public boolean modifyDeliveryDate(@RequestParam String userId,
+                                      @RequestParam String orderNo,
+                                      @RequestParam int orderIdx,
+                                      @RequestParam String deliveryDate) throws ParseException {
+        return oiOrderService.modifyDeliveryDate(userId, orderNo, orderIdx, deliveryDate);
     }
 
 }

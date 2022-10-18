@@ -6,7 +6,7 @@
     margin-top: 10px;
 }
 
-#orderItemSpan {
+#orderItemSpan, #paymentSpan {
     padding: 10px 0px;
     font-weight: bold;
 }
@@ -49,6 +49,34 @@
 .orderItemQty {
     text-align: center;
     width: 10%;
+}
+
+.orderItemDeliveryDate {
+    text-align: center;
+    width: 10%;
+}
+
+.orderItemChangeDeliveryDate {
+    border-radius: 10px;
+    border: 1px solid rgba(84,146,91,0.8);
+    background-color: white;
+    color: rgba(84,146,91,0.8);
+}
+
+.orderItemChangeDeliveryDate:hover {
+    border-radius: 10px;
+    border: 1px solid rgba(84,146,91,1);
+    background-color: rgba(84,146,91,0.5);
+    color: white;
+}
+
+.modifyDeliveryDate {
+    border: 1px solid rgba(84,146,91,0.8);
+    border-radius: 5px;
+    font-size: 14px;
+    color: rgba(84,146,91,0.8);
+    background-color: rgb(248,249,250); /* bg-light */
+    width: 95px;
 }
 
 .orderItemUnitCost {
@@ -126,4 +154,43 @@
 
 #changeStatusTable textarea {
     resize: none;
+}
+
+.deliveryCodeData {
+    text-decoration: none;
+}
+
+.deliveryCodeData:hover{
+    color: rgba(84,146,91,0.8);
+}
+
+#paymentDiv {
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+}
+
+#paymentTable {
+    margin: 10px auto;
+    padding: 5px;
+    border-collapse: collapse;
+}
+
+#paymentTable th {
+    border-top: 1px solid rgba(83,146,91,0.8);
+    background-color: rgba(83,146,91,0.5);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+    width: 200px;
+}
+
+#paymentDateSect td {
+    border-top: 1px solid rgba(83,146,91,0.8);
+    border-bottom: 1px solid rgba(83,146,91,0.8);
+    text-align: center;
+    font-size: 18px;
+    color: black;
 }

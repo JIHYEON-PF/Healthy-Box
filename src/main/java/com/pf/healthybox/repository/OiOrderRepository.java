@@ -1,6 +1,5 @@
 package com.pf.healthybox.repository;
 
-import com.pf.healthybox.domain.baseInformation.QBiPoint;
 import com.pf.healthybox.domain.orderInformation.OiOrder;
 import com.pf.healthybox.domain.orderInformation.QOiOrder;
 import com.pf.healthybox.repository.querydsl.OiOrderRepositoryCustom;
@@ -9,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
+
+import java.util.List;
 
 public interface OiOrderRepository extends JpaRepository<OiOrder, Long>,
         OiOrderRepositoryCustom,
@@ -21,4 +22,8 @@ public interface OiOrderRepository extends JpaRepository<OiOrder, Long>,
         bindings.including(root.orderNo);
         bindings.bind(root.orderNo).first(StringExpression::containsIgnoreCase);
     }
+
+    OiOrder findByUserIdAndOrderNoAndOrderIdx(String userId, String orderNo, int orderIdx);
+
+    List<OiOrder> findByUserIdAndOrderNo(String userId, String orderNo);
 }

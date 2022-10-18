@@ -6,9 +6,16 @@
 
     <attr sel="#orderItemListBody" th:remove="all-but-first">
         <attr sel="tr[0]" th:each="detail:${details}">
+            <attr sel=".orderDateSectOrderNo" th:text="${detail.orderNo}"/>
+            <attr sel=".orderDateSectOrderIdx" th:text="${detail.orderIdx}"/>
             <attr sel=".orderItemImage/img" th:alt="${#strings.concat(detail.productCode,'.jpg')}" th:src="@{'/image/products/' + ${#strings.concat(detail.productCode,'.jpg')}}"/>
             <attr sel=".orderItemName" th:text="${detail.productName}"/>
+            <attr sel=".deliveryCompData" th:value="${detail.deliveryComp}"/>
+            <attr sel=".deliveryCodeData" th:text="${detail.deliveryCode}"/>
+            <attr sel=".deliveryStatus" th:text="${detail.status}"/>
+            <attr sel=".orderItemDeliveryDetailDate" th:text="${#temporals.format(detail.deliveryDate, 'yyyy-MM-dd')}"/>
             <attr sel=".orderItemQty" th:text="${#numbers.formatInteger(detail.qty, 0, 'COMMA')}"/>
+            <attr sel=".modifyDeliveryDate" th:value="${#temporals.format(detail.deliveryDate, 'yyyy-MM-dd')}"/>
             <attr sel=".orderItemUnitCost" th:text="${#numbers.formatInteger(detail.unitCost, 0, 'COMMA')} + ' 원'"/>
             <attr sel=".orderItemDcCost" th:text="${#numbers.formatInteger(detail.dcCost, 0, 'COMMA')} + ' 원'"/>
             <attr sel=".orderItemAmount" th:text="${#numbers.formatInteger(detail.amount, 0, 'COMMA')} + ' 원'"/>
@@ -16,8 +23,8 @@
     </attr>
 
     <attr sel="#deliveryInfo" th:object="${details[0]}">
-        <attr sel="#deliveryCompData" th:value="*{deliveryComp}"/>
-        <attr sel="#deliveryCodeData" th:text="*{deliveryCode}"/>
+<!--        <attr sel="#deliveryCompData" th:value="*{deliveryComp}"/>-->
+<!--        <attr sel="#deliveryCodeData" th:text="*{deliveryCode}"/>-->
         <attr sel="#deliveryNameData" th:text="*{deliveryName}"/>
         <attr sel="#zipcodeData" th:text="*{zipcode}"/>
         <attr sel="#address1Data" th:text="*{address1}"/>

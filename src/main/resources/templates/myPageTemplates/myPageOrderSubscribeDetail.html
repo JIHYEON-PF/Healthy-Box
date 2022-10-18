@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="description" content="">
+    <meta name="author" content="JH">
+    <title>Healthy Box</title>
+
+    <!-- BootStrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <link href="/css/colors.css" rel="stylesheet">
+    <link href="/css/compProperties.css" rel="stylesheet">
+    <link href="/css/orderDetailCss.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <header id="header">
+        헤더 삽입부
+        <hr>
+    </header>
+
+    <main class="container border-top">
+        <div class="d-flex flex-wrap">
+            <div id="myPageNav">
+                마이페이지 메뉴 부분
+            </div>
+            <div class="col bg-light d-flex align-items-center justify-content-center">
+                <div id="myPageDiv" class="container py-3">
+                    <div class="defaultFontStyle borderBottom py-2">
+                        <span class="fs-5">정기배송 주문 정보</span>
+                    </div>
+
+                    <div class="defaultFontColor pt-4">
+                        <span id="orderItemSpan" class="fs-5">주문목록</span>
+                        <table id="orderItemList">
+                            <thead>
+                                <tr id="orderItemListBodyHead">
+                                    <th class="orderItemOrderNo" hidden>주문번호</th>
+                                    <th class="orderItemOrderIdx" hidden>주문 일렬번호</th>
+                                    <th class="orderItemImage">이미지</th>
+                                    <th class="orderItemName">
+                                        품명
+                                        <hr class="tableDivide">
+                                        배송정보
+                                    </th>
+                                    <th class="orderItemDeliveryDate">수량</th>
+                                    <th class="orderItemUnitCost">단가</th>
+                                    <th class="orderItemDcCost">할인금액</th>
+                                    <th class="orderItemAmount">총금액</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderItemListBody">
+                                <tr class="orderItemListBodyContent">
+                                    <td class="orderDateSectOrderNo" hidden></td>
+                                    <td class="orderDateSectOrderIdx" hidden></td>
+                                    <td class="orderItemImage"><img src="/image/products/00000.jpg" alt="품목이미지"></td>
+                                    <td class="orderItemNameAndDeliveryInform">
+                                        <label class="orderItemName">테스트 상품</label>
+                                        <hr class="tableDivide">
+                                        <label class="deliveryCompData DataSect">택배</label>
+                                        <a href="#" class="deliveryCodeData DataSect">0000000000</a>
+                                        <label class="deliveryStatus" hidden>배송상태</label>
+                                        <label class="orderItemDeliveryDetailDate mb-1">2022-10-15</label>
+                                        <button type="button" class="btnQuestionChangeDate orderItemChangeDeliveryDate mt-1">변경</button>
+                                        <input class="modifyDeliveryDate mb-1" type="date" hidden>
+                                        <button type="button" class="btnModifyDeliveryDate orderItemChangeDeliveryDate mt-1" hidden>확인</button>
+                                    </td>
+                                    <td class="orderItemQty">1</td>
+                                    <td class="orderItemUnitCost">100,000 원</td>
+                                    <td class="orderItemDcCost">0 원</td>
+                                    <td class="orderItemAmount">100,000 원</td>
+                                </tr>
+                                <tr class="orderItemListBodyContent">
+                                    <td class="orderDateSectOrderNo" hidden></td>
+                                    <td class="orderDateSectOrderIdx" hidden></td>
+                                    <td class="orderItemImage"><img src="/image/products/00000.jpg" alt="품목이미지"></td>
+                                    <td class="orderItemName">테스트 상품</td>
+                                    <td class="orderItemDeliveryDate">
+                                        <label class="orderItemDeliveryDetailDate">2022-10-15</label>
+                                        <button type="button" class="btnQuestionChangeDate orderItemChangeDeliveryDate">변경</button>
+                                        <input class="modifyDeliveryDate" type="date">
+                                        <button type="button" class="btnModifyDeliveryDate orderItemChangeDeliveryDate">확인</button>
+                                    </td>
+                                    <td class="orderItemUnitCost">100,000 원</td>
+                                    <td class="orderItemDcCost">0 원</td>
+                                    <td class="orderItemAmount">100,000 원</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="deliveryInfo" class="pt-5 pb-2">
+                        <span class="titleSect defaultFontStyle fs-5">배송정보</span>
+                        <span class="requiredData">(정기배송 희망 수령장소 변경을 원하실 경우 판매자에게 문의해주시기 바랍니다.)</span>
+                        <table id="deliveryTableHead" class="dataTableHead borderTop">
+                            <tbody>
+                                <tr class="borderTop borderBottom" style="height: 10px;"></tr>
+                                <tr>
+                                    <td id="deliveryName" class="NameSect">배송지 이름</td>
+                                    <td id="deliveryNameData" class="DataSect">집</td>
+                                </tr>
+                                <tr>
+                                    <td id="zipcodeTitle" class="NameSect">우편주소</td>
+                                    <td id="zipcodeData" class="DataSect">00000</td>
+                                </tr>
+                                <tr>
+                                    <td id="address1Title" class="NameSect">주소</td>
+                                    <td id="address1Data" class="DataSect">기본 주소</td>
+                                </tr>
+                                <tr>
+                                    <td id="address2Title" class="NameSect">상세주소</td>
+                                    <td id="address2Data" class="DataSect">상세 주소</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="payMethodInfo" class="pt-5 pb-2">
+                        <span class="titleSect defaultFontStyle fs-5">결제정보</span>
+                        <table id="payMethodTable" class="dataTableHead borderTop">
+                            <tbody>
+                                <tr>
+                                    <td id="payMethodTitle" class="NameSect">결제수단</td>
+                                    <td id="payMethodData" class="DataSect">카드 / 비씨카드</td>
+                                </tr>
+                                <tr>
+                                    <td id="orderPriceTitle" class="NameSect">주문금액</td>
+                                    <td id="orderPriceData" class="DataSect">200,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td id="deliveryPriceTitle" class="NameSect">배송비</td>
+                                    <td id="deliveryPriceData" class="DataSect">3,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td id="dcPriceTitle" class="NameSect">할인금액</td>
+                                    <td id="dcPriceData" class="DataSect">5,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td id="amountTitle" class="NameSect">총 결제금액</td>
+                                    <td id="amountData" class="DataSect">198,000 원</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="buttons" class="pt-5 pb-2">
+                        <div class="d-flex flex-warp justify-content-center align-items-center">
+                            <button id="toOrderList" class="orderDetailBtn2 mx-2" onclick="location.href='javascript:history.back()'">목록</button>
+                            <button id="changeStatus" class="orderDetailBtn1 mx-2">취소·교환·반품</button>
+                            <button id="deleteOrderDetail" class="orderDetailBtn2 mx-2">주문내역 삭제</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <hr>
+        푸터 삽입부
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <script src="/js/myPage.js"></script>
+    <script src="/js/order.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.orderItemNameAndDeliveryInform').each(function () {
+                let code = $(this).closest('td').find('.deliveryCompData').attr('value');
+                let LogisticName = '';
+                switch (code) {
+                    case '01':
+                        LogisticName = '우체국택배';
+                        break;
+                    case '04':
+                        LogisticName = 'CJ대한통운';
+                        break;
+                    case '05':
+                        LogisticName = '한진택배';
+                        break;
+                    case '06':
+                        LogisticName = '로젠택배';
+                        break;
+                    case '08':
+                        LogisticName = '롯데택배';
+                        break;
+                }
+                $(this).closest('td').find('.deliveryCompData').text(LogisticName);
+
+                if ($(this).closest('td').find('.deliveryStatus').text() !== '주문') {
+                    $(this).closest('td').find('.btnQuestionChangeDate').text($(this).closest('td').find('.deliveryStatus').text()).attr('disabled',true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

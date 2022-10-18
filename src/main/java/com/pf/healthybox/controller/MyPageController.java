@@ -6,6 +6,7 @@ import com.pf.healthybox.domain.orderInformation.OiDeliver;
 import com.pf.healthybox.dto.response.orderInformationRes.OiDeliverResponse;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderDetailResponse;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderListResponse;
+import com.pf.healthybox.dto.response.orderInformationRes.OiOrderSubscribeListResponse;
 import com.pf.healthybox.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import retrofit2.http.Path;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/mypage")
@@ -121,14 +124,14 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
         return "myPageTemplates/myPageDeliveryInfo";
     }
 
-    @GetMapping("/order-list")
-    public String showOrderList(ModelMap model) {
+    @GetMapping("/order-list/single")
+    public String showSingleOrderList(ModelMap model) {
 
         HttpSession session = request.getSession();
         BiUser entity = (BiUser) session.getAttribute("loginUser");
 
         if (entity != null) {
-            List<OiOrderListResponse> list = oiOrderService.findOrderList(entity.getUserId());
+            List<OiOrderListResponse> list = oiOrderService.findOrderList(entity.getUserId(), "N");
 
             model.addAttribute("orderList", list);
             model.addAttribute("separation", "ordered");
@@ -136,22 +139,48 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
         return isLogin("myPageTemplates/myPageOrderList");
     }
 
-    @GetMapping("/order-list/{orderNo}")
-    public String showOrderDetail(@PathVariable String orderNo,
+    @GetMapping("/order-list/{isSubscribe}/{orderNo}")
+    public String showSingleOrderDetail(@PathVariable String orderNo,
+                                  @PathVariable String isSubscribe,
                                   ModelMap model) {
 
         HttpSession session = request.getSession();
         BiUser entity = (BiUser) session.getAttribute("loginUser");
 
+        List<OiOrderDetailResponse> list;
+
         if (entity != null) {
-            List<OiOrderDetailResponse> list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo);
+            if (isSubscribe.equals("single")) {
+                list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo, "N");
+            } else {
+                list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo, "Y");
+            }
 
             model.addAttribute("details", list);
             model.addAttribute("separation", "ordered");
         }
 
-        return isLogin("myPageTemplates/myPageOrderDetail");
+        if (isSubscribe.equals("single")) {
+            return isLogin("myPageTemplates/myPageOrderDetail");
+        } else {
+            return isLogin("myPageTemplates/myPageOrderSubscribeDetail");
+        }
 
+    }
+
+    @GetMapping("/order-list/subscribe")
+    public String showSubscribeOrderList(ModelMap model) {
+
+        HttpSession session = request.getSession();
+        BiUser entity = (BiUser) session.getAttribute("loginUser");
+
+        if (entity != null) {
+            List<OiOrderSubscribeListResponse> list = oiOrderService.findSubscribeOrderList(entity.getUserId(), "Y");
+
+            model.addAttribute("orderList", list);
+            model.addAttribute("separation", "ordered");
+        }
+        return isLogin("myPageTemplates/myPageOrderSubscribeList");
     }
 
     @GetMapping("/tracking")
@@ -167,19 +196,27 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
         return "myPageTemplates/myPageOrderDeliveryCheck";
     }
 
-    @GetMapping("/change-status/{orderNo}")
-    public String changeStatus(@PathVariable String orderNo,
+    @GetMapping("/{isSubscribe}/change-status/{orderNo}")
+    public String changeStatus(@PathVariable String isSubscribe,
+                               @PathVariable String orderNo,
                                ModelMap model) {
         HttpSession session = request.getSession();
         BiUser entity = (BiUser) session.getAttribute("loginUser");
 
+        List<OiOrderDetailResponse> list;
+
         if (entity != null) {
-            List<OiOrderDetailResponse> list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo);
+            if (isSubscribe.equals("single")) {
+                list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo, "N");
+            } else {
+                list = oiOrderService.findOrderDetails(entity.getUserId(), orderNo, "Y");
+            }
 
             model.addAttribute("details", list);
             model.addAttribute("separation", "ordered");
         }
-        return isLogin("myPageTemplates/myPageOrderDetailStatusChange");
+        return (isSubscribe.equals("single") ? isLogin("myPageTemplates/myPageOrderDetailStatusChange")
+                : isLogin("myPageTemplates/myPageOrderSubscribeDetailStatusChange"));
     }
 
     @GetMapping("/basket")
