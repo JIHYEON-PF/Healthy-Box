@@ -2,6 +2,8 @@ package com.pf.healthybox.service;
 
 import com.pf.healthybox.domain.orderInformation.OiBasket;
 import com.pf.healthybox.dto.response.orderInformationRes.OiBasketListResponse;
+import com.pf.healthybox.dto.response.orderInformationRes.OiSubscribeBasketListResponse;
+import com.pf.healthybox.dto.response.orderInformationRes.OiSubscribeBasketResponse;
 import com.pf.healthybox.repository.OiBasketRepository;
 import com.querydsl.core.Tuple;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,4 +66,27 @@ public class OiBasketService {
     public void deleteBasketItems(String userId, String[] productCode) {
         oiBasketRepository.deleteBasketItems(userId, productCode);
     }
+
+    public List<OiSubscribeBasketListResponse> returnSubscribeBasketList(String userId) {
+        List<Tuple> tuples = oiBasketRepository.showSubscribeBasketList(userId);
+        List<OiSubscribeBasketListResponse> res = new ArrayList<>();
+
+        for (Tuple tuple : tuples) {
+            res.add(
+                    OiSubscribeBasketListResponse.of(
+                            tuple.get(0, String.class),         //basketNo
+                            tuple.get(1, LocalDateTime.class),  //createdAt
+                            tuple.get(2, String.class),         //subscribeCode
+                            tuple.get(3, String.class),         //subscribeName
+                            tuple.get(4, int.class),            //amount
+                            tuple.get(5, LocalDateTime.class),  //startDate
+                            tuple.get(6, LocalDateTime.class),  //endDate
+                            tuple.get(7, String.class)          //sellerCode
+                    )
+            );
+        }
+
+        return res;
+    }
 }
+
