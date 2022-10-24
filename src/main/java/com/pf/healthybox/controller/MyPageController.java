@@ -219,17 +219,20 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
                 : isLogin("myPageTemplates/myPageOrderSubscribeDetailStatusChange"));
     }
 
-    @GetMapping("/basket")
-    public String showBasket(ModelMap model) {
+    @GetMapping("/basket/{isSubscribe}")
+    public String showBasket(@PathVariable String isSubscribe,
+                             ModelMap model) {
         HttpSession session = request.getSession();
         BiUser entity = (BiUser) session.getAttribute("loginUser");
 
         if (entity != null) {
-            model.addAttribute("basketList", oiBasketService.returnBasketList(entity.getUserId()));
+            model.addAttribute("basketList",
+                    (isSubscribe.equals("single") ? oiBasketService.returnBasketList(entity.getUserId())
+                            :oiBasketService.returnSubscribeBasketList(entity.getUserId())));
             model.addAttribute("separation", "basket");
         }
 
-        return isLogin("myPageTemplates/myPageBasket");
+        return (isSubscribe.equals("single") ? isLogin("myPageTemplates/myPageBasket") : isLogin("myPageTemplates/myPageSubscribeBasket"));
     }
 
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단
