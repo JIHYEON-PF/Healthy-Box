@@ -1,20 +1,20 @@
 insert into tbl_div_product (product_group, product_category, group_name, category_name, is_used)
-values ('001', '001', '정기구독','도시락', 'Y'), --정기구독 - 도시락
-('001', '002', '정기구독', '샐러드', 'Y'), --정기구독 - 샐러드
-('001', '003', '정기구독', '건강식품', 'Y'), --정기구독 - 건강식품
-('002', '001', '도시락', '일반 도시락', 'Y'), --도시락 - 일반 도시락
-('002', '002', '도시락', '다이어트 도시락','Y'), --도시락 - 다이어트 도시락
+values ('001', '001', '정기구독','도시락', 'Y'), -- 정기구독 - 도시락
+('001', '002', '정기구독', '샐러드', 'Y'), -- 정기구독 - 샐러드
+('001', '003', '정기구독', '건강식품', 'Y'), -- 정기구독 - 건강식품
+('002', '001', '도시락', '일반 도시락', 'Y'), -- 도시락 - 일반 도시락
+('002', '002', '도시락', '다이어트 도시락','Y'), -- 도시락 - 다이어트 도시락
 ('003', '001', '샐러드', '샐러드','Y'), -- 샐러드 - 샐러드
 ('004', '001', '샌드위치', '샌드위치','Y'), -- 샌드위치 - 샌드위치
-('005', '001', '건강식품', '건강식품','Y'), --건강식품 - 건강식품
-('006', '001', '간식', '간식','Y'), --간식 - 간식
-('007', '007', '음료', '음료','Y'); --음료 - 음료
+('005', '001', '건강식품', '건강식품','Y'), -- 건강식품 - 건강식품
+('006', '001', '간식', '간식','Y'), -- 간식 - 간식
+('007', '007', '음료', '음료','Y'); -- 음료 - 음료
 
-insert into tbl_subscribe_products (product_category, product_group, subscribe_code, subscribe_name, product_code)
-value ('001', '001', '001', '직장인을 위한 점심 도시락', '10001'),
-    ('001', '001', '001', '직장인을 위한 점심 도시락', '10002'),
-    ('001', '001', '002', '자취생을 위한 집밥 도시락', '00001'),
-    ('001', '001', '002', '자취생을 위한 집밥 도시락', '10001');
+insert into tbl_subscribe_products (product_category, product_group, subscribe_code, subscribe_name, product_code, seller_code)
+value ('001', '001', '001', '직장인을 위한 점심 도시락', '10001', '00001'),
+    ('001', '001', '001', '직장인을 위한 점심 도시락', '10002', '00001'),
+    ('001', '001', '002', '자취생을 위한 집밥 도시락', '00001', '00001'),
+    ('001', '001', '002', '자취생을 위한 집밥 도시락', '10001', '00001');
 
 insert into tbl_user (user_id, user_pw, auth_div, auth_level, user_name, nickname, comp_name, zipcode, address1, address2, serial_code, phone_number, email, reco_code, is_del, created_at, updated_at)
 values('testId', 'testPw', 'USE', 'USE', 'testName', 'testNickname', '', '05353', '테스트 기본 주소', '테스트 상세 주소', '9203161234567', '01012341234', 'testId@email.com', 'ABC12345', 'N', now(), now()),
@@ -58,3 +58,11 @@ values('00001', 2, '00001', 'testId', '2022-09-08 15:00:01', '2022-09-08 15:00:0
       ('00003', 1, '00002', 'testId', '2022-09-08 15:00:02', '2022-09-08 15:00:02'),
       ('00002', 1, '00001', 'testId', '2022-09-08 15:00:03', '2022-09-08 15:00:03'),
       ('00004', 1, '00002', 'testId', '2022-09-08 15:00:04', '2022-09-08 15:00:04');
+
+
+insert into tbl_subscribe_basket(basket_no, user_id, subscribe_code, product_code, seller_code, product_idx, qty, delivery_date, created_at, updated_at)
+values (concat('SUB',substr(replace(replace(replace(cast(now() as char),'-',''),':',''),' ','-'),3,16)),'testId', '001', '10001', '00001', 1, 1, DATE_ADD(now(), INTERVAL 1 DAY), now(), now()),
+       (concat('SUB',substr(replace(replace(replace(cast(now() as char),'-',''),':',''),' ','-'),3,16)),'testId', '001', '10002', '00001', 2, 2, DATE_ADD(now(), INTERVAL 2 DAY), now(), now()),
+       (concat('SUB',substr(replace(replace(replace(cast(DATE_ADD(now(), INTERVAL 1 DAY) as char),'-',''),':',''),' ','-'),3,16)),'testId', '001', '10002', '00001', 1, 1, DATE_ADD(now(), INTERVAL 2 DAY), DATE_ADD(now(), INTERVAL 1 DAY), DATE_ADD(now(), INTERVAL 1 DAY)),
+       (concat('SUB',substr(replace(replace(replace(cast(DATE_ADD(now(), INTERVAL 1 DAY) as char),'-',''),':',''),' ','-'),3,16)),'testId', '001', '10002', '00001', 2, 1, DATE_ADD(now(), INTERVAL 3 DAY), DATE_ADD(now(), INTERVAL 1 DAY), DATE_ADD(now(), INTERVAL 1 DAY))
+;
