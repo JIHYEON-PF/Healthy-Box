@@ -64,11 +64,11 @@ public class OiOrderRepositoryCustomImpl extends QuerydslRepositorySupport imple
                         oiOrder.createdAt,
                         oiOrder.amount.sum().as("amount"),
                         oiOrder.status,
-                        subscribeProducts.subscribe_name,
+                        subscribeProducts.subscribeName,
                         oiOrder.deliveryDate.min().as("startDate"),
                         oiOrder.deliveryDate.max().as("endDate"))
                 .from(oiOrder)
-                .leftJoin(subscribeProducts).on(oiOrder.subscribeCode.eq(subscribeProducts.subscribe_code).and(oiOrder.productCode.eq(subscribeProducts.product_code)))
+                .leftJoin(subscribeProducts).on(oiOrder.subscribeCode.eq(subscribeProducts.subscribeCode).and(oiOrder.productCode.eq(subscribeProducts.productCode)))
                 .where(oiOrder.userId.eq(userId).and(oiOrder.isSubscribe.eq(isSubscribe)))
                 .groupBy(oiOrder.orderNo)
                 .orderBy(oiOrder.createdAt.desc())

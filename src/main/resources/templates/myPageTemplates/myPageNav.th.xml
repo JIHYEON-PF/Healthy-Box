@@ -5,9 +5,11 @@
 
         <attr sel="#myPageTitle" th:href="@{/mypage/order-list/single}"/>
         <attr sel="#ordered" th:href="@{/mypage/order-list/single}"/>
-        <attr sel="#ordered-sub-single" th:href="@{/mypage/order-list/single}"/>
-        <attr sel="#ordered-sub-subscribe" th:href="@{/mypage/order-list/subscribe}"/>
-        <attr sel="#basket" th:href="@{/mypage/basket}"/>
+            <attr sel="#ordered-sub-single" th:href="@{/mypage/order-list/single}"/>
+            <attr sel="#ordered-sub-subscribe" th:href="@{/mypage/order-list/subscribe}"/>
+        <attr sel="#basket" th:href="@{/mypage/basket/single}"/>
+            <attr sel="#basket-sub-single" th:href="@{/mypage/basket/single}"/>
+            <attr sel="#basket-sub-subscribe" th:href="@{/mypage/basket/subscribe}"/>
         <attr sel="#delivery" th:href="@{/mypage/delivery}"/>
         <attr sel="#user-info" th:href="@{/mypage/check-pw?separation=modify}"/>
         <attr sel="#point" th:href="@{/mypage/point}"/>

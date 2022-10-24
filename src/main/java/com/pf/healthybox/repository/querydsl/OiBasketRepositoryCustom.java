@@ -14,4 +14,6 @@ public interface OiBasketRepositoryCustom {
     void updateBasketQty(String userId, String productCode, Integer qty);
 
     void deleteBasketItems(String userId, String[] productCode);
+
+    List<Tuple> showSubscribeBasketList(String userId);
 }

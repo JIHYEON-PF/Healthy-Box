@@ -28,6 +28,10 @@
     width: 10%;
 }
 
+#nameSectDeliveryDate, #nameSectDetailInform {
+    width: 12%;
+}
+
 #nameSectUnitCost {
     width: 12%;
 }
@@ -59,7 +63,7 @@
     text-align: left;
 }
 
-.dataSectQty {
+.dataSectQty, .dataSectDeliveryDate {
     text-align: center;
 }
 
@@ -127,4 +131,25 @@
     border:none;
     background-color: rgb(248,249,250);
     color: rgba(84,146,91,1);
+}
+
+.dataSectDetailInform {
+    text-align: center;
+}
+
+.btnDetailInform {
+    text-align: center;
+    border: 1px solid rgba(84,146,91,0.8);
+    border-radius: 10px;
+    background-color: rgba(248,249,250);
+    color: rgba(84,146,91,1);
+    font-size: 14px;
+}
+
+.btnDetailInform:hover {
+    border: 1px solid rgba(84,146,91,0.8);
+    border-radius: 10px;
+    background-color: rgba(84,146,91,0.5);
+    color: white;
+    font-size: 14px;
 }
