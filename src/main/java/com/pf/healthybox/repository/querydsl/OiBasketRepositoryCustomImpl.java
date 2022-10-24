@@ -2,14 +2,14 @@ package com.pf.healthybox.repository.querydsl;
 
 import com.pf.healthybox.domain.orderInformation.OiBasket;
 import com.pf.healthybox.domain.orderInformation.QOiBasket;
+import com.pf.healthybox.domain.orderInformation.QOiSubscribeBasket;
 import com.pf.healthybox.domain.productInformation.QPiProduct;
+import com.pf.healthybox.domain.productInformation.QPiSubscribeProducts;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.CaseBuilder;
-import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class OiBasketRepositoryCustomImpl extends QuerydslRepositorySupport implements OiBasketRepositoryCustom {
@@ -87,5 +87,32 @@ public class OiBasketRepositoryCustomImpl extends QuerydslRepositorySupport impl
             .execute();
 
 
+    }
+
+    @Override
+    public List<Tuple> showSubscribeBasketList(String userId) {
+
+        QOiSubscribeBasket oiSubscribeBasket = QOiSubscribeBasket.oiSubscribeBasket;
+        QPiSubscribeProducts subscribeProducts = QPiSubscribeProducts.piSubscribeProducts;
+        QPiProduct piProduct = QPiProduct.piProduct;
+
+        return queryFactory
+                .select(oiSubscribeBasket.basketNo,
+                        oiSubscribeBasket.createdAt,
+                        oiSubscribeBasket.subscribeCode,
+                        subscribeProducts.subscribeName,
+                        (piProduct.price.multiply(oiSubscribeBasket.qty).sum()).as("amount"),
+                        oiSubscribeBasket.deliveryDate.min().as("startDate"),
+                        oiSubscribeBasket.deliveryDate.max().as("endDate"),
+                        oiSubscribeBasket.sellerCode)
+                .from(oiSubscribeBasket)
+                .leftJoin(subscribeProducts).on(oiSubscribeBasket.subscribeCode.eq(subscribeProducts.subscribeCode)
+                        .and(oiSubscribeBasket.productCode.eq(subscribeProducts.productCode)))
+                .leftJoin(piProduct).on(oiSubscribeBasket.productCode.eq(piProduct.piProductPk.productCode)
+                        .and(subscribeProducts.sellerCode.eq(piProduct.piProductPk.sellerCode)))
+                .where(oiSubscribeBasket.userId.eq(userId))
+                .groupBy(oiSubscribeBasket.basketNo)
+                .orderBy(oiSubscribeBasket.basketNo.desc())
+                .fetch();
     }
 }
