@@ -235,6 +235,21 @@ public class MyPageController { //마이페이지 관련 페이지에 대한 컨
         return (isSubscribe.equals("single") ? isLogin("myPageTemplates/myPageBasket") : isLogin("myPageTemplates/myPageSubscribeBasket"));
     }
 
+    @GetMapping("/basket/subscribe/{basketNo}")
+    public String showBasketDetail(@PathVariable String basketNo,
+                                   ModelMap model) {
+        HttpSession session = request.getSession();
+        BiUser entity = (BiUser) session.getAttribute("loginUser");
+
+        if (entity != null) {
+            model.addAttribute("details", oiBasketService.returnSubscribeBasketDetail(entity.getUserId(), basketNo));
+            model.addAttribute("products", oiBasketService.returnSubscribeProducts(entity.getUserId(), basketNo));
+            model.addAttribute("separation", "basket");
+        }
+
+        return isLogin("myPageTemplates/myPageSubscribeBasketDetail");
+    }
+
     // 로그인 여부를 확인하여 로그인 페이지로 보낼것인지 입력 페이지로 이동할 것인지 판단
     private String isLogin(String location) {
 
