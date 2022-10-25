@@ -153,3 +153,115 @@
     color: white;
     font-size: 14px;
 }
+
+/* 정기배송 디테일 CSS */
+.mainTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(84,146,91,0.8);
+}
+
+.periodTitle {
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: -1px 0 rgba(84,146,91,0.8), 0 1px rgba(84,146,91,0.8), 1px 0 rgba(84,146,91,0.8), 0 -1px rgba(84,146,91,0.8);
+    color: rgba(248,249,250);
+}
+
+#subscribeBasketDetailTable {
+    width: 100%;
+    border: 1px solid rgba(84,146,91,0.8);
+}
+
+#subscribeBasketDetailTableHead th {
+    background-color: rgba(83,146,91,0.8);
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+}
+
+#subscribeBasketDetailTableBody td {
+    border-bottom: 1px solid rgba(84,146,91,0.8);
+    padding: 7px;
+}
+
+#nameSectSubscribeDetailImg {
+    width: 15%;
+}
+
+#nameSectSubscribeDetailName {
+    width: auto;
+}
+
+#nameSectSubscribeDetailDeliveryDate {
+    width: 12%;
+}
+
+#nameSectSubscribeDetailQty, #nameSectSubscribeDetailUnitCost, #nameSectSubscribeDetailAmount {
+    width: 12%;
+}
+
+.dataSectSubscribeDetailImg img {
+    width: 120px;
+    height: 80px;
+}
+
+.dataSectSubscribeDetailName {
+    color: rgba(84,146,91,0.8);
+    text-align: left;
+}
+
+.dataSectSubscribeDetailModifyDate {
+    border: 1px solid rgba(84,146,91,0.8);
+    border-radius: 5px;
+    font-size: 14px;
+    color: rgba(84,146,91,0.8);
+    background-color: rgb(248,249,250); /* bg-light */
+    width: 95px;
+}
+
+.dataSectChangeSubscribeQty {
+    border:none;
+    background-color: rgb(248,249,250);
+    color: rgba(84,146,91,1);
+}
+
+.dataSectSubscribeQtyBox {
+    width: 35px;
+    height: 30px;
+    text-align: center;
+}
+
+.dataSectSubscribeDetailDeliveryDate, .dataSectSubscribeDetailUnitCost, .dataSectSubscribeDetailAmount {
+    text-align: center;
+    color: rgba(84,146,91,0.8);
+}
+
+.dataSectSubscribeDetailNameSelect {
+    border: 1px solid rgba(84,146,91,0.8);
+    border-radius: 2px;
+    width: 100%;
+    color: rgba(84,146,91,0.8);
+}
+
+#subscribeBasketDetailPriceTable {
+    border: 1px solid rgba(84,146,91,0.8);
+}
+
+#subscribeBasketDetailPriceTableHead th {
+    text-align: center;
+    background-color: rgba(84,146,91,0.5);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 150px;
+}
+
+#subscribeBasketDetailPriceTableBody td {
+    border-top: 1px solid rgba(84,146,91,0.8);
+    background-color: rgb(248,249,250);
+    color: rgba(84,146,91,0.8);
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
