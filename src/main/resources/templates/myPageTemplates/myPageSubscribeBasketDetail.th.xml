@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<thlogic>
+    <attr sel="#header" th:replace="header :: header"/>
+    <attr sel="#footer" th:replace="footer :: footer"/>
+    <attr sel="#myPageNav" th:replace="myPageTemplates/myPageNav :: #myPageNavigation"/>
+
+    <attr sel="#subscribeBasketMainInformation" th:object="${details[0]}">
+        <attr sel="#subscribeTitle" th:text="*{subscribeName}"/>
+        <attr sel="#subscribeDeliveryPeriod" th:text="*{#temporals.format(startDate, 'yyyy-MM-dd')} + ' ~ ' + *{#temporals.format(endDate, 'yyyy-MM-dd')}"/>
+    </attr>
+
+    <attr sel="#subscribeBasketDetailTableBody" th:remove="all-but-first">
+        <attr sel="tr[0]" th:each="detail:${details}">
+            <attr sel=".dataSectSubscribeDetailImg/img" th:src="@{'/image/products/'+${detail.productCode}+'.jpg'}" th:alt="${detail.productCode}"/>
+            <attr sel=".dataSectSubscribeDetailNameSelectOption" th:each="product:${products}" th:text="${product.productName}" th:value="${product.productCode} + '|' + ${product.price}" th:selected="${product.productName} == ${detail.productName}"/>
+            <attr sel=".dataSectSubscribeDetailIdx" th:text="${detail.productIdx}"/>
+            <attr sel=".dataSectSubscribeDetailSellerCode" th:text="${detail.sellerCode}"/>
+            <attr sel=".dataSectSubscribeDetailModifyDate" th:value="${#temporals.format(detail.deliveryDate, 'yyyy-MM-dd')}"/>
+            <attr sel=".dataSectSubscribeQtyBox" th:value="${detail.qty}"/>
+            <attr sel=".dataSectSubscribeDetailUnitCost" th:text="${#numbers.formatInteger(detail.price, 0, 'COMMA')} + ' 원'" th:value="${detail.price}"/>
+            <attr sel=".dataSectSubscribeDetailAmount" th:text="${#numbers.formatInteger(detail.amount, 0, 'COMMA')} + ' 원'" th:value="${detail.amount}"/>
+        </attr>
+    </attr>
+
+<!--    <attr sel="#basketTableBody" th:remove="all-but-first">-->
+<!--        <attr sel="tr[0]" th:each="basket:${basketList}">-->
+<!--            <attr sel=".itemCheck" th:value="${basket.basketNo}"/>-->
+<!--            <attr sel=".dataSectSellerCode" th:text="${basket.sellerCode}"/>-->
+<!--            <attr sel=".dataSectImg/img" th:src="@{'/image/subscribeCodes/'+${basket.subscribeCode}+'.jpg'}" th:alt="${basket.subscribeCode}"/>-->
+<!--            <attr sel=".dataSectProdCode" th:text="${basket.subscribeCode}"/>-->
+<!--            <attr sel=".dataSectProdName" th:text="${basket.subscribeName}"/>-->
+<!--            <attr sel=".dataSectDeliveryDate" th:text="${#temporals.format(basket.startDate, 'yyyy-MM-dd') + ' ~ ' + #temporals.format(basket.endDate, 'yyyy-MM-dd')}"/>-->
+<!--            <attr sel=".dataSectAmount" th:text="${#numbers.formatInteger(basket.amount, 0, 'COMMA')} + ' 원'" th:value="${basket.amount}"/>-->
+<!--        </attr>-->
+<!--    </attr>-->
+</thlogic>

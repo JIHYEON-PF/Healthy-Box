@@ -1,5 +1,6 @@
 package com.pf.healthybox.controller.apiController;
 
+import com.pf.healthybox.dto.request.orderInformationReq.OiSubscribeBasketRequest;
 import com.pf.healthybox.service.OiBasketService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,16 @@ public class BasketApiController {
     @DeleteMapping("/delete-basket")
     public void deleteBasketItems(@RequestParam String userId, @RequestParam String[] productCode) {
         oiBasketService.deleteBasketItems(userId, productCode);
+    }
+
+    @GetMapping("/find-subscribe-code")
+    public String findSubscribeCode(@RequestParam String userId, @RequestParam String basketNo) {
+        return oiBasketService.findSubscribeCodeByUserIdAndBasketNo(userId, basketNo);
+    }
+
+    @PutMapping("/modify-subscribe-basket")
+    public boolean modifySubscribeBasket(@RequestBody OiSubscribeBasketRequest req) {
+        return oiBasketService.modifySubscribeBasket(req.toDto());
     }
 
 }
