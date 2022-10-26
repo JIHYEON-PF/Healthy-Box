@@ -212,4 +212,13 @@ public class OiBasketRepositoryCustomImpl extends QuerydslRepositorySupport impl
                 .where(oiSubscribeBasket.productIdx.eq(productIdx), oiSubscribeBasket.userId.eq(userId), oiSubscribeBasket.basketNo.eq(basketNo))
                 .fetchOne();
     }
+
+    @Override
+    public void deleteSubscribeBasketItems(String userId, String basketNo) {
+        QOiSubscribeBasket oiSubscribeBasket = QOiSubscribeBasket.oiSubscribeBasket;
+        queryFactory
+                .delete(oiSubscribeBasket)
+                .where(oiSubscribeBasket.userId.eq(userId), oiSubscribeBasket.basketNo.eq(basketNo))
+                .execute();
+    }
 }

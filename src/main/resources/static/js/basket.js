@@ -96,10 +96,35 @@ $(document).on("click",".btnOrder", function () {
     location.replace("/order/single-item/" + codes);
 });
 
+/** 정기배송 리스트 js */
+/** 주문 삭제 */
+$(document).on("click", ".btnDeleteSubscribeBasket", function () {
+    let basketNo = $(this).closest('tr').find('.dataSectBasketNo').text();
+    let userId = $("#loginBtnUnSession").attr("value");
+
+    $.ajax({
+        url: "/api/basket/delete-subscribe-basket?userId="+userId+"&basketNo="+basketNo,
+        method: "DELETE",
+
+        success: function (data) {
+            if (data) {
+                location.reload();
+            }
+        },
+        error: function (request, status, error) {
+            console.log("에러");
+        },
+        complete: function () {
+            console.log("완료");
+        }
+    });
+});
+
+
 /** 정기배송 디테일 관련 js */
 /** 정기배송 리스트 > 디테일로 이동 작업 */
 $(document).on("click", ".btnDetailInform", function () {
-    let basketNo = $(this).closest('tr').find('.itemCheck').val();
+    let basketNo = $(this).closest('tr').find('.dataSectBasketNo').text();
     $(location).attr("pathname", "/mypage/basket/subscribe/" + basketNo);
 });
 
