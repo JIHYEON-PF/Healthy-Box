@@ -24,4 +24,6 @@ public interface OiBasketRepositoryCustom {
     String findSubscribeCodeByUserIdAndBasketNo(String userId, String basketNo);
 
     OiSubscribeBasket findByUserIdAndBasketNoAndProductIdx(String userId, String basketNo, int productIdx);
+
+    void deleteSubscribeBasketItems(String userId, String basketNo);
 }

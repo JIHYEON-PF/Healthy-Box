@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -147,6 +148,16 @@ public class OiBasketService {
             entity.setQty(dto.qty());
             return true;
         } else {
+            return false;
+        }
+    }
+
+    @Transactional
+    public boolean deleteSubscribeBasketItems(String userId, String basketNo) {
+        try {
+            oiBasketRepository.deleteSubscribeBasketItems(userId, basketNo);
+            return true;
+        } catch (EntityNotFoundException e) {
             return false;
         }
     }
