@@ -44,4 +44,10 @@ public class BasketApiController {
         return oiBasketService.modifySubscribeBasket(req.toDto());
     }
 
+    @DeleteMapping("/delete-subscribe-basket")
+    public boolean deleteSubscribeBasketItems(@RequestParam String userId,
+                                              @RequestParam String basketNo) {
+        return oiBasketService.deleteSubscribeBasketItems(userId, basketNo);
+    }
+
 }
