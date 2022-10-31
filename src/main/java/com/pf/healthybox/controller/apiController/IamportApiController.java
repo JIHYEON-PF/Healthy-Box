@@ -48,7 +48,7 @@ public class IamportApiController extends IamportClient {
     //결제 취소
     @PostMapping("/cancel-payment")
     public HashMap<String, Object> cancelPaymentByMerchantUid(@RequestBody OiOrderCancelDataRequest req) throws IamportResponseException, IOException {
-        CancelData cancelData = new CancelData(req.merchantUid(), false);
+        CancelData cancelData = new CancelData(req.merchantUid(), false, req.amount());
         cancelData.setReason(req.reason());
         cancelData.setRefund_holder(req.refundHolder());
         cancelData.setRefund_account(req.refundAccount());
@@ -65,6 +65,7 @@ public class IamportApiController extends IamportClient {
         HashMap<String, Object> result = new HashMap<>();
         result.put("code", response.getCode());
         result.put("msg", response.getMessage());
+        result.put("response", response.getResponse());
 
         return result;
     }
