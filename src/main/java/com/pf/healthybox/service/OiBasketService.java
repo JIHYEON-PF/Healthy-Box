@@ -108,7 +108,7 @@ public class OiBasketService {
                              tuple.get(7, String.class),        //subscribeCode
                              tuple.get(8, String.class),        //subscribeName
                              tuple.get(9, int.class),           //price
-                             tuple.get(10, int.class),           //amount
+                             tuple.get(10, int.class),          //amount
                              tuple.get(11, LocalDateTime.class),//startDate
                              tuple.get(12, LocalDateTime.class) //endDate
                      )
