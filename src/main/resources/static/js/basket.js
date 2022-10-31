@@ -231,7 +231,6 @@ $(document).on("click", "#btnConfirmSubscribeModify", function () {
             "deliveryDate" : $(this).closest('tr').find('.dataSectSubscribeDetailModifyDate').val() + 'T00:00:00'
         }
 
-
         let json_data = JSON.stringify(modify_data);
 
         $.ajax({
