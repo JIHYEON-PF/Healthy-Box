@@ -229,48 +229,16 @@ $(document).on("click", '.btnModifyDeliveryDate', function () {
 });
 
 $(document).on("click", "#changeSubscribeStatusDetail", function () {
-    /**
-     * 1. 정기배송 결제에 대한 정보를 백서버로 전달
-     * 2. 백에서 주문에 대한 상태 변경 후 정리된 환불 금액을 아임포트 결제모듈을 통해 결제 취소
-     *      (주문 상태가 변경된 후 결제가 취소되는 흐름이 자연스러움 / 주문상태 변경에서 오류가 발생할 경우 결제취소 안되도록)
-     * 3. 취소 관련 사유 테이블 입력
-     * */
-
     /** 백 서버로 보낼 주문 내역 관련 데이터 */
-    let orderNo = $('#orderDateSectOrderNo').text();
+    let orderNo = $(location).attr('pathname').split('/')[4];
     let userId = $('#loginBtnUnSession').attr('value');
+
+    let continue_flag = true;
 
     /** 주문 상태 변경 사유 테이블 입력 데이터 */
     let title = $('#changeStatusTitle').val();
     let content = $('#changeStatusContent').val();
     let option = $('#changeStatusOptions').val();
-
-    /** 백 서버 전송 */
-    let input_data = {
-        'orderNo': orderNo,
-        'userId' : userId,
-        'sellerCode': '',
-        'division': option,
-        'title': title,
-        'content': content
-    }
-    $.ajax({
-        url : "/api/order/change-subscribe-status",
-        data : JSON.stringify(input_data),
-        method : "POST",
-        contentType: "application/json; charset=utf-8",
-        async: false,
-
-        success: function (data) {
-            console.log("성공");
-        },
-        error: function (request, status, error) {
-            console.log("에러");
-        },
-        complete: function () {
-            console.log("완료");
-        }
-    });
 
     /** 결제 취소 정보 Iamport 서버 전송 api 실행 */
     let cancel_data = {
@@ -292,6 +260,7 @@ $(document).on("click", "#changeSubscribeStatusDetail", function () {
         "reason" : title,
         "amount" : $('#paymentDataSectRevocableCost').attr('value')
     }
+
     let payment_json = JSON.stringify(cancel_data);
 
     if (option.toLowerCase() === 'cancel' || option.toLowerCase() === 'return') {
@@ -305,6 +274,7 @@ $(document).on("click", "#changeSubscribeStatusDetail", function () {
             success: function (data) {
                 if (data.code !== 0) {
                     alert("결제 취소에 실패하였습니다.\n실패 사유 : " + data.msg);
+                    continue_flag = false;
                 }
             },
             error: function (request, status, error) {
@@ -314,6 +284,41 @@ $(document).on("click", "#changeSubscribeStatusDetail", function () {
                 console.log('완료');
             }
         });
+    }
+
+    if (continue_flag || option.toLowerCase() === 'exchange') {
+        /** 백 서버 전송 */
+        let input_data = {
+            'orderNo': orderNo,
+            'userId' : userId,
+            'sellerCode': '',
+            'division': option,
+            'title': title,
+            'content': content
+        }
+
+        $.ajax({
+            url : "/api/order/change-subscribe-status",
+            data : JSON.stringify(input_data),
+            method : "POST",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+
+            success: function (data) {
+                console.log("성공");
+            },
+            error: function (request, status, error) {
+                console.log("에러");
+            },
+            complete: function () {
+                console.log("완료");
+            }
+        });
+    }
+
+    if (continue_flag) {
+        alert("주문 상태가 변경되었습니다.");
+        window.location = '/mypage/order-list/subscribe';
     }
 });
 

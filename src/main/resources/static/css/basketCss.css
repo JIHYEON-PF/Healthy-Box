@@ -16,6 +16,10 @@
     width: 3%;
 }
 
+#nameSectCheckbox input, .dataSectCheckbox input {
+    accent-color: rgba(84,146,91,0.1);
+}
+
 #nameSectImg {
     width: 15%;
 }

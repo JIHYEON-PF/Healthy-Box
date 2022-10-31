@@ -266,7 +266,7 @@ public class OiOrderService {
             // 기존 주문 정보의 orderIdx 값을 가져와서 해당 주문 정보의 상태를 변경
             for (OiOrder entity : entityList) {
                 if (!entity.getStatus().getDescription().equals("주문")) {
-                    entity.setStatus(Status.valueOf(dto.division()));
+                    entity.setStatus(Status.valueOf(dto.division().toUpperCase()));
                 }
             }
 
