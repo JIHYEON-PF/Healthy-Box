@@ -2,4 +2,32 @@
 <thlogic>
     <attr sel="#header" th:replace="header :: header"/>
     <attr sel="#footer" th:replace="footer :: footer"/>
+
+    <attr sel="#orderSubscribeTitle" th:text="'[ '  + ${items[0].subscribeName} + ' ] 상품 목록'" th:value="${items[0].subscribeName}"/>
+    <attr sel="#orderSubscribeCode" th:text="${items[0].subscribeCode}"/>
+
+    <attr sel="#orderSubscribeItemTableBody" th:remove="all-but-first">
+        <attr sel="tr[0]" th:each="item:${items}">
+            <attr sel=".dataSectSubscribeItemListIsModify" th:text="N"/>
+            <attr sel=".dataSectSubscribeItemListIdx" th:text="${item.productIdx}"/>
+            <attr sel=".dataSectSubscribeItemListSellerCode" th:text="${item.sellerCode}"/>
+            <attr sel=".dataSectSubscribeItemListImg/img" th:src="@{'/image/products/'+${item.productCode}+'.jpg'}" th:alt="${item.productCode}"/>
+            <attr sel=".dataSectSubscribeItemListNameSelectOption" th:each="product:${products}" th:text="${product.productName}" th:value="${product.productCode} + '|' + ${product.price}" th:selected="${product.productName} == ${item.productName}"/>
+            <attr sel=".dataSectSubscribeItemListDeliveryDateDetail" th:value="${#temporals.format(item.deliveryDate, 'yyyy-MM-dd')}"/>
+            <attr sel=".dataSectSubscribeQtyBox" th:value="${item.qty}"/>
+            <attr sel=".dataSectSubscribeItemListUnitCost" th:value="${item.price}" th:text="${#numbers.formatInteger(item.price, 0, 'COMMA')} + ' 원'"/>
+            <attr sel=".dataSectSubscribeItemListAmount" th:value="${item.amount}" th:text="${#numbers.formatInteger(item.amount, 0, 'COMMA')} + ' 원'"/>
+        </attr>
+    </attr>
+
+    <attr sel="#dataSectOrderSubscribeDeliveryName" th:text="${delivery.deliveryName}"/>
+    <attr sel="#dataSectOrderSubscribeDeliveryIdx" th:text="${delivery.idx}"/>
+    <attr sel="#dataSectOrderSubscribeDeliveryZipcode" th:text="${delivery.zipcode}"/>
+    <attr sel="#dataSectOrderSubscribeDeliveryAddress1" th:text="${delivery.address1}"/>
+    <attr sel="#dataSectOrderSubscribeDeliveryAddress2" th:text="${delivery.address2}"/>
+
+    <attr sel="#dataSectOrderSubscribePayerName" th:text="${user.userName}"/>
+    <attr sel="#dataSectOrderSubscribePayerEmail" th:text="${user.email}"/>
+    <attr sel="#dataSectOrderSubscribePayerTel" th:text="${user.phoneNumber}"/>
+
 </thlogic>

@@ -93,7 +93,7 @@ $(document).on("click",".btnOrder", function () {
         }
     });
 
-    location.replace("/order/single-item/" + codes);
+    $(location).attr("pathname", "/order/single-item/" + codes);
 });
 
 /** 정기배송 리스트 js */
@@ -118,6 +118,13 @@ $(document).on("click", ".btnDeleteSubscribeBasket", function () {
             console.log("완료");
         }
     });
+});
+
+/** 리스트 - 주문 */
+$(document).on("click", ".btnOrderSubscribeBasket", function () {
+    let basketNo = $(this).closest("tr").find(".dataSectBasketNo").text();
+    let userId = $("#loginBtnUnSession").attr("value");
+    window.location = "/order/subscribe?userId=" + userId + "&basketNo=" + basketNo;
 });
 
 
@@ -224,7 +231,6 @@ $(document).on("click", "#btnConfirmSubscribeModify", function () {
             "deliveryDate" : $(this).closest('tr').find('.dataSectSubscribeDetailModifyDate').val() + 'T00:00:00'
         }
 
-        console.log(modify_data);
 
         let json_data = JSON.stringify(modify_data);
 
