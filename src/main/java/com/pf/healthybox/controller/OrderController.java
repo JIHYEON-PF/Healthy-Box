@@ -2,6 +2,7 @@ package com.pf.healthybox.controller;
 
 import com.pf.healthybox.domain.baseInformation.BiUser;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderProductQtyResponse;
+import com.pf.healthybox.service.OiBasketService;
 import com.pf.healthybox.service.OiDeliverService;
 import com.pf.healthybox.service.OiOrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,11 +12,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -25,18 +26,30 @@ public class OrderController {
 
     private final OiOrderService oiOrderService;
     private final OiDeliverService oiDeliverService;
+    private final OiBasketService oiBasketService;
     private final HttpServletRequest request;
 
     public OrderController(@Autowired OiOrderService oiOrderService,
-                           OiDeliverService oiDeliverService, @Autowired HttpServletRequest request) {
+                           OiDeliverService oiDeliverService, OiBasketService oiBasketService, @Autowired HttpServletRequest request) {
         this.oiOrderService = oiOrderService;
         this.oiDeliverService = oiDeliverService;
+        this.oiBasketService = oiBasketService;
         this.request = request;
     }
 
-    @GetMapping("/subscribe/{items}")
-    public String showOrderSubscribePage(@PathVariable String[] items, ModelMap model) {
-        model.addAttribute("items", Arrays.stream(items).toList());
+    @GetMapping("/subscribe")
+    public String showOrderSubscribePage(@RequestParam String userId,
+                                         @RequestParam String basketNo,
+                                         ModelMap model) {
+        HttpSession session = request.getSession();
+        BiUser entity = (BiUser) session.getAttribute("loginUser");
+
+        if (entity != null) {
+            model.addAttribute("items", oiBasketService.returnSubscribeBasketDetail(userId, basketNo));
+            model.addAttribute("products", oiBasketService.returnSubscribeProducts(userId, basketNo));
+            model.addAttribute("delivery", oiDeliverService.getDefaultDelivery(userId));
+            model.addAttribute("user", entity);
+        }
         return isLogin("orderTemplates/orderSubscribe");
     }
 
@@ -73,8 +86,9 @@ public class OrderController {
         return isLogin("orderTemplates/orderSingleItem");
     }
 
-    @GetMapping("/order-delivery/{userId}")
-    public String getDeliveryInform(@PathVariable String userId,
+    @GetMapping("/order-delivery/{isSubscribe}/{userId}")
+    public String getDeliveryInform(@PathVariable String isSubscribe,
+                                    @PathVariable String userId,
                                     ModelMap model) {
         model.addAttribute("default", oiDeliverService.getDefaultDelivery(userId));
         model.addAttribute("registered", oiDeliverService.getRegisteredDelivery(userId));
