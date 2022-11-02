@@ -3,12 +3,8 @@ package com.pf.healthybox.service;
 import com.pf.healthybox.domain.config.PayMethod;
 import com.pf.healthybox.domain.config.Status;
 import com.pf.healthybox.domain.orderInformation.OiOrder;
-import com.pf.healthybox.domain.orderInformation.OiOrderStatusContent;
 import com.pf.healthybox.domain.productInformation.PiProduct;
-import com.pf.healthybox.dto.orderInformationDto.OiOrderDetailDto;
 import com.pf.healthybox.dto.orderInformationDto.OiOrderStatusContentDto;
-import com.pf.healthybox.dto.orderInformationDto.OiOrderSubscribeListDto;
-import com.pf.healthybox.dto.request.orderInformationReq.OiOrderDetailRequest;
 import com.pf.healthybox.dto.request.orderInformationReq.OiOrderRequest;
 import com.pf.healthybox.dto.request.orderInformationReq.OiOrderStatusContentRequest;
 import com.pf.healthybox.dto.response.orderInformationRes.OiOrderDetailResponse;
@@ -39,16 +35,16 @@ public class OiOrderService {
 
     private final OiOrderRepository oiOrderRepository;
     private final PiProductRepository piProductRepository;
-    private final EnvironmentRepository environmentRepository;
+    private final EnvService envService;
     private final OiOrderStatusContentRepository oiOrderStatusContentRepository;
 
     public OiOrderService(@Autowired OiOrderRepository oiOrderRepository,
                           @Autowired PiProductRepository piProductRepository,
                           @Autowired EnvironmentRepository environmentRepository,
-                          @Autowired OiOrderStatusContentRepository oiOrderStatusContentRepository) {
+                          EnvService envService, @Autowired OiOrderStatusContentRepository oiOrderStatusContentRepository) {
         this.oiOrderRepository = oiOrderRepository;
         this.piProductRepository = piProductRepository;
-        this.environmentRepository = environmentRepository;
+        this.envService = envService;
         this.oiOrderStatusContentRepository = oiOrderStatusContentRepository;
     }
 
@@ -151,7 +147,7 @@ public class OiOrderService {
     }
 
     public String getLogisticsApiCode() {
-        return environmentRepository.findLogisticsApiCode();
+        return envService.getEnvironmentMapping().get("logisticsApiCode");
     }
 
     @Transactional

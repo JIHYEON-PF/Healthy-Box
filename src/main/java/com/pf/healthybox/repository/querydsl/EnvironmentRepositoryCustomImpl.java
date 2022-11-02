@@ -2,8 +2,12 @@ package com.pf.healthybox.repository.querydsl;
 
 import com.pf.healthybox.domain.adminConfig.Environment;
 import com.pf.healthybox.domain.adminConfig.QEnvironment;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class EnvironmentRepositoryCustomImpl extends QuerydslRepositorySupport implements EnvironmentRepositoryCustom {
 
@@ -16,15 +20,15 @@ public class EnvironmentRepositoryCustomImpl extends QuerydslRepositorySupport i
     }
 
     @Override
-    public String findLogisticsApiCode() {
+    public List<Tuple> fetchEnvData() {
 
-        QEnvironment envir = QEnvironment.environment;
+        QEnvironment environment = QEnvironment.environment;
 
         return queryFactory
-                .select(envir.logisticsApiCode)
-                .from(envir)
-                .fetchFirst();
+                .select(environment.apiName,
+                        environment.apiKey)
+                .from(environment)
+                .orderBy(environment.idx.asc())
+                .fetch();
     }
-
-
 }
