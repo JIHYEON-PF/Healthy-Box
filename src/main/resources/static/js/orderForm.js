@@ -1,8 +1,27 @@
 $(document).on("click", "#doOrder, #doSubscribeOrder", function () {
     let IMP = window.IMP;
-    IMP.init('imp24005612');
 
-    let pathname = $(location).attr('pathname').split('?')[0].split('/')[2];
+    let impCode = '';
+
+    $.ajax({
+        url: "/iamport/get-imp-code",
+        method: "GET",
+        async: false,
+        success: function (data) {
+            impCode = data;
+        },
+        error: function (request, status, error) {
+            impCode = '';
+            console.log("에러")
+        },
+        complete: function () {
+            console.log("완료");
+        }
+    });
+
+    IMP.init(impCode);
+
+    let pathname = $(location).attr('pathname').split('/')[2];
 
 
     if (pathname === 'single-item') {
