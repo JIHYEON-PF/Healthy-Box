@@ -20,7 +20,8 @@ public interface EnvironmentRepository extends JpaRepository<Environment, Long>,
     @Override
     default void customize(QuerydslBindings bindings, QEnvironment root) {
         bindings.excludeUnlistedProperties(true);
-        bindings.including(root.logisticsApiCode);
-        bindings.bind(root.logisticsApiCode).first(StringExpression::containsIgnoreCase);
+        bindings.including(root.apiKey, root.apiName);
+        bindings.bind(root.apiKey).first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.apiName).first(StringExpression::containsIgnoreCase);
     }
 }
