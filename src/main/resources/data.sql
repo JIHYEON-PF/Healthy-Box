@@ -50,8 +50,11 @@ VALUES (now(), now(), 100000, null, 1, 1,'ORD20221003-190000',0, '00001', 1, '00
        (now(), now(), 6000, null, 1, 1,'ORD20220115-220800',0, '10001', 1, '00001', 0, 6000, 'testId', 0, '05', 0,'651122270741', 'BC카드', '123456******1234', 0, 'Y', '002', DATE_ADD(now(), INTERVAL 1 DAY)),
        (now(), now(), 7000, null, 1, 2,'ORD20220115-220800',0, '10002', 1, '00001', 0, 7000, 'testId', 0, '05', 0,'651122270741', 'BC카드', '123456******1234', 0, 'Y', '002', DATE_ADD(now(), INTERVAL 2 DAY));
 
-insert into tbl_environment(logistics_api_code)
-values('RvVqk5XxCk43x8lOvOwwcA');
+insert into tbl_environment(api_name, api_key)
+values('logisticsApiCode','RvVqk5XxCk43x8lOvOwwcA')
+    , ('iamportApiKey', '0636024527663452')
+    , ('iamportApiSecret', 'daLHd2j6oV2t0tDOAGPolrumg202pMqqxdMeVTN7g1ycWcwCboUievQJaZJxEPDgN72XMEXWyjBioIfm')
+    , ('iamportIMP', 'imp24005612');
 
 insert into tbl_basket(product_code, qty, seller_code, user_id, created_at, updated_at)
 values('00001', 2, '00001', 'testId', '2022-09-08 15:00:01', '2022-09-08 15:00:01'),
