@@ -148,6 +148,24 @@ $(document).ready(function () {
         "color": "white"
     });
 
+    if ($(idName).closest('li').hasClass('parent-nav')) {
+        $(idName).css({
+            "border-bottom-left-radius": "0px",
+            "border-bottom-right-radius": "0px"
+        });
+
+        $(idName).closest('li').find('.child-nav').removeAttr('hidden');
+    }
+
+    let path = $(location).attr("pathname").split('/');
+    console.log(path[path.length-1]);
+
+    $(idName).closest('li').find('.'+path[path.length-1]).css({
+        "background-color" : "rgba(84,146,91,0.3)"
+    });
+    $(idName).closest('li').find('.'+path[path.length-1]+' a').css({
+        "color" : "green"
+    });
 });
 
 //// 공통 함수
