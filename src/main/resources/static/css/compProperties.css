@@ -94,6 +94,12 @@
     padding: 5px 10px;
 }
 
+.parent-nav>button {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
 /* 마이페이지 메뉴 서브타이틀 설정 */
 /*
 #ordered-sub-menu, #basket-sub-menu {

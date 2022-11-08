@@ -1,16 +1,15 @@
 <div id="myPageNavigation">
     <div id="myPageSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end" style="width: 280px;">
-        <div class="text-center">
+        <div class="text-center pb-3">
             <a id="myPageTitle" class="myPageTitle" href="#">마이페이지</a>
             <label id="myPageId" hidden>blank</label>
         </div>
-        <div>
-            <hr>
+        <div class="py-4 border-top border-bottom">
             <ul id="main-menu" class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item parent-nav">
-                    <a id="ordered" href="#" class="nav-menu nav-link link-dark" aria-current="page">
+                    <button id="ordered" class="nav-menu nav-link link-dark" aria-current="page">
                         주문내역
-                    </a>
+                    </button>
                     <ul id="ordered-sub-menu" class="child-nav" hidden>
                         <li class="single">
                             <a id="ordered-sub-single" href="#" class="">일반 주문</a>
@@ -21,9 +20,9 @@
                     </ul>
                 </li>
                 <li class="nav-item parent-nav">
-                    <a id="basket" href="#" class="nav-menu nav-link link-dark">
+                    <button id="basket" class="nav-menu nav-link link-dark">
                         장바구니
-                    </a>
+                    </button>
                     <ul id="basket-sub-menu" class="child-nav" hidden>
                         <li class="single">
                             <a id="basket-sub-single" href="#" class="">일반상품 장바구니</a>
@@ -54,7 +53,6 @@
                     </a>
                 </li>
             </ul>
-            <hr>
         </div>
     </div>
 </div>

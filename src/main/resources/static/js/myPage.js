@@ -111,11 +111,12 @@ $(document).on("click", "#modifyUserInfo", function () {
     }
 });
 
-// 마이페이지의 선택된 페이지의 값에 따라 선택 레이어 변경
 $(document).ready(function () {
-    let separation = $('#myPageId').text();
+    // 마이페이지의 선택된 페이지의 값에 따라 선택 레이어 변경
 
+    let separation = $('#myPageId').text();
     let idName = '';
+
     switch (separation) {
         case "ordered":
             idName = "#ordered";
@@ -136,8 +137,8 @@ $(document).ready(function () {
             idName = "#unregister";
             break;
     }
-
     $('.nav-menu').addClass('link-dark');
+
     $('.nav-menu').css({
         "background-color": "",
         "color": ""
@@ -147,25 +148,54 @@ $(document).ready(function () {
         "background-color": "rgba(83,146,91,0.8)",
         "color": "white"
     });
-
     if ($(idName).closest('li').hasClass('parent-nav')) {
+
         $(idName).css({
             "border-bottom-left-radius": "0px",
             "border-bottom-right-radius": "0px"
         });
-
         $(idName).closest('li').find('.child-nav').removeAttr('hidden');
+
     }
-
     let path = $(location).attr("pathname").split('/');
-    console.log(path[path.length-1]);
 
+    console.log(path[path.length-1]);
     $(idName).closest('li').find('.'+path[path.length-1]).css({
         "background-color" : "rgba(84,146,91,0.3)"
     });
+
     $(idName).closest('li').find('.'+path[path.length-1]+' a').css({
         "color" : "green"
     });
+});
+
+$(document).on("click", ".parent-nav>button", function () {
+    $(".parent-nav>button")
+        .addClass("link-dark")
+        .css({
+            "background-color": "",
+            "color": "",
+            "border-bottom-left-radius": "10px",
+            "border-bottom-right-radius": "10px"
+        });
+    $(".child-nav")
+        .animate({
+            hidden: true
+        }, 50);
+        // .attr("hidden", true);
+
+    $(this).css({
+        "background-color": "rgba(83,146,91,0.8)",
+        "color": "white",
+        "border-bottom-left-radius": "0px",
+        "border-bottom-right-radius": "0px"
+    })
+        .removeClass("link-dark");
+    $(this).closest('li').find('.child-nav')
+        .animate({
+            hidden: false
+        }, 50)
+        // .removeAttr('hidden');
 });
 
 //// 공통 함수
